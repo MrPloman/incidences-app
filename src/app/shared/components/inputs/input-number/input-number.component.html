@@ -1,0 +1,21 @@
+<mat-form-field class="example-form-field">
+  <mat-label>{{ label }}</mat-label>
+  <input
+    matInput
+    [type]="type"
+    [id]="id"
+    [type]="type"
+    [formControl]="valueControl"
+    (blur)="onTouched()"
+    (input)="onTouched()"
+  />
+  <button
+    matSuffix
+    mat-icon-button
+    aria-label="Clear"
+    (click)="removeValue()"
+    *ngIf="valueControl.value"
+  >
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-form-field>

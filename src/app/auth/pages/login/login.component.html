@@ -1,0 +1,32 @@
+<div id="background">
+  <div id="container">
+    <div id="header">
+      {{ title }}
+    </div>
+    <form id="form" [formGroup]="loginForm">
+      <div id="email">
+        <component-input-text
+          formControlName="email"
+          [label]="'Email'"
+          [type]="'email'"
+          [id]="'input-email'"
+        ></component-input-text>
+      </div>
+      <div id="password">
+        <component-input-text
+          formControlName="password"
+          [label]="'Password'"
+          [type]="'password'"
+          [id]="'input-password'"
+        ></component-input-text>
+      </div>
+    </form>
+    <div id="buttons">
+      <component-generic-button
+        [disabled]="submitIsForbidden || isDownloading"
+        [loading]="isDownloading"
+        (click)="submit()"
+      ></component-generic-button>
+    </div>
+  </div>
+</div>
