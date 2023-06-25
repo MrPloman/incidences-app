@@ -1,20 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoginComponent } from './pages/login/login.component';
-import { RegisterComponent } from './pages/register/register.component';
 import { SharedModule } from '../shared/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { IncidencesListComponent } from './pages/list/incidences-list.component';
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent],
-  exports: [LoginComponent, RegisterComponent],
+  declarations: [IncidencesListComponent],
+  exports: [IncidencesListComponent],
   imports: [
     CommonModule,
     SharedModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxSkeletonLoaderModule,
   ],
 })
-export class AuthModule {}
+export class IncidencesModule {}

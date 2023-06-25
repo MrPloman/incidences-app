@@ -18,7 +18,7 @@ export class LoginComponent {
   public readonly loginForm: FormGroup = new FormGroup({
     email: new FormControl(this.email, [
       Validators.required,
-      Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+      Validators.pattern(/^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/),
     ]),
     password: new FormControl(this.password, [
       Validators.required,

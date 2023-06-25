@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { InputNumberComponent } from './components/inputs/input-number/input-number.component';
 import { GenericButtonComponent } from './components/buttons/generic-button/generic-button.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 @NgModule({
   imports: [
@@ -22,13 +23,19 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatButtonModule,
     MatIconModule,
     MatProgressSpinnerModule,
+    NgxSkeletonLoaderModule,
   ],
   declarations: [
     InputTextComponent,
     InputNumberComponent,
     GenericButtonComponent,
   ],
-  exports: [InputTextComponent, InputNumberComponent, GenericButtonComponent],
+  exports: [
+    InputTextComponent,
+    InputNumberComponent,
+    GenericButtonComponent,
+    NgxSkeletonLoaderModule,
+  ],
   bootstrap: [],
 })
 export class SharedModule {}
