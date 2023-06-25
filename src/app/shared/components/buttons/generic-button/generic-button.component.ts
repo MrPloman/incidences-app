@@ -8,4 +8,5 @@ import { Component, Input } from '@angular/core';
 export class GenericButtonComponent {
   @Input() disabled: boolean = false;
   @Input() loading: boolean = false;
+  @Input() label: string = 'Accept';
 }

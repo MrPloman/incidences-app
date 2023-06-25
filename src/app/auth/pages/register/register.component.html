@@ -1,1 +1,34 @@
-<p>register works!</p>
+<div class="flex">
+  <p>Some data:</p>
+  <p *loadingList="isLoading; height: '20px'; width: '200px'">HOLA</p>
+</div>
+
+<section class="flex">
+  <ng-container
+    *loadingList="
+      isLoading;
+      repeat: 5;
+      className: 'pulse';
+      height: '100px';
+      width: '200px'
+    "
+  >
+    <div *ngFor="let num of [1, 2, 3]">
+      {{ num }}
+    </div>
+  </ng-container>
+</section>
+
+<ng-container
+  *loadingList="
+    isLoading;
+    repeat: 5;
+    className: 'mb-2';
+    height: '30px';
+    width: '100px'
+  "
+>
+  <div *ngFor="let num of [1, 2, 3, 4, 5]">
+    {{ num }}
+  </div>
+</ng-container>

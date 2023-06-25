@@ -1,7 +1,30 @@
 <section>
   <div class="example-button-row">
-    <button [disabled]="disabled" mat-raised-button color="accent">
-      Accent <mat-spinner *ngIf="loading"></mat-spinner>
+    <button id="buttonStructure" [disabled]="disabled" mat-raised-button>
+      <span id="insideButtonLabel">{{ label }}</span>
+      <mat-icon *ngIf="loading">
+        <mat-spinner diameter="15"></mat-spinner>
+      </mat-icon>
     </button>
+    <!-- <button
+      mat-button
+      id="buttonStructure"
+      [disabled]="disabled"
+      color="accent"
+    >
+      <span id="insideButtonLabel">{{ label }}</span>
+      <mat-icon
+        ><mat-spinner color="accent" diameter="15"> </mat-spinner
+      ></mat-icon>
+    </button> -->
+    <!-- <button
+      id="buttonStructure"
+      [disabled]="disabled"
+      mat-raised-button
+      color="accent"
+    >
+      <span id="insideButtonLabel">{{ label }}</span>
+      <mat-spinner id="insideButtonLoding" *ngIf="!loading"></mat-spinner>
+    </button> -->
   </div>
 </section>
