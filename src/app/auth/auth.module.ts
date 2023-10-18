@@ -5,6 +5,8 @@ import { RegisterComponent } from './pages/register/register.component';
 import { SharedModule } from '../shared/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { IncidencesListService } from '../incidences/services/IncidencesListService.service';
+import { AuthRouting } from './auth.routing.module';
 
 @NgModule({
   declarations: [LoginComponent, RegisterComponent],
@@ -12,9 +14,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     SharedModule,
-    BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    AuthRouting,
   ],
+  providers: [IncidencesListService],
 })
 export class AuthModule {}

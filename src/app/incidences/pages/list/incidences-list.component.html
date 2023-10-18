@@ -1,18 +1,82 @@
-<div class="flex">
-  <p>Some data:</p>
-  <div id="loadingList">
-    <ngx-skeleton-loader
-      count="5"
-      [animation]="'pulse'"
-      [theme]="{
-        'border-radius': '5px',
-        height: '50px',
-        'background-color': '#dbdbdb',
-        border: '1px solid #dbdbdb',
-        'animation-duration': '2s'
-      }"
-    >
-    </ngx-skeleton-loader>
-  </div>
-  <div id="list"></div>
+<div class="container">
+  <table id="mainTable">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>userId</th>
+        <th>title</th>
+        <th>description</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="isLoading" id="loadingList">
+      <tr>
+        <td>
+          <ngx-skeleton-loader
+            count="100"
+            [animation]="'pulse'"
+            [theme]="{
+              'border-radius': '5px',
+              height: '50px',
+              'background-color': '#dbdbdb',
+              border: '1px solid #dbdbdb',
+              'animation-duration': '2s'
+            }"
+          >
+          </ngx-skeleton-loader>
+        </td>
+        <td>
+          <ngx-skeleton-loader
+            count="100"
+            [animation]="'pulse'"
+            [theme]="{
+              'border-radius': '5px',
+              height: '50px',
+              'background-color': '#dbdbdb',
+              border: '1px solid #dbdbdb',
+              'animation-duration': '2s'
+            }"
+          >
+          </ngx-skeleton-loader>
+        </td>
+        <td>
+          <ngx-skeleton-loader
+            count="100"
+            [animation]="'pulse'"
+            [theme]="{
+              'border-radius': '5px',
+              height: '50px',
+              'background-color': '#dbdbdb',
+              border: '1px solid #dbdbdb',
+              'animation-duration': '2s'
+            }"
+          >
+          </ngx-skeleton-loader>
+        </td>
+        <td>
+          <ngx-skeleton-loader
+            count="100"
+            [animation]="'pulse'"
+            [theme]="{
+              'border-radius': '5px',
+              height: '50px',
+              'background-color': '#dbdbdb',
+              border: '1px solid #dbdbdb',
+              'animation-duration': '2s'
+            }"
+          >
+          </ngx-skeleton-loader>
+        </td>
+      </tr>
+    </tbody>
+    <tbody id="incidenceslist" *ngIf="list && list.length > 0">
+      <tr class="row" *ngFor="let incidence of list; let i = index">
+        <td class="column">
+          {{ incidence.id }}
+        </td>
+        <td class="column">{{ incidence.userId }}</td>
+        <td class="column">{{ incidence.title }}</td>
+        <td class="column">{{ incidence.body }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>

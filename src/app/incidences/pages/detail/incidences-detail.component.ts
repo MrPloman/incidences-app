@@ -3,11 +3,11 @@ import { Observable, Observer } from 'rxjs';
 import { IncidencesListService } from '../../services/IncidencesListService.service';
 
 @Component({
-  selector: 'page-incidences-list',
-  templateUrl: './incidences-list.component.html',
-  styleUrls: ['./incidences-list.component.scss'],
+  selector: 'page-incidences-detail',
+  templateUrl: './incidences-detail.component.html',
+  styleUrls: ['./incidences-detail.component.scss'],
 })
-export class IncidencesListComponent {
+export class IncidencesDetailComponent {
   public isLoading = true;
   // public profile$: BehaviorSubject<{ name: string; surname: string }> =
   //   new BehaviorSubject({ name: '', surname: '' });
@@ -31,8 +31,17 @@ export class IncidencesListComponent {
   //     }, 1000);
   //   });
   public _incidencesListService: IncidencesListService;
-  public list: { userId: number; id: number; title: string; body: string }[] =
-    [];
+  public incidence: {
+    userId: number;
+    id: number;
+    title: string;
+    body: string;
+  } = {
+    userId: 0,
+    id: 0,
+    title: '',
+    body: '',
+  };
   constructor(incidencesListService: IncidencesListService) {
     this._incidencesListService = incidencesListService;
   }
@@ -44,10 +53,10 @@ export class IncidencesListComponent {
     // }, 2000);
     // this.observableProfile$.subscribe(this.observerProfile$);
     this._incidencesListService.observableIncidendesList$.subscribe(
-      (data: { userId: number; id: number; title: string; body: string }[]) => {
+      (data: { userId: number; id: number; title: string; body: string }) => {
         setTimeout(() => {
-          if (data && data.length > 0) {
-            this.list = data;
+          if (data) {
+            this.incidence = data;
           }
           this.isLoading = false;
         }, 2000);

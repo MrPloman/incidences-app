@@ -1,0 +1,25 @@
+#background {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(252, 252, 252);
+  #container {
+    margin: 0 auto;
+    width: 250px;
+    background-color: aliceblue;
+    border: 1px solid grey;
+    border-radius: 10px;
+  }
+  .disappear {
+    animation-name: disappearOnLogin;
+    animation-duration: 2s;
+  }
+}
+
+@keyframes disappearOnLogin {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

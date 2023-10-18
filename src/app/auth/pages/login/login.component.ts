@@ -13,6 +13,7 @@ export class LoginComponent {
   public password: string = '';
   public submitIsForbidden: boolean = true;
   public isDownloading: boolean = false;
+  public success: boolean = false;
   private router: Router;
 
   public readonly loginForm: FormGroup = new FormGroup({
@@ -41,10 +42,11 @@ export class LoginComponent {
       this.isDownloading = true;
       setTimeout(() => {
         this.isDownloading = false;
-        this.router.navigateByUrl('/register');
+        this.success = true;
+        setTimeout(() => {
+          this.router.navigateByUrl('/incidences');
+        }, 2000);
       }, 4000);
-
-      console.log('YEEEE');
     }
   }
   private validateForm() {

@@ -5,17 +5,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { IncidencesListComponent } from './pages/list/incidences-list.component';
-
+import { IncidencesListService } from './services/IncidencesListService.service';
+import { IncidencesRouting } from './incidences.routing.module';
+import { IncidencesDetailComponent } from './pages/detail/incidences-detail.component';
 @NgModule({
-  declarations: [IncidencesListComponent],
-  exports: [IncidencesListComponent],
+  declarations: [IncidencesListComponent, IncidencesDetailComponent],
+  exports: [IncidencesListComponent, IncidencesDetailComponent],
   imports: [
     CommonModule,
     SharedModule,
-    BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     NgxSkeletonLoaderModule,
+    IncidencesRouting,
   ],
+  providers: [IncidencesListService],
 })
 export class IncidencesModule {}
