@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Observable, Observer } from 'rxjs';
 import { IncidencesListService } from '../../services/IncidencesListService.service';
+import { Router } from '@angular/router';
+import { LoadingService } from 'src/app/shared/services/LoadingService.service';
 
 @Component({
   selector: 'page-incidences-list',
@@ -30,11 +32,19 @@ export class IncidencesListComponent {
   //       subs.next({ name: 'a', surname: 's' });
   //     }, 1000);
   //   });
+  public router: Router;
   public _incidencesListService: IncidencesListService;
+  public loadingService: LoadingService;
   public list: { userId: number; id: number; title: string; body: string }[] =
     [];
-  constructor(incidencesListService: IncidencesListService) {
+  constructor(
+    incidencesListService: IncidencesListService,
+    loadingService: LoadingService,
+    router: Router
+  ) {
+    this.loadingService = loadingService;
     this._incidencesListService = incidencesListService;
+    this.router = router;
   }
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
@@ -53,5 +63,14 @@ export class IncidencesListComponent {
         }, 2000);
       }
     );
+  }
+  public goToIncidenceDetail(incidence: {
+    userId: number;
+    id: number;
+    title: string;
+    body: string;
+  }): void {
+    this.loadingService.setTrue();
+    this.router.navigate([`incidences/${incidence.id}`]);
   }
 }

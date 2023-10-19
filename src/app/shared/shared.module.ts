@@ -10,7 +10,10 @@ import { InputNumberComponent } from './components/inputs/input-number/input-num
 import { GenericButtonComponent } from './components/buttons/generic-button/generic-button.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
-
+import { LoaderComponent } from './components/loader/loader.component';
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './stores';
+import { loadingReducer } from './stores/loading/loading.reducer';
 @NgModule({
   imports: [
     CommonModule,
@@ -23,16 +26,19 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     MatIconModule,
     MatProgressSpinnerModule,
     NgxSkeletonLoaderModule,
+    StoreModule.forFeature('loading', loadingReducer),
   ],
   declarations: [
     InputTextComponent,
     InputNumberComponent,
     GenericButtonComponent,
+    LoaderComponent,
   ],
   exports: [
     InputTextComponent,
     InputNumberComponent,
     GenericButtonComponent,
+    LoaderComponent,
     NgxSkeletonLoaderModule,
   ],
   bootstrap: [],

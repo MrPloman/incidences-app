@@ -1,4 +1,6 @@
-import { Component, SimpleChanges } from '@angular/core';
+import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { selectLoading } from './shared/stores/loading/loading.selectors';
 
 @Component({
   selector: 'app-root',
@@ -6,15 +8,8 @@ import { Component, SimpleChanges } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'incidences-app';
-  get cosa() {
-    return this.title;
-  }
-
-  public lol = () => {
-    console.log(this.title);
-  };
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.title);
+  public loading$;
+  constructor(private store: Store) {
+    this.loading$ = this.store.select(selectLoading);
   }
 }

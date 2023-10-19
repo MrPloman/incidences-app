@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, Observer, BehaviorSubject } from 'rxjs';
 import { IncidencesListService } from 'src/app/incidences/services/IncidencesListService.service';
+import { LoadingService } from 'src/app/shared/services/LoadingService.service';
 
 @Component({
   selector: 'page-register',
@@ -30,13 +31,20 @@ export class RegisterComponent implements OnInit {
   //       subs.next({ name: 'a', surname: 's' });
   //     }, 1000);
   //   });
+  public loadingService: LoadingService;
   public list = [];
-  constructor(incidencesListService: IncidencesListService) {
+  constructor(
+    incidencesListService: IncidencesListService,
+    loadingService: LoadingService
+  ) {
+    this.loadingService = loadingService;
     incidencesListService.observableIncidendesList$.subscribe((data) => {
       this.list = data;
     });
   }
   ngOnInit(): void {
+    this.loadingService.setFalse();
+
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     // setTimeout(() => {

@@ -69,7 +69,11 @@
       </tr>
     </tbody>
     <tbody id="incidenceslist" *ngIf="list && list.length > 0">
-      <tr class="row" *ngFor="let incidence of list; let i = index">
+      <tr
+        class="row"
+        *ngFor="let incidence of list; let i = index"
+        (click)="goToIncidenceDetail(incidence)"
+      >
         <td class="column">
           {{ incidence.id }}
         </td>

@@ -1,6 +1,9 @@
 import { Component, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { LoadingService } from 'src/app/shared/services/LoadingService.service';
 
 @Component({
   selector: 'page-login',
@@ -15,6 +18,7 @@ export class LoginComponent {
   public isDownloading: boolean = false;
   public success: boolean = false;
   private router: Router;
+  private loadingService: LoadingService;
 
   public readonly loginForm: FormGroup = new FormGroup({
     email: new FormControl(this.email, [
@@ -29,9 +33,10 @@ export class LoginComponent {
     ]),
   });
 
-  constructor(router: Router) {
+  constructor(router: Router, public LoadingService: LoadingService) {
+    this.loadingService = LoadingService;
     this.router = router;
-    this.loginForm.valueChanges.subscribe((val) => {
+    this.loginForm.valueChanges.subscribe(() => {
       if (this.validateForm()) {
         this.submitIsForbidden = false;
       } else this.submitIsForbidden = true;
@@ -39,12 +44,14 @@ export class LoginComponent {
   }
   public submit() {
     if (!this.submitIsForbidden && !this.isDownloading) {
+      this.loadingService.setTrue();
       this.isDownloading = true;
       setTimeout(() => {
         this.isDownloading = false;
         this.success = true;
         setTimeout(() => {
           this.router.navigateByUrl('/incidences');
+          this.loadingService.setFalse();
         }, 2000);
       }, 4000);
     }
@@ -53,5 +60,7 @@ export class LoginComponent {
     if (this.loginForm.status === 'VALID') return true;
     else return false;
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.loadingService.setFalse();
+  }
 }

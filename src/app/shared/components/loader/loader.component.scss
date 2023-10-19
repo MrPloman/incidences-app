@@ -1,0 +1,30 @@
+.container {
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff5d;
+  z-index: 100;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .loader {
+    position: relative;
+    margin: 0 auto;
+    width: 100px;
+    height: 100px;
+    border: 10px solid #000000;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+  }
+}
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

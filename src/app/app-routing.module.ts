@@ -15,6 +15,10 @@ const routes: Routes = [
     loadChildren: () =>
       import('./incidences/incidences.module').then((m) => m.IncidencesModule),
   },
+  {
+    path: '',
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
+  },
 ];
 
 @NgModule({
