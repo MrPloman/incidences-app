@@ -71,6 +71,9 @@ export class IncidencesListComponent {
     body: string;
   }): void {
     this.loadingService.setTrue();
-    this.router.navigate([`incidences/${incidence.id}`]);
+    setTimeout(() => {
+      this.router.navigate([`incidences/${incidence.id}`]);
+      this.loadingService.setFalse();
+    }, 1000);
   }
 }
