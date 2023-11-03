@@ -9,6 +9,10 @@ import { SharedModule } from './shared/shared.module';
 import { IncidencesModule } from './incidences/incidences.module';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
+import { AppReducers } from './stores/app.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+import { effectsArray } from './stores/effects';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -19,7 +23,12 @@ import { StoreModule } from '@ngrx/store';
     BrowserAnimationsModule,
     SharedModule,
     HttpClientModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot(AppReducers),
+    EffectsModule.forRoot(effectsArray),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: false, // Restrict extension to log-only mode
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

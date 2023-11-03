@@ -8,6 +8,7 @@ import { IncidencesListComponent } from './pages/list/incidences-list.component'
 import { IncidencesListService } from './services/IncidencesListService.service';
 import { IncidencesRouting } from './incidences.routing.module';
 import { IncidencesDetailComponent } from './pages/detail/incidences-detail.component';
+
 @NgModule({
   declarations: [IncidencesListComponent, IncidencesDetailComponent],
   exports: [IncidencesListComponent, IncidencesDetailComponent],

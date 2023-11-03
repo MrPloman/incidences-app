@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Observable, Observer, BehaviorSubject } from 'rxjs';
 import { IncidencesListService } from 'src/app/incidences/services/IncidencesListService.service';
 import { LoadingService } from 'src/app/shared/services/LoadingService.service';
+import { allActions } from 'src/app/stores/actions';
+import { AppState } from 'src/app/stores/app.state';
 
 @Component({
   selector: 'page-register',
@@ -35,7 +38,8 @@ export class RegisterComponent implements OnInit {
   public list = [];
   constructor(
     incidencesListService: IncidencesListService,
-    loadingService: LoadingService
+    loadingService: LoadingService,
+    private store: Store<AppState>
   ) {
     this.loadingService = loadingService;
     incidencesListService.observableIncidendesList$.subscribe((data) => {
@@ -44,7 +48,11 @@ export class RegisterComponent implements OnInit {
   }
   ngOnInit(): void {
     this.loadingService.setFalse();
-
+    this.store.dispatch(
+      allActions.authActions.createUserAction({
+        user: { email: 'pol@a.com', password: '' },
+      })
+    );
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     // setTimeout(() => {

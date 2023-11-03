@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { selectLoading } from './shared/stores/loading/loading.selectors';
+import { AppState } from './stores/app.state';
+import { LoadingService } from './shared/services/LoadingService.service';
 
 @Component({
   selector: 'app-root',
@@ -8,8 +9,14 @@ import { selectLoading } from './shared/stores/loading/loading.selectors';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  public loading$;
-  constructor(private store: Store) {
-    this.loading$ = this.store.select(selectLoading);
+  public loading$: boolean = false;
+  constructor(
+    private store: Store<AppState>,
+    private loadingService: LoadingService
+  ) {
+    this.loadingService.setFalse();
+    this.store.select('UILoadingState').subscribe(({ loading }) => {
+      this.loading$ = loading;
+    });
   }
 }

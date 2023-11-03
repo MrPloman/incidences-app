@@ -11,9 +11,7 @@ import { GenericButtonComponent } from './components/buttons/generic-button/gene
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { LoaderComponent } from './components/loader/loader.component';
-import { StoreModule } from '@ngrx/store';
-import { reducers } from './stores';
-import { loadingReducer } from './stores/loading/loading.reducer';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -26,7 +24,6 @@ import { loadingReducer } from './stores/loading/loading.reducer';
     MatIconModule,
     MatProgressSpinnerModule,
     NgxSkeletonLoaderModule,
-    StoreModule.forFeature('loading', loadingReducer),
   ],
   declarations: [
     InputTextComponent,

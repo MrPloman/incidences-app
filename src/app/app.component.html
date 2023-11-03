@@ -1,2 +1,2 @@
-<loader-component *ngIf="loading$ | async; else content"></loader-component>
+<loader-component *ngIf="loading$; else content"></loader-component>
 <ng-template #content><router-outlet></router-outlet> </ng-template>

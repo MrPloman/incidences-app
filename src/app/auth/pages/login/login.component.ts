@@ -4,6 +4,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { LoadingService } from 'src/app/shared/services/LoadingService.service';
+import { AppState } from 'src/app/stores/app.state';
+import { allActions } from 'src/app/stores/actions';
 
 @Component({
   selector: 'page-login',
@@ -33,7 +35,11 @@ export class LoginComponent {
     ]),
   });
 
-  constructor(router: Router, public LoadingService: LoadingService) {
+  constructor(
+    router: Router,
+    public LoadingService: LoadingService,
+    private store: Store<AppState>
+  ) {
     this.loadingService = LoadingService;
     this.router = router;
     this.loginForm.valueChanges.subscribe(() => {

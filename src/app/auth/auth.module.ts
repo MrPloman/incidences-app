@@ -7,6 +7,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IncidencesListService } from '../incidences/services/IncidencesListService.service';
 import { AuthRouting } from './auth.routing.module';
+import { StoreModule } from '@ngrx/store';
+import { AppReducers } from '../stores/app.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { effectsArray } from '../stores/effects';
 
 @NgModule({
   declarations: [LoginComponent, RegisterComponent],
@@ -17,6 +21,7 @@ import { AuthRouting } from './auth.routing.module';
     FormsModule,
     ReactiveFormsModule,
     AuthRouting,
+    EffectsModule.forFeature(effectsArray),
   ],
   providers: [IncidencesListService],
 })
