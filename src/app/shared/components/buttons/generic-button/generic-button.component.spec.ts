@@ -9,7 +9,7 @@ describe('GenericButtonComponent', () => {
     TestBed.configureTestingModule({
       declarations: [GenericButtonComponent],
     });
-    fixture = TestBed.createComponent(GenericButtonComponent);
+    fixture = TestBed.CreateFlatComponent(GenericButtonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

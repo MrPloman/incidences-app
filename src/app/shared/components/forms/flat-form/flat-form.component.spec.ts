@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RegisterComponent } from './register.component';
+import { FlatFormComponent } from './flat-form.component';
 
-describe('RegisterComponent', () => {
-  let component: RegisterComponent;
-  let fixture: ComponentFixture<RegisterComponent>;
+describe('FlatFormComponent', () => {
+  let component: FlatFormComponent;
+  let fixture: ComponentFixture<FlatFormComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [RegisterComponent],
+      declarations: [FlatFormComponent]
     });
-    fixture = TestBed.CreateFlatComponent(RegisterComponent);
+    fixture = TestBed.createComponent(FlatFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

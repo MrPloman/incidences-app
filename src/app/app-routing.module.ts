@@ -7,6 +7,10 @@ import { AuthModule } from './auth/auth.module';
 
 const routes: Routes = [
   {
+    path: 'flat',
+    loadChildren: () => import('./flat/flat.module').then((m) => m.FlatModule),
+  },
+  {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
@@ -14,6 +18,11 @@ const routes: Routes = [
     path: 'incidences',
     loadChildren: () =>
       import('./incidences/incidences.module').then((m) => m.IncidencesModule),
+  },
+  {
+    path: 'locations',
+    loadChildren: () =>
+      import('./locations/locations.module').then((m) => m.LocationsModule),
   },
   {
     path: '',

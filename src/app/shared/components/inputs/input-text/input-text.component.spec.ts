@@ -8,9 +8,9 @@ describe('InputTextComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [InputTextComponent]
+      declarations: [InputTextComponent],
     });
-    fixture = TestBed.createComponent(InputTextComponent);
+    fixture = TestBed.CreateFlatComponent(InputTextComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

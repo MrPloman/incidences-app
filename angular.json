@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "incidences-app": {
+    "rating-flats": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/incidences-app",
+            "outputPath": "dist/rating-flats",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -33,7 +33,10 @@
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "leaflet"
+            ]
           },
           "configurations": {
             "production": {
@@ -69,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "incidences-app:build:production"
+              "browserTarget": "rating-flats:build:production"
             },
             "development": {
-              "browserTarget": "incidences-app:build:development"
+              "browserTarget": "rating-flats:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -80,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "incidences-app:build"
+            "browserTarget": "rating-flats:build"
           }
         },
         "test": {
@@ -97,7 +100,8 @@
               "src/assets"
             ],
             "styles": [
-              "@angular/material/prebuilt-themes/indigo-pink.css",
+              "@angular/cdk/overlay-prebuilt.css",
+              "node_modules/leaflet/dist/leaflet.css",
               "src/styles.scss"
             ],
             "scripts": []

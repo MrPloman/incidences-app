@@ -11,6 +11,10 @@ import { GenericButtonComponent } from './components/buttons/generic-button/gene
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { LoaderComponent } from './components/loader/loader.component';
+import { FlatFormComponent } from './components/forms/flat-form/flat-form.component';
+import { ProfileFormComponent } from './components/forms/profile-form/profile-form.component';
+import { AuthFormComponent } from './components/forms/auth-form/auth-form.component';
+import { MapComponent } from './components/map/map.component';
 
 @NgModule({
   imports: [
@@ -30,6 +34,10 @@ import { LoaderComponent } from './components/loader/loader.component';
     InputNumberComponent,
     GenericButtonComponent,
     LoaderComponent,
+    FlatFormComponent,
+    ProfileFormComponent,
+    AuthFormComponent,
+    MapComponent,
   ],
   exports: [
     InputTextComponent,
@@ -37,6 +45,7 @@ import { LoaderComponent } from './components/loader/loader.component';
     GenericButtonComponent,
     LoaderComponent,
     NgxSkeletonLoaderModule,
+    MapComponent,
   ],
   bootstrap: [],
 })

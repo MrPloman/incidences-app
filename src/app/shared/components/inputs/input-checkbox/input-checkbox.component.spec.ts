@@ -8,9 +8,9 @@ describe('InputCheckboxComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [InputCheckboxComponent]
+      declarations: [InputCheckboxComponent],
     });
-    fixture = TestBed.createComponent(InputCheckboxComponent);
+    fixture = TestBed.CreateFlatComponent(InputCheckboxComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
