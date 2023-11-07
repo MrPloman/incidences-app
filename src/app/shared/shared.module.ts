@@ -15,6 +15,8 @@ import { FlatFormComponent } from './components/forms/flat-form/flat-form.compon
 import { ProfileFormComponent } from './components/forms/profile-form/profile-form.component';
 import { AuthFormComponent } from './components/forms/auth-form/auth-form.component';
 import { MapComponent } from './components/map/map.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { CardComponent } from './components/card/card.component';
 
 @NgModule({
   imports: [
@@ -38,6 +40,8 @@ import { MapComponent } from './components/map/map.component';
     ProfileFormComponent,
     AuthFormComponent,
     MapComponent,
+    NavbarComponent,
+    CardComponent,
   ],
   exports: [
     InputTextComponent,
@@ -46,6 +50,8 @@ import { MapComponent } from './components/map/map.component';
     LoaderComponent,
     NgxSkeletonLoaderModule,
     MapComponent,
+    NavbarComponent,
+    CardComponent,
   ],
   bootstrap: [],
 })

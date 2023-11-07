@@ -1,2 +1,17 @@
-<div id="list">hola</div>
-<app-map></app-map>
+<div id="locations">
+  <div id="header">
+    <h2 id="title">Locations</h2>
+  </div>
+  <div id="filters">
+    <input type="text" /> || <button>Click</button> ||
+    <div>TAG</div>
+  </div>
+  <div id="list">
+    <ng-container *ngFor="let item of [0, 1, 2, 3, 4, 5]">
+      <card-component
+        (click)="goToCoordMap({ lng: 1, lat: 1 })"
+      ></card-component>
+    </ng-container>
+  </div>
+</div>
+<app-map [markers]="markers" [coords]="{ lat: 1, lng: 1 }"></app-map>
