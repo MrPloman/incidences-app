@@ -7,11 +7,18 @@
     <div>TAG</div>
   </div>
   <div id="list">
-    <ng-container *ngFor="let item of [0, 1, 2, 3, 4, 5]">
+    <ng-container *ngIf="!!markers && markers.length > 0">
       <card-component
-        (click)="goToCoordMap({ lng: 1, lat: 1 })"
+        *ngFor="let marker of markers"
+        (click)="goToCoordMap(marker)"
       ></card-component>
     </ng-container>
   </div>
 </div>
-<app-map [markers]="markers" [coords]="{ lat: 1, lng: 1 }"></app-map>
+<app-map
+  *ngIf="!loading"
+  [coords]="coords"
+  [markers]="markers"
+  [selectedMarker]="coords"
+  (boundaries)="getBoundaries($event)"
+></app-map>

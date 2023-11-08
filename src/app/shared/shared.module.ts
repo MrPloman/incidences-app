@@ -17,6 +17,7 @@ import { AuthFormComponent } from './components/forms/auth-form/auth-form.compon
 import { MapComponent } from './components/map/map.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CardComponent } from './components/card/card.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -30,6 +31,7 @@ import { CardComponent } from './components/card/card.component';
     MatIconModule,
     MatProgressSpinnerModule,
     NgxSkeletonLoaderModule,
+    HttpClientModule,
   ],
   declarations: [
     InputTextComponent,
