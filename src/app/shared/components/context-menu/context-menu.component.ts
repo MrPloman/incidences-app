@@ -9,7 +9,5 @@ export class ContextMenuComponent {
   public value: string = 'a simple value attached to the context menu';
 
   // The value can be typed
-  public execute(text: string, value: any) {
-    console.log(text, value);
-  }
+  public execute(text: string, value: any) {}
 }

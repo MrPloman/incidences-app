@@ -1,3 +1,3 @@
 import { AuthEffects } from './auth.effects';
-
-export const effectsArray: any[] = [AuthEffects];
+import { LocationsEffects } from './locations.effects';
+export const effectsArray: any[] = [AuthEffects, LocationsEffects];

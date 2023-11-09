@@ -21,6 +21,11 @@
     margin-top: 20px;
     overflow-y: scroll;
     height: 80vh;
+    margin: 0 auto;
+    #loader {
+      display: flex;
+      justify-content: center;
+    }
   }
 }
 ::-webkit-scrollbar {

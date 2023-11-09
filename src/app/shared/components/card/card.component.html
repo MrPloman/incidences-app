@@ -2,23 +2,23 @@
   <div class="article-wrapper">
     <div class="article-header">
       <div id="titles">
-        <h3 id="title">Good and love place</h3>
-        <h4 id="address">Concilio de trento</h4>
+        <h3 id="title">{{ markerInfo.information?.title }}</h3>
+        <h4 id="address">{{ markerInfo.information?.address }}</h4>
       </div>
-      <div id="rating"><span id="ratingNumber">83</span></div>
+      <div id="rating">
+        <span id="ratingNumber">{{ markerInfo.information?.rating }}</span>
+      </div>
     </div>
     <div class="article-body">
       <p>
-        Curabitur convallis ac quam vitae laoreet. Nulla mauris ante, euismod
-        sed lacus sit amet, congue bibendum eros. Etiam mattis lobortis porta.
-        Vestibulum ultrices iaculis enim imperdiet egestas.
+        {{ markerInfo.information?.description }}
       </p>
     </div>
     <div class="article-footer">
-      <div>Ratings: 10</div>
+      <div>Ratings: {{ markerInfo.information?.interactions }}</div>
       <div id="user">
         <div id="userAvatar"></div>
-        <div id="username">Pol Plana</div>
+        <div id="username">{{ markerInfo.information?.user?.username }}</div>
       </div>
     </div>
   </div>

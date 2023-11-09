@@ -7,18 +7,21 @@
     <div>TAG</div>
   </div>
   <div id="list">
-    <ng-container *ngIf="!!markers && markers.length > 0">
+    <ng-container *ngIf="markers() && markers().length > 0">
       <card-component
-        *ngFor="let marker of markers"
+        *ngFor="let marker of markers()"
+        [markerInfo]="marker"
         (click)="goToCoordMap(marker)"
       ></card-component>
+    </ng-container>
+    <div *ngIf="!loading && markers().length === 0">Nothing found</div>
+    <ng-container id="loader" *ngIf="loading && markers().length === 0">
+      <mini-loader></mini-loader>
     </ng-container>
   </div>
 </div>
 <app-map
-  *ngIf="!loading"
   [coords]="coords"
-  [markers]="markers"
   [selectedMarker]="coords"
-  (boundaries)="getBoundaries($event)"
+  [markers]="markers()"
 ></app-map>

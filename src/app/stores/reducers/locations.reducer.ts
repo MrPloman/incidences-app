@@ -20,7 +20,6 @@ export const _LocationsReducers = createReducer(
     error: undefined,
   })),
   on(getFlatMarkersActionSuccess, (state, { markers }) => ({
-    ...state,
     loaded: true,
     loading: false,
     markers: markers,

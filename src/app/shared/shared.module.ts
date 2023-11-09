@@ -18,7 +18,7 @@ import { MapComponent } from './components/map/map.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CardComponent } from './components/card/card.component';
 import { HttpClientModule } from '@angular/common/http';
-
+import { MiniLoaderComponent } from './components/mini-loader/mini-loader.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -44,6 +44,7 @@ import { HttpClientModule } from '@angular/common/http';
     MapComponent,
     NavbarComponent,
     CardComponent,
+    MiniLoaderComponent,
   ],
   exports: [
     InputTextComponent,
@@ -54,6 +55,7 @@ import { HttpClientModule } from '@angular/common/http';
     MapComponent,
     NavbarComponent,
     CardComponent,
+    MiniLoaderComponent,
   ],
   bootstrap: [],
 })
