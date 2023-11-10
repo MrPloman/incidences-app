@@ -25,6 +25,7 @@ export class InputTextComponent implements ControlValueAccessor {
   @Input() public label: string = '';
   @Input() public type: inputTypes = 'text';
   @Input() public id: string = '';
+  @Input() public width: string = '100%';
 
   constructor() {}
   public readonly valueControl = new FormControl(null || '', [

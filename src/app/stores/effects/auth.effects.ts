@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, catchError, of, switchMap } from 'rxjs';
 import { allActions } from '../actions';
 import { AuthService } from 'src/app/shared/services/AuthService.service';
-import { User } from 'src/app/models/user.model';
+import { User } from 'src/app/shared/models/user.model';
 @Injectable({
   providedIn: 'root',
 })

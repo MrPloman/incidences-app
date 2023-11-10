@@ -23,7 +23,7 @@ import {
 } from 'leaflet';
 import 'leaflet-contextmenu';
 import { Subscription } from 'rxjs';
-import { FlatMarker } from 'src/app/models/flatMarker.model';
+import { FlatMarker } from 'src/app/shared/models/flatMarker.model';
 import { allActions } from 'src/app/stores/actions';
 import { AppState } from 'src/app/stores/app.state';
 import {

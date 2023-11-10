@@ -1,4 +1,4 @@
-import { FlatMarker } from 'src/app/models/flatMarker.model';
+import { FlatMarker } from 'src/app/shared/models/flatMarker.model';
 
 export interface LocationsState {
   loading: boolean;

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subscription, asyncScheduler } from 'rxjs';
-import { User } from 'src/app/models/user.model';
+import { User } from 'src/app/shared/models/user.model';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {

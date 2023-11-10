@@ -19,6 +19,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { CardComponent } from './components/card/card.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MiniLoaderComponent } from './components/mini-loader/mini-loader.component';
+import { InputSliderComponent } from './components/inputs/input-slider/input-slider.component';
+import { MatSliderModule } from '@angular/material/slider';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -32,6 +35,7 @@ import { MiniLoaderComponent } from './components/mini-loader/mini-loader.compon
     MatProgressSpinnerModule,
     NgxSkeletonLoaderModule,
     HttpClientModule,
+    MatSliderModule,
   ],
   declarations: [
     InputTextComponent,
@@ -45,6 +49,7 @@ import { MiniLoaderComponent } from './components/mini-loader/mini-loader.compon
     NavbarComponent,
     CardComponent,
     MiniLoaderComponent,
+    InputSliderComponent,
   ],
   exports: [
     InputTextComponent,
@@ -56,6 +61,7 @@ import { MiniLoaderComponent } from './components/mini-loader/mini-loader.compon
     NavbarComponent,
     CardComponent,
     MiniLoaderComponent,
+    FlatFormComponent,
   ],
   bootstrap: [],
 })

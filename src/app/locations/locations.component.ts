@@ -8,9 +8,9 @@ import {
   setUILoadingTrue,
 } from '../stores/actions/UIloading.actions';
 import { Subscription } from 'rxjs';
-import { FlatMarker } from '../models/flatMarker.model';
 import { allActions } from '../stores/actions';
 import { LocationsState } from '../stores/states/locations.state';
+import { FlatMarker } from '../shared/models/flatMarker.model';
 
 @Component({
   selector: 'app-locations',
@@ -22,10 +22,7 @@ export class LocationsComponent implements OnInit {
   public markers = signal<FlatMarker[]>([]);
   public coords: { lat: number; lng: number } = { lat: 0, lng: 0 };
   public loading: boolean = true;
-  constructor(
-    private locationsService: LocationsService,
-    private store: Store<AppState>
-  ) {
+  constructor(private store: Store<AppState>) {
     this.loading = true;
     this.markers.set([]);
   }
@@ -35,17 +32,28 @@ export class LocationsComponent implements OnInit {
       this.coords.lat = position.coords.latitude;
       this.coords.lng = position.coords.longitude;
     });
-    this.markersSubscription = this.store
-      .select('LocationsState')
-      .subscribe((state: LocationsState) => {
-        setTimeout(() => {
+    this.markersSubscription = this.store.select('LocationsState').subscribe(
+      (state: LocationsState) => {
+        if (!state) return;
+        if (!state.loading && state.loaded && state.markers) {
           this.loading = state.loading;
+          this.markers.set(state.markers);
+        } else if (
+          state.loading &&
+          !state.loaded &&
+          state.markers.length === 0
+        ) {
+          this.loading = state.loading;
+        } else if (state.loading) {
+          this.loading = state.loading;
+        } else if (!!state.error) {
+          this.markers.set([]);
+          this.loading = false;
+        }
+      },
+      (err) => {}
+    );
 
-          if (state.markers && state.loaded) {
-            this.markers.set(state.markers);
-          }
-        });
-      });
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
   }

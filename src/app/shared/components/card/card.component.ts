@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FlatMarker } from 'src/app/models/flatMarker.model';
+import { FlatMarker } from 'src/app/shared/models/flatMarker.model';
 
 @Component({
   selector: 'card-component',
