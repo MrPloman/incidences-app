@@ -2,28 +2,28 @@ import { Component, Input, forwardRef } from '@angular/core';
 import { FormControl, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
 import { combineLatest } from 'rxjs';
 import { inputTypes } from 'src/app/shared/types/types';
+import { InputTextComponent } from '../input-text/input-text.component';
 
 @Component({
-  selector: 'component-input-checkbox',
-  templateUrl: './input-checkbox.component.html',
-  styleUrls: ['./input-checkbox.component.scss'],
+  selector: 'component-selector',
+  templateUrl: './selector.component.html',
+  styleUrls: ['./selector.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
       multi: true,
-      useExisting: forwardRef(() => InputCheckboxComponent),
+      useExisting: forwardRef(() => SelectorComponent),
     },
   ],
 })
-export class InputCheckboxComponent {
+export class SelectorComponent {
   @Input() public class: string = '';
-  @Input() public required: boolean = false;
   @Input() public label: string = '';
   @Input() public type: inputTypes = 'text';
   @Input() public id: string = '';
   @Input() public width: string = '100%';
-
-  constructor() {}
+  @Input() public disabled: boolean = false;
+  @Input() public required: boolean = false;
 
   public readonly valueControl = new FormControl(null || '');
   ngOnInit(): void {

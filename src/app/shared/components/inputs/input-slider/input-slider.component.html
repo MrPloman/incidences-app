@@ -1,3 +1,23 @@
-<mat-slider [id]="id" min="1" max="100" step="0.5" value="1.5">
-  <input [disabled]="disabled" matSliderThumb />
-</mat-slider>
+<mat-form-field class="input-field">
+  <mat-label>{{ label }}</mat-label>
+  <input
+    matInput
+    min="1"
+    max="100"
+    type="number"
+    [value]="valueControl.value"
+    [formControl]="valueControl"
+    [id]="id"
+    (blur)="onTouched()"
+    (input)="onTouched()"
+  />
+  <mat-slider [id]="id" min="1" max="100" step="1">
+    <input
+      [value]="valueControl.value"
+      (blur)="onTouched()"
+      [formControl]="valueControl"
+      (input)="onTouched()"
+      matSliderThumb
+    />
+  </mat-slider>
+</mat-form-field>

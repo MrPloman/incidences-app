@@ -56,7 +56,9 @@ export class LoginComponent {
         this.isDownloading = false;
         this.success = true;
         setTimeout(() => {
-          this.router.navigateByUrl('/incidences');
+          this.router.navigate(['incidences'], {
+            skipLocationChange: true,
+          });
           this.loadingService.setFalse();
         }, 2000);
       }, 4000);

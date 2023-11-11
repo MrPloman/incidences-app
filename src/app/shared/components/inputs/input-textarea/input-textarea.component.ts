@@ -4,55 +4,60 @@ import { combineLatest } from 'rxjs';
 import { inputTypes } from 'src/app/shared/types/types';
 
 @Component({
-  selector: 'component-input-slider',
-  templateUrl: './input-slider.component.html',
-  styleUrls: ['./input-slider.component.scss'],
+  selector: 'component-input-textarea',
+  templateUrl: './input-textarea.component.html',
+  styleUrls: ['./input-textarea.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
       multi: true,
-      useExisting: forwardRef(() => InputSliderComponent),
+      useExisting: forwardRef(() => InputTextareaComponent),
     },
   ],
 })
-export class InputSliderComponent {
+export class InputTextareaComponent {
   @Input() public class: string = '';
   @Input() public label: string = '';
+  @Input() public type: inputTypes = 'text';
   @Input() public id: string = '';
   @Input() public width: string = '100%';
   @Input() public required: boolean = false;
 
   constructor() {}
-  public readonly valueControl = new FormControl();
+  public readonly valueControl = new FormControl(null || '');
   ngOnInit(): void {
     combineLatest([this.valueControl.valueChanges]).subscribe(() => {
       const value = this._getValue();
-      if (value) this._onChange(value);
+      this._onChange(value);
     });
     if (this.required) this.valueControl.addValidators([Validators.required]);
   }
-  public writeValue(value: number): void {
-    const _value = value;
-    if (_value !== this.valueControl.value) this.valueControl.setValue(_value);
+  public writeValue(value: string | null): void {
+    if (typeof value === 'string' && value) {
+      const _value = value;
+      this.valueControl.setValue(_value);
+    } else {
+      this.valueControl.setValue(null);
+    }
   }
-  private _getValue(): number {
-    const value = this.valueControl.value;
-    return value;
+  private _getValue(): string | null {
+    try {
+      if (this.valueControl.invalid) return null;
+      const value = this.valueControl.value;
+      return value;
+    } catch {
+      // Return null if something throws
+      return null;
+    }
   }
   // On change section
-  private _onChange = (_value: number): void => {
-    this.writeValue(_value);
-  };
-  public registerOnChange(fn: (value: number) => void): void {
+  private _onChange = (_value: string | null): void => undefined;
+  public registerOnChange(fn: (value: string | null) => void): void {
     this._onChange = fn;
   }
   // On touched section
-  public onTouched = (): void => {
-    undefined;
-  };
+  public onTouched = (): void => undefined;
   public registerOnTouched(fn: () => void): void {
-    console.log(this.valueControl.value);
-
     this.onTouched = fn;
   }
 
@@ -64,6 +69,6 @@ export class InputSliderComponent {
     }
   }
   public removeValue() {
-    this.writeValue(50);
+    this.writeValue(null);
   }
 }

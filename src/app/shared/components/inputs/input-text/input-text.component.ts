@@ -26,16 +26,16 @@ export class InputTextComponent implements ControlValueAccessor {
   @Input() public type: inputTypes = 'text';
   @Input() public id: string = '';
   @Input() public width: string = '100%';
+  @Input() public required: boolean = false;
 
   constructor() {}
-  public readonly valueControl = new FormControl(null || '', [
-    Validators.required,
-  ]);
+  public readonly valueControl = new FormControl(null || '');
   ngOnInit(): void {
     combineLatest([this.valueControl.valueChanges]).subscribe(() => {
       const value = this._getValue();
       this._onChange(value);
     });
+    if (this.required) this.valueControl.addValidators([Validators.required]);
   }
   public writeValue(value: string | null): void {
     if (typeof value === 'string' && value) {

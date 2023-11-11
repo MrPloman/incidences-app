@@ -1,12 +1,11 @@
 <mat-form-field class="input-field">
   <mat-label>{{ label }}</mat-label>
-  <input
+  <textarea
+    rows="8"
     matInput
-    [type]="type"
     [id]="id"
-    type="text"
     [formControl]="valueControl"
     (blur)="onTouched()"
     (input)="onTouched()"
-  />
+  ></textarea>
 </mat-form-field>

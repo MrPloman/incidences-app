@@ -13,3 +13,7 @@ export const getFlatMarkersActionError = createAction(
   '[Create WHATEVER Error]',
   props<{ error: any }>()
 );
+export const setCurrentPosition = createAction(
+  '[Set Current Position]',
+  props<{ currentPosition: { lat: number; lng: number } }>()
+);

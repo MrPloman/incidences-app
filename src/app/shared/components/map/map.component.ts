@@ -20,6 +20,7 @@ import {
   DomEvent,
   divIcon,
   Icon,
+  latLng,
 } from 'leaflet';
 import 'leaflet-contextmenu';
 import { Subscription } from 'rxjs';
@@ -42,6 +43,7 @@ export class MapComponent implements OnInit {
   };
   @Input('markers') public markers: FlatMarker[] = [];
   @Input('selectedMarker') public selectedMarker!: { lat: number; lng: number };
+  @Output() emitNewLatLng = new EventEmitter<{ lat: number; lng: number }>();
   @ViewChild('map')
   public map!: Map;
 
@@ -76,9 +78,10 @@ export class MapComponent implements OnInit {
       contextmenuWidth: 140,
       contextmenuItems: [
         {
-          text: 'Add Marker',
+          text: 'Add New Flat',
           callback: ($event: { latlng: { lat: number; lng: number } }) => {
-            this.addMarker($event.latlng);
+            this.emitNewLatLng.emit($event.latlng);
+            // this.addMarker($event.latlng);
           },
         },
       ],

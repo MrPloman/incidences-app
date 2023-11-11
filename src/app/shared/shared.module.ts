@@ -21,6 +21,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { MiniLoaderComponent } from './components/mini-loader/mini-loader.component';
 import { InputSliderComponent } from './components/inputs/input-slider/input-slider.component';
 import { MatSliderModule } from '@angular/material/slider';
+import { PipesModule } from 'src/app/pipes/pipes.module';
+import { SelectorComponent } from './components/inputs/selector/selector.component';
+import { MatSelectModule } from '@angular/material/select';
+import { LoadingService } from './services/LoadingService.service';
+import { FormService } from './services/FormService.service';
+import { InputCheckboxComponent } from './components/inputs/input-checkbox/input-checkbox.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { TextFieldModule } from '@angular/cdk/text-field';
+import { InputTextareaComponent } from './components/inputs/input-textarea/input-textarea.component';
 
 @NgModule({
   imports: [
@@ -36,10 +45,15 @@ import { MatSliderModule } from '@angular/material/slider';
     NgxSkeletonLoaderModule,
     HttpClientModule,
     MatSliderModule,
+    MatSelectModule,
+    MatCheckboxModule,
+    TextFieldModule,
+    PipesModule,
   ],
   declarations: [
     InputTextComponent,
     InputNumberComponent,
+    InputCheckboxComponent,
     GenericButtonComponent,
     LoaderComponent,
     FlatFormComponent,
@@ -50,11 +64,14 @@ import { MatSliderModule } from '@angular/material/slider';
     CardComponent,
     MiniLoaderComponent,
     InputSliderComponent,
+    SelectorComponent,
+    InputTextareaComponent,
   ],
   exports: [
     InputTextComponent,
     InputNumberComponent,
     GenericButtonComponent,
+    InputCheckboxComponent,
     LoaderComponent,
     NgxSkeletonLoaderModule,
     MapComponent,
@@ -63,6 +80,7 @@ import { MatSliderModule } from '@angular/material/slider';
     MiniLoaderComponent,
     FlatFormComponent,
   ],
+  providers: [LoadingService, FormService],
   bootstrap: [],
 })
 export class SharedModule {}

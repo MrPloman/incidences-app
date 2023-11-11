@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, catchError, of, switchMap, tap } from 'rxjs';
 import { allActions } from '../actions';
-import { AuthService } from 'src/app/shared/services/AuthService.service';
-import { User } from 'src/app/shared/models/user.model';
 import { LocationsService } from 'src/app/locations/locations.service';
 import { LatLngBounds } from 'leaflet';
 import { FlatMarker } from 'src/app/shared/models/flatMarker.model';

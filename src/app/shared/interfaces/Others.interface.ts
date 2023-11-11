@@ -8,4 +8,5 @@ export interface OthersInterface {
   furnituresIncluded: FormControl;
   contractByRealState: FormControl;
   balcony: FormControl;
+  yard: FormControl;
 }

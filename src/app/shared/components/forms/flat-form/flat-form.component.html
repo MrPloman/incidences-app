@@ -1,81 +1,127 @@
 <form id="form" [formGroup]="flat.data">
   <div class="row">
     <div class="column">
+      <h3>Main Info</h3>
+      <div formGroupName="information" id="information">
+        <div
+          *ngFor="
+            let item of flat.data.controls.information.controls
+              | keyvalue : orderByKeyvalue
+          "
+          [id]="item.key + '-input'"
+        >
+          <component-input-text
+            class="input"
+            *ngIf="_formService.isInputText('flat', item.key)"
+            [required]="_formService.isInputRequired('flat', item.key)"
+            [id]="item.key"
+            [formControlName]="item.key"
+            [label]="item.key"
+          ></component-input-text>
+          <component-input-textarea
+            class="input"
+            *ngIf="_formService.isInputTextarea('flat', item.key)"
+            [required]="_formService.isInputRequired('flat', item.key)"
+            [id]="item.key"
+            [formControlName]="item.key"
+            [label]="item.key"
+          ></component-input-textarea>
+        </div>
+      </div>
       <h3>Location</h3>
       <div formGroupName="location" id="location">
         <div
           *ngFor="
-            let item of flat.data.controls.location.controls | keyvalue;
-            let i = index
+            let item of flat.data.controls.location.controls
+              | keyvalue : orderByKeyvalue
           "
           [id]="item.key + '-input'"
-          class="input"
         >
           <component-input-text
+            class="input"
+            *ngIf="_formService.isInputText('flat', item.key)"
+            [required]="_formService.isInputRequired('flat', item.key)"
             [id]="item.key"
             [formControlName]="item.key"
             [label]="item.key"
-            [type]="'text'"
           ></component-input-text>
+          <component-input-number
+            class="input"
+            *ngIf="_formService.isInputNumber('flat', item.key)"
+            [required]="_formService.isInputRequired('flat', item.key)"
+            [id]="item.key"
+            [formControlName]="item.key"
+            [label]="item.key"
+          ></component-input-number>
+          <component-selector
+            class="input"
+            *ngIf="_formService.isInputSelector('flat', item.key)"
+            [required]="_formService.isInputRequired('flat', item.key)"
+            [id]="item.key"
+            [formControlName]="item.key"
+            [label]="item.key"
+          ></component-selector>
         </div>
       </div>
-    </div>
-    <div class="column">
-      <div id="imageCont"></div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="column">
       <h3>Specs</h3>
       <div formGroupName="specs" id="specs">
         <div
           *ngFor="
-            let item of flat.data.controls.specs.controls | keyvalue;
-            let i = index
+            let item of flat.data.controls.specs.controls
+              | keyvalue : orderByKeyvalue
           "
           [id]="item.key + '-input'"
           class="input"
         >
-          <component-input-text
+          <component-input-number
+            *ngIf="_formService.isInputNumber('flat', item.key)"
+            [required]="_formService.isInputRequired('flat', item.key)"
             [id]="item.key"
             [formControlName]="item.key"
             [label]="item.key"
-            [type]="'text'"
-          ></component-input-text>
+          ></component-input-number>
         </div>
       </div>
       <h3>Others</h3>
       <div formGroupName="others" id="others">
         <div
           *ngFor="
-            let item of flat.data.controls.others.controls | keyvalue;
-            let i = index
+            let item of flat.data.controls.others.controls
+              | keyvalue : orderByKeyvalue
           "
           [id]="item.key + '-input'"
           class="input"
         >
-          <component-input-text
+          <component-input-number
+            *ngIf="_formService.isInputNumber('flat', item.key)"
+            [required]="_formService.isInputRequired('flat', item.key)"
             [id]="item.key"
             [formControlName]="item.key"
             [label]="item.key"
-            [type]="'text'"
-          ></component-input-text>
+          ></component-input-number>
+          <component-input-checkbox
+            *ngIf="_formService.isInputCheckbox('flat', item.key)"
+            [required]="_formService.isInputRequired('flat', item.key)"
+            [id]="item.key"
+            [formControlName]="item.key"
+            [label]="item.key"
+          ></component-input-checkbox>
         </div>
       </div>
     </div>
     <div class="column">
+      <div id="imageCont"></div>
       <h3>Ratings</h3>
       <div formGroupName="rating" id="rating">
         <div
           *ngFor="
-            let item of flat.data.controls.rating.controls | keyvalue;
-            let i = index
+            let item of flat.data.controls.rating.controls
+              | keyvalue : orderByKeyvalue
           "
           [id]="item.key + '-input'"
           class="input"
         >
           <component-input-slider
-            [disabled]="item.key === 'total'"
             [id]="item.key"
             [formControlName]="item.key"
             [label]="item.key"
@@ -84,26 +130,8 @@
       </div>
     </div>
   </div>
-  <!-- <div class="row">
-    <div class="column">
-      <h3>Others</h3>
-      <div formGroupName="others" id="others">
-        <div
-          *ngFor="
-            let item of flat.data.controls.others.controls | keyvalue;
-            let i = index
-          "
-          [id]="item.key + '-input'"
-          class="input"
-        >
-          <component-input-text
-            [id]="item.key"
-            [formControlName]="item.key"
-            [label]="item.key"
-            [type]="'text'"
-          ></component-input-text>
-        </div>
-      </div>
-    </div>
-  </div> -->
+  <div class="row">
+    <div class="column"></div>
+    <div class="column"></div>
+  </div>
 </form>

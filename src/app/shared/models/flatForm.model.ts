@@ -1,13 +1,13 @@
 import { FormControl, FormGroup } from '@angular/forms';
-import { CommentInterface } from '../interfaces/Comment.interface';
 import { LocationInterface } from '../interfaces/Location.interface';
 import { OthersInterface } from '../interfaces/Others.interface';
 import { PricePlaceInterface } from '../interfaces/PricePlace.interface';
 import { RatingInterface } from '../interfaces/Rating.interface';
 import { SpecificationInterface } from '../interfaces/Specification.interface';
-
+import { InformationInterface } from '../interfaces/Information.interface';
 export class FlatFormModel {
   data: FormGroup<{
+    information: FormGroup<InformationInterface>;
     location: FormGroup<LocationInterface>;
     specs: FormGroup<SpecificationInterface>;
     rating: FormGroup<RatingInterface>;
@@ -18,6 +18,7 @@ export class FlatFormModel {
   comments: any[];
   constructor(
     data: FormGroup<{
+      information: FormGroup<InformationInterface>;
       location: FormGroup<LocationInterface>;
       specs: FormGroup<SpecificationInterface>;
       rating: FormGroup<RatingInterface>;

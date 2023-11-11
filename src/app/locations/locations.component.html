@@ -1,27 +1,31 @@
-<div id="locations">
-  <div id="header">
-    <h2 id="title">Locations</h2>
+<div *ngIf="!globalLoading" id="container">
+  <div id="locations">
+    <div id="header">
+      <h2 id="title">Locations</h2>
+    </div>
+    <div id="filters">
+      <input type="text" /> || <button>Click</button> ||
+      <div>TAG</div>
+    </div>
+    <div id="list">
+      <ng-container *ngIf="!loading() && markers() && markers().length > 0">
+        <card-component
+          *ngFor="let marker of markers()"
+          [markerInfo]="marker"
+          (click)="goToCoordMap(marker)"
+        ></card-component>
+      </ng-container>
+      <div *ngIf="!loading() && markers().length === 0">Nothing found</div>
+      <ng-container id="loader" *ngIf="loading()">
+        <mini-loader></mini-loader>
+      </ng-container>
+    </div>
   </div>
-  <div id="filters">
-    <input type="text" /> || <button>Click</button> ||
-    <div>TAG</div>
-  </div>
-  <div id="list">
-    <ng-container *ngIf="markers() && markers().length > 0">
-      <card-component
-        *ngFor="let marker of markers()"
-        [markerInfo]="marker"
-        (click)="goToCoordMap(marker)"
-      ></card-component>
-    </ng-container>
-    <div *ngIf="!loading && markers().length === 0">Nothing found</div>
-    <ng-container id="loader" *ngIf="loading && markers().length === 0">
-      <mini-loader></mini-loader>
-    </ng-container>
-  </div>
+  <app-map
+    (emitNewLatLng)="goToNewForm($event)"
+    [coords]="coords()"
+    [selectedMarker]="coords()"
+    [markers]="markers()"
+  ></app-map>
 </div>
-<app-map
-  [coords]="coords"
-  [selectedMarker]="coords"
-  [markers]="markers()"
-></app-map>
+<loader-component *ngIf="globalLoading"></loader-component>

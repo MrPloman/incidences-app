@@ -1,7 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from './stores/app.state';
 import { LoadingService } from './shared/services/LoadingService.service';
+import { Subscription } from 'rxjs';
+import {
+  NavigationCancel,
+  NavigationEnd,
+  NavigationError,
+  NavigationStart,
+  Router,
+} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,14 +17,15 @@ import { LoadingService } from './shared/services/LoadingService.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  public loading$: boolean = false;
   constructor(
+    private router: Router,
     private store: Store<AppState>,
     private loadingService: LoadingService
   ) {
-    this.loadingService.setFalse();
-    this.store.select('UILoadingState').subscribe(({ loading }) => {
-      this.loading$ = loading;
-    });
+    // this.subs = this.store.select('UILoadingState').subscribe(({ loading }) => {
+    //   setTimeout(() => {
+    //     this.loading$ = loading;
+    //   });
+    // });
   }
 }

@@ -4,14 +4,18 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: space-between;
+
     width: 100%;
     .column {
       display: flex;
       flex-direction: column;
+
       width: 50%;
       #imageCont {
         width: 100%;
-        height: 100%;
+        height: 600px;
+        max-height: 600px;
         border: 1px solid black;
       }
     }
@@ -21,16 +25,120 @@
 #location,
 #specs,
 #others {
+  justify-content: flex-start;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
-  .input {
-    padding: 5px 10px 5px 0px;
-    width: 30%;
-  }
+}
+#rating {
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+#street-input {
+  width: 20%;
+}
+#address-input {
+  width: 80%;
 }
 
-#street-input {
-  width: 80%;
+#number-input {
+  width: 30%;
+}
+#floor-input {
+  width: 30%;
+}
+#door-input {
+  width: 30%;
+}
+#zip-input {
+  width: 30%;
+}
+
+#block-input {
+  width: 30%;
+}
+#gate-input {
+  width: 30%;
+}
+#city-input {
+  width: 50%;
+}
+#province-input {
+  width: 50%;
+}
+#state-input {
+  width: 50%;
+}
+#country-input {
+  width: 50%;
+}
+#lng-input {
+  width: 50%;
+}
+#lat-input {
+  width: 50%;
+}
+#buildingYear-input {
+  width: 50%;
+}
+#floorsNumber-input {
+  width: 50%;
+}
+#elevator-input {
+  width: 50%;
+}
+#accessibility-input {
+  width: 50%;
+}
+#furnituresIncluded-input {
+  width: 50%;
+}
+#contractByRealState-input {
+  width: 50%;
+}
+#balcony-input {
+  width: 50%;
+}
+#yard-input {
+  width: 50%;
+}
+#total-input {
+  width: 100%;
+}
+#price-input {
+  width: 48%;
+}
+#clearfull-input {
+  width: 48%;
+}
+#modern-input {
+  width: 48%;
+}
+#amenities-input {
+  width: 48%;
+}
+#publicTransport-input {
+  width: 48%;
+}
+#neighbours-input {
+  width: 48%;
+}
+#neighbourhood-input {
+  width: 48%;
+}
+#building-input {
+  width: 48%;
+}
+#tenantment-input {
+  width: 48%;
+}
+#realState-input {
+  width: 48%;
+}
+#views-input {
+  width: 50%;
 }

@@ -24,16 +24,15 @@ export class InputNumberComponent implements ControlValueAccessor {
   @Input() public label: string = '';
   @Input() public type: inputTypes = 'number';
   @Input() public id: string = '';
-
+  @Input() public required: boolean = false;
   constructor() {}
-  public readonly valueControl = new FormControl(null || 0, [
-    Validators.required,
-  ]);
+  public readonly valueControl = new FormControl(null || 0);
   ngOnInit(): void {
     combineLatest([this.valueControl.valueChanges]).subscribe(() => {
       const value = this._getValue();
       if (value) this._onChange(value);
     });
+    if (this.required) this.valueControl.addValidators([Validators.required]);
   }
   public writeValue(value: number | null): void {
     if (typeof value === 'number') {

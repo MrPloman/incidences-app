@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, catchError, of, switchMap } from 'rxjs';
 import { allActions } from '../actions';
-import { AuthService } from 'src/app/shared/services/AuthService.service';
 import { User } from 'src/app/shared/models/user.model';
+import { AuthService } from 'src/app/auth/services/AuthService.service';
 @Injectable({
   providedIn: 'root',
 })
