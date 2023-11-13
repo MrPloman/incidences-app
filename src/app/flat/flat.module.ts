@@ -6,6 +6,8 @@ import { ShowFlatComponent } from './pages/show/show.component';
 import { FlatRoutingModule } from './flat.routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EffectsModule } from '@ngrx/effects';
+import { effectsArray } from '../stores/effects';
 @NgModule({
   declarations: [CreateFlatComponent, UpdateFlatComponent, ShowFlatComponent],
   imports: [
@@ -14,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
+    EffectsModule.forFeature(effectsArray),
   ],
   exports: [],
 })

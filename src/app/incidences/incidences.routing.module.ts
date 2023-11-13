@@ -5,11 +5,11 @@ import { IncidencesDetailComponent } from './pages/detail/incidences-detail.comp
 
 const incidencesRoutes: Routes = [
   {
-    path: '',
+    path: 'list',
     component: IncidencesListComponent,
   },
   {
-    path: 'incidences/:id',
+    path: ':id',
     component: IncidencesDetailComponent,
   },
 ];

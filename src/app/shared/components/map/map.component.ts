@@ -43,7 +43,7 @@ export class MapComponent implements OnInit {
   };
   @Input('markers') public markers: FlatMarker[] = [];
   @Input('selectedMarker') public selectedMarker!: { lat: number; lng: number };
-  @Output() emitNewLatLng = new EventEmitter<{ lat: number; lng: number }>();
+  @Output() emitNewLatLng = new EventEmitter<LatLng>();
   @ViewChild('map')
   public map!: Map;
 
@@ -79,7 +79,7 @@ export class MapComponent implements OnInit {
       contextmenuItems: [
         {
           text: 'Add New Flat',
-          callback: ($event: { latlng: { lat: number; lng: number } }) => {
+          callback: ($event: { latlng: LatLng }) => {
             this.emitNewLatLng.emit($event.latlng);
             // this.addMarker($event.latlng);
           },

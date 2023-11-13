@@ -7,6 +7,7 @@ import { LocationsState } from '../stores/states/locations.state';
 import { FlatMarker } from '../shared/models/flatMarker.model';
 import { Router } from '@angular/router';
 import { setCurrentPosition } from '../stores/actions/locations.actions';
+import { LatLng } from 'leaflet';
 
 @Component({
   selector: 'app-locations',
@@ -59,9 +60,10 @@ export class LocationsComponent implements OnInit {
   public goToCoordMap(coord: { lat: number; lng: number }) {
     this.coords.set(coord);
   }
-  public goToNewForm($event: any) {
+  public goToNewForm($event: LatLng) {
+    console.log($event);
     this.store.dispatch(setUILoadingTrue());
-    this.router.navigate(['flat/create'], {
+    this.router.navigate([`flat/create/${$event.lat}/${$event.lng}`], {
       skipLocationChange: true,
     });
   }

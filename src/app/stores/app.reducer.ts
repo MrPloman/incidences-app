@@ -8,4 +8,5 @@ export const AppReducers: ActionReducerMap<AppState> = {
   UILoadingState: reducers.UIloadingReducer,
   AuthState: reducers.authReducers,
   LocationsState: reducers.locationsReducer,
+  FlatFormsState: reducers.flatFormsReducer,
 };

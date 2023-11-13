@@ -1,8 +1,12 @@
-<form id="form" [formGroup]="flat.data">
+<form id="form" *ngIf="!!flat && !loading" [formGroup]="flat.data">
   <div class="row">
     <div class="column">
       <h3>Main Info</h3>
-      <div formGroupName="information" id="information">
+      <div
+        *ngIf="flat.data.controls.information"
+        formGroupName="information"
+        id="information"
+      >
         <div
           *ngFor="
             let item of flat.data.controls.information.controls
@@ -29,7 +33,11 @@
         </div>
       </div>
       <h3>Location</h3>
-      <div formGroupName="location" id="location">
+      <div
+        *ngIf="flat.data.controls.location"
+        formGroupName="location"
+        id="location"
+      >
         <div
           *ngFor="
             let item of flat.data.controls.location.controls
@@ -64,7 +72,7 @@
         </div>
       </div>
       <h3>Specs</h3>
-      <div formGroupName="specs" id="specs">
+      <div *ngIf="flat.data.controls.specs" formGroupName="specs" id="specs">
         <div
           *ngFor="
             let item of flat.data.controls.specs.controls
@@ -83,7 +91,7 @@
         </div>
       </div>
       <h3>Others</h3>
-      <div formGroupName="others" id="others">
+      <div *ngIf="flat.data.controls.others" formGroupName="others" id="others">
         <div
           *ngFor="
             let item of flat.data.controls.others.controls
@@ -112,7 +120,7 @@
     <div class="column">
       <div id="imageCont"></div>
       <h3>Ratings</h3>
-      <div formGroupName="rating" id="rating">
+      <div *ngIf="flat.data.controls.rating" formGroupName="rating" id="rating">
         <div
           *ngFor="
             let item of flat.data.controls.rating.controls
@@ -130,8 +138,19 @@
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="column"></div>
-    <div class="column"></div>
-  </div>
 </form>
+<div id="buttonBar" class="row">
+  <div class="button">
+    <component-generic-button
+      [label]="'Cancel'"
+      [loading]="false"
+    ></component-generic-button>
+  </div>
+  <div class="button">
+    <component-generic-button
+      [disabled]="false"
+      [loading]="false"
+      (click)="validateForm()"
+    ></component-generic-button>
+  </div>
+</div>
