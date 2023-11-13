@@ -1,8 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
-import { setNewFlatForm } from '../actions/flatForms.actions';
+import { setNewFlat } from '../actions/flatForms.actions';
 import { FlatFormsState } from '../states/flatForms.state';
-import { FlatFormModel } from 'src/app/shared/models/flatForm.model';
-import { NewFlatForm } from 'src/app/shared/configs/empty_models/NewFlatForm';
+import { NewFlat } from 'src/app/shared/configs/empty_models/NewFlat';
 
 export const initialFlatFormState: FlatFormsState = {
   currentFlatForm: undefined,
@@ -12,15 +11,10 @@ export const initialFlatFormState: FlatFormsState = {
 };
 export const _flatFormsReducers = createReducer(
   initialFlatFormState,
-  on(setNewFlatForm, (state, { latLng }) => {
-    let flatForm = NewFlatForm;
-    flatForm.data.controls.rating.get('total')?.disable();
-    flatForm.data.controls.location.get('lng')?.disable();
-    flatForm.data.controls.location.get('lat')?.disable();
-    flatForm.data.controls.location.patchValue({
-      lng: latLng.lat,
-      lat: latLng.lng,
-    });
+  on(setNewFlat, (state, { latLng }) => {
+    let flatForm = NewFlat;
+    flatForm.data.location.lng = latLng.lng;
+    flatForm.data.location.lat = latLng.lat;
     return {
       currentFlatForm: flatForm,
       loaded: true,

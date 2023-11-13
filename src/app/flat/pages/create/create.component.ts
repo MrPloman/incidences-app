@@ -2,13 +2,12 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { NewFlatForm } from 'src/app/shared/configs/empty_models/NewFlatForm';
-import { FlatFormModel } from 'src/app/shared/models/flatForm.model';
+import { NewFlat } from 'src/app/shared/configs/empty_models/NewFlat';
 import {
   setUILoadingFalse,
   setUILoadingTrue,
 } from 'src/app/stores/actions/UIloading.actions';
-import { setNewFlatForm } from 'src/app/stores/actions/flatForms.actions';
+import { setNewFlat } from 'src/app/stores/actions/flatForms.actions';
 import { AppState } from 'src/app/stores/app.state';
 
 @Component({
@@ -18,7 +17,7 @@ import { AppState } from 'src/app/stores/app.state';
 })
 export class CreateFlatComponent {
   public coords: { lat: number; lng: number } = { lat: 0, lng: 0 };
-  public flatForm: FlatFormModel | undefined = undefined;
+  public flatForm = undefined;
   public loading: boolean = true;
   constructor(private store: Store<AppState>, private route: ActivatedRoute) {}
   ngOnInit(): void {
@@ -31,7 +30,7 @@ export class CreateFlatComponent {
           lat: parseFloat(lat),
           lng: parseFloat(lng),
         };
-      this.store.dispatch(setNewFlatForm({ latLng: this.coords }));
+      this.store.dispatch(setNewFlat({ latLng: this.coords }));
     });
 
     // this.flatData.data.controls.location.controls['lat'].setValue(

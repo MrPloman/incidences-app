@@ -1,15 +1,11 @@
-<form id="form" *ngIf="!!flat && !loading" [formGroup]="flat.data">
+<form id="form" *ngIf="!!flatForm && !loading" [formGroup]="flatForm.data">
   <div class="row">
     <div class="column">
       <h3>Main Info</h3>
-      <div
-        *ngIf="flat.data.controls.information"
-        formGroupName="information"
-        id="information"
-      >
+      <div formGroupName="information" id="information">
         <div
           *ngFor="
-            let item of flat.data.controls.information.controls
+            let item of flatForm.data.controls.information.controls
               | keyvalue : orderByKeyvalue
           "
           [id]="item.key + '-input'"
@@ -33,14 +29,10 @@
         </div>
       </div>
       <h3>Location</h3>
-      <div
-        *ngIf="flat.data.controls.location"
-        formGroupName="location"
-        id="location"
-      >
+      <div formGroupName="location" id="location">
         <div
           *ngFor="
-            let item of flat.data.controls.location.controls
+            let item of flatForm.data.controls.location.controls
               | keyvalue : orderByKeyvalue
           "
           [id]="item.key + '-input'"
@@ -72,10 +64,10 @@
         </div>
       </div>
       <h3>Specs</h3>
-      <div *ngIf="flat.data.controls.specs" formGroupName="specs" id="specs">
+      <div formGroupName="specs" id="specs">
         <div
           *ngFor="
-            let item of flat.data.controls.specs.controls
+            let item of flatForm.data.controls.specs.controls
               | keyvalue : orderByKeyvalue
           "
           [id]="item.key + '-input'"
@@ -91,10 +83,10 @@
         </div>
       </div>
       <h3>Others</h3>
-      <div *ngIf="flat.data.controls.others" formGroupName="others" id="others">
+      <div formGroupName="others" id="others">
         <div
           *ngFor="
-            let item of flat.data.controls.others.controls
+            let item of flatForm.data.controls.others.controls
               | keyvalue : orderByKeyvalue
           "
           [id]="item.key + '-input'"
@@ -120,10 +112,10 @@
     <div class="column">
       <div id="imageCont"></div>
       <h3>Ratings</h3>
-      <div *ngIf="flat.data.controls.rating" formGroupName="rating" id="rating">
+      <div formGroupName="rating" id="rating">
         <div
           *ngFor="
-            let item of flat.data.controls.rating.controls
+            let item of flatForm.data.controls.rating.controls
               | keyvalue : orderByKeyvalue
           "
           [id]="item.key + '-input'"

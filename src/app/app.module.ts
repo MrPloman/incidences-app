@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgrxFormsModule } from 'ngrx-forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,7 +23,6 @@ import { effectsArray } from './stores/effects';
     BrowserAnimationsModule,
     SharedModule,
     HttpClientModule,
-    NgrxFormsModule,
     StoreModule.forRoot(AppReducers),
     EffectsModule.forRoot(effectsArray),
     StoreDevtoolsModule.instrument({

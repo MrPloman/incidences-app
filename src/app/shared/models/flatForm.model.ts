@@ -1,35 +1,136 @@
 import { FormControl, FormGroup } from '@angular/forms';
-import { LocationInterface } from '../interfaces/Location.interface';
-import { OthersInterface } from '../interfaces/Others.interface';
-import { PricePlaceInterface } from '../interfaces/PricePlace.interface';
-import { RatingInterface } from '../interfaces/Rating.interface';
-import { SpecificationInterface } from '../interfaces/Specification.interface';
-import { InformationInterface } from '../interfaces/Information.interface';
+
 export class FlatFormModel {
   data: FormGroup<{
-    information: FormGroup<InformationInterface>;
-    location: FormGroup<LocationInterface>;
-    specs: FormGroup<SpecificationInterface>;
-    rating: FormGroup<RatingInterface>;
-    price: FormGroup<PricePlaceInterface>;
-    others: FormGroup<OthersInterface>;
+    information: FormGroup<{
+      title: FormControl<any>;
+      description: FormControl<any>;
+    }>;
+    location: FormGroup<{
+      street: FormControl<any>;
+      address: FormControl<any>;
+      number: FormControl<any>;
+      floor: FormControl<any>;
+      door: FormControl<any>;
+      block: FormControl<any>;
+      gate: FormControl<any>;
+      zip: FormControl<any>;
+      city: FormControl<any>;
+      province: FormControl<any>;
+      state: FormControl<any>;
+      country: FormControl<any>;
+      lng: FormControl<any>;
+      lat: FormControl<any>;
+    }>;
+    specs: FormGroup<{
+      m2: FormControl<any>;
+      roomsNumber: FormControl<any>;
+      bathroomsNumber: FormControl<any>;
+      deposit: FormControl<any>;
+      depositMonths: FormControl<any>;
+    }>;
+    rating: FormGroup<{
+      total: FormControl<any>;
+      price: FormControl<any>;
+      clearfull: FormControl<any>;
+      modern: FormControl<any>;
+      amenities: FormControl<any>;
+      publicTransport: FormControl<any>;
+      neighbours: FormControl<any>;
+      neighbourhood: FormControl<any>;
+      building: FormControl<any>;
+      tenantment: FormControl<any>;
+      realState: FormControl<any>;
+      views: FormControl<any>;
+    }>;
+    price: FormGroup<{
+      firstPrice: FormGroup<{
+        date: FormControl<any>;
+        value: FormControl<any>;
+      }>;
+      currentPrice: FormGroup<{
+        date: FormControl<any>;
+        value: FormControl<any>;
+      }>;
+      averagePrice: FormControl<any>;
+    }>;
+    others: FormGroup<{
+      buildingYear: FormControl<any>;
+      floorsNumber: FormControl<any>;
+      elevator: FormControl<any>;
+      accessibility: FormControl<any>;
+      furnituresIncluded: FormControl<any>;
+      contractByRealState: FormControl<any>;
+      balcony: FormControl<any>;
+      yard: FormControl<any>;
+    }>;
   }>;
-  images: any[];
-  comments: any[];
   constructor(
     data: FormGroup<{
-      information: FormGroup<InformationInterface>;
-      location: FormGroup<LocationInterface>;
-      specs: FormGroup<SpecificationInterface>;
-      rating: FormGroup<RatingInterface>;
-      price: FormGroup<PricePlaceInterface>;
-      others: FormGroup<OthersInterface>;
-    }>,
-    images: [],
-    comments: []
+      information: FormGroup<{
+        title: FormControl<any>;
+        description: FormControl<any>;
+      }>;
+      location: FormGroup<{
+        street: FormControl<any>;
+        address: FormControl<any>;
+        number: FormControl<any>;
+        floor: FormControl<any>;
+        door: FormControl<any>;
+        block: FormControl<any>;
+        gate: FormControl<any>;
+        zip: FormControl<any>;
+        city: FormControl<any>;
+        province: FormControl<any>;
+        state: FormControl<any>;
+        country: FormControl<any>;
+        lng: FormControl<any>;
+        lat: FormControl<any>;
+      }>;
+      specs: FormGroup<{
+        m2: FormControl<any>;
+        roomsNumber: FormControl<any>;
+        bathroomsNumber: FormControl<any>;
+        deposit: FormControl<any>;
+        depositMonths: FormControl<any>;
+      }>;
+      rating: FormGroup<{
+        total: FormControl<any>;
+        price: FormControl<any>;
+        clearfull: FormControl<any>;
+        modern: FormControl<any>;
+        amenities: FormControl<any>;
+        publicTransport: FormControl<any>;
+        neighbours: FormControl<any>;
+        neighbourhood: FormControl<any>;
+        building: FormControl<any>;
+        tenantment: FormControl<any>;
+        realState: FormControl<any>;
+        views: FormControl<any>;
+      }>;
+      price: FormGroup<{
+        firstPrice: FormGroup<{
+          date: FormControl<Date>;
+          value: FormControl<any>;
+        }>;
+        currentPrice: FormGroup<{
+          date: FormControl<Date>;
+          value: FormControl<any>;
+        }>;
+        averagePrice: FormControl<any>;
+      }>;
+      others: FormGroup<{
+        buildingYear: FormControl<any>;
+        floorsNumber: FormControl<any>;
+        elevator: FormControl<any>;
+        accessibility: FormControl<any>;
+        furnituresIncluded: FormControl<any>;
+        contractByRealState: FormControl<any>;
+        balcony: FormControl<any>;
+        yard: FormControl<any>;
+      }>;
+    }>
   ) {
     this.data = data;
-    this.images = images;
-    this.comments = comments;
   }
 }

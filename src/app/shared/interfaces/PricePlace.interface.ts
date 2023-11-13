@@ -1,13 +1,13 @@
 import { FormControl, FormGroup } from '@angular/forms';
 
 export interface PricePlaceInterface {
-  firstPrice: FormGroup<{
-    date: FormControl;
-    value: FormControl;
-  }>;
-  currentPrice: FormGroup<{
-    date: FormControl;
-    value: FormControl;
-  }>;
-  averagePrice: FormControl;
+  firstPrice: {
+    date: Date;
+    value: number | null;
+  };
+  currentPrice: {
+    date: Date;
+    value: number | null;
+  };
+  averagePrice: number | null;
 }

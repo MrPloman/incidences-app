@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Form, FormArray, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { NewFlatForm } from 'src/app/shared/configs/empty_models/NewFlatForm';
+import { FlatService } from 'src/app/flat/services/flat.service';
+import { NewFlat } from 'src/app/shared/configs/empty_models/NewFlat';
+import { FlatModel } from 'src/app/shared/models/flat.model';
 import { FlatFormModel } from 'src/app/shared/models/flatForm.model';
 import { FormService } from 'src/app/shared/services/FormService.service';
 import { AppState } from 'src/app/stores/app.state';
@@ -15,9 +16,10 @@ import { AppState } from 'src/app/stores/app.state';
 export class FlatFormComponent implements OnInit {
   constructor(
     private formService: FormService,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private flatService: FlatService
   ) {}
-  public flat: FlatFormModel = NewFlatForm;
+  public flatForm: FlatFormModel | undefined = undefined;
   public loading: boolean = true;
   public _formService = this.formService;
   public orderByKeyvalue() {
@@ -27,12 +29,16 @@ export class FlatFormComponent implements OnInit {
     this.loading = true;
     this.store.select('FlatFormsState').subscribe((state) => {
       setTimeout(() => {
-        this.loading = state.loading;
-        if (state.currentFlatForm) this.flat = state.currentFlatForm;
+        if (state.currentFlatForm) {
+          this.flatForm = this.flatService.parseFlatToForm(
+            state.currentFlatForm
+          );
+          this.loading = state.loading;
+
+          console.log(this.flatForm);
+        }
       }, 1000);
     });
   }
-  public validateForm() {
-    console.log(this.flat?.data.valid);
-  }
+  public validateForm() {}
 }
