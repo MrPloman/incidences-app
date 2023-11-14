@@ -115,7 +115,7 @@ export class FormService {
         count += rating.get(input)?.value;
       }
     });
-    return count / (Object.keys(rating.controls).length - 1);
+    return Math.round(count / (Object.keys(rating.controls).length - 1));
     // Object.keys(rating).reduce((accumulator, currentValue) => {
     //   console.log(accumulator, currentValue)
     // }, 0);

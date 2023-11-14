@@ -1,5 +1,12 @@
-import { Component, Input, forwardRef } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  forwardRef,
+} from '@angular/core';
 import { FormControl, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
+import { Class } from 'leaflet';
 import { combineLatest } from 'rxjs';
 import { inputTypes } from 'src/app/shared/types/types';
 
@@ -21,19 +28,25 @@ export class InputSliderComponent {
   @Input() public id: string = '';
   @Input() public width: string = '100%';
   @Input() public required: boolean = false;
+  @Output() emitChange = new EventEmitter<number>();
 
   constructor() {}
   public readonly valueControl = new FormControl();
   ngOnInit(): void {
     combineLatest([this.valueControl.valueChanges]).subscribe(() => {
       const value = this._getValue();
-      if (value) this._onChange(value);
+      if (value >= 1 && value <= 100) {
+        this.emitChange.emit(value);
+        if (value) this._onChange(value);
+      }
     });
     if (this.required) this.valueControl.addValidators([Validators.required]);
   }
   public writeValue(value: number): void {
     const _value = value;
-    if (_value !== this.valueControl.value) this.valueControl.setValue(_value);
+    if (_value !== this.valueControl.value) {
+      this.valueControl.setValue(_value);
+    }
   }
   private _getValue(): number {
     const value = this.valueControl.value;

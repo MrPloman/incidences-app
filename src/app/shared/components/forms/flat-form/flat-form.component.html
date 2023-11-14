@@ -122,6 +122,7 @@
           class="input"
         >
           <component-input-slider
+            (emitChange)="updateTotalRatingValue($event)"
             [id]="item.key"
             [formControlName]="item.key"
             [label]="item.key"

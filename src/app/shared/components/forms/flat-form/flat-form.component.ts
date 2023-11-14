@@ -51,6 +51,16 @@ export class FlatFormComponent implements OnInit, AfterContentChecked {
   ngAfterContentChecked(): void {
     this.cd.detectChanges();
   }
+  public updateTotalRatingValue($event: number) {
+    console.log($event);
+    if (this.flatForm && this.flatForm.data && this.flatForm.data.controls) {
+      this.flatForm.data.controls.rating.controls.total.setValue(
+        this.formService.calculateTotalRating(
+          this.flatForm.data.controls.rating
+        )
+      );
+    }
+  }
   public validateForm() {
     this.router.navigate(['']);
   }
