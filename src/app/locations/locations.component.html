@@ -12,7 +12,7 @@
         <card-component
           *ngFor="let marker of markers()"
           [markerInfo]="marker"
-          (click)="goToCoordMap(marker)"
+          (click)="centerInTheMarkerSelected(marker)"
         ></card-component>
       </ng-container>
       <div *ngIf="!loading() && markers().length === 0">Nothing found</div>
@@ -22,6 +22,7 @@
     </div>
   </div>
   <app-map
+    *ngIf="!globalLoading"
     (emitNewLatLng)="goToNewForm($event)"
     [coords]="coords()"
     [selectedMarker]="coords()"

@@ -51,8 +51,6 @@ export class InputSliderComponent {
     undefined;
   };
   public registerOnTouched(fn: () => void): void {
-    console.log(this.valueControl.value);
-
     this.onTouched = fn;
   }
 

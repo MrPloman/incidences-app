@@ -1,8 +1,8 @@
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FlatModel } from '../../models/flat.model';
 import { InputModel } from '../../models/input.model';
-export let NewFlat: FlatModel = {
-  data: {
+export let NewFlat: FlatModel = new FlatModel(
+  {
     information: {
       title: '',
       description: '',
@@ -20,8 +20,8 @@ export let NewFlat: FlatModel = {
       province: '',
       state: '',
       country: '',
-      lng: null,
-      lat: null,
+      lng: 0,
+      lat: 0,
     },
     specs: {
       m2: null,
@@ -31,18 +31,18 @@ export let NewFlat: FlatModel = {
       depositMonths: null,
     },
     rating: {
-      total: null,
-      price: null,
-      clearfull: null,
-      modern: null,
-      amenities: null,
-      publicTransport: null,
-      neighbours: null,
-      neighbourhood: null,
-      building: null,
-      tenantment: null,
-      realState: null,
-      views: null,
+      total: 50,
+      price: 50,
+      clearfull: 50,
+      modern: 50,
+      amenities: 50,
+      publicTransport: 50,
+      neighbours: 50,
+      neighbourhood: 50,
+      building: 50,
+      tenantment: 50,
+      realState: 50,
+      views: 50,
     },
     price: {
       firstPrice: {
@@ -66,6 +66,6 @@ export let NewFlat: FlatModel = {
       yard: false,
     },
   },
-  comments: [],
-  images: [],
-};
+  [],
+  []
+);

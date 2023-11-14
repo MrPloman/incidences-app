@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { allActions } from 'src/app/stores/actions';
+import { RatingInterface } from '../interfaces/Rating.interface';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root',
@@ -89,5 +91,33 @@ export class FormService {
         return true;
       else return false;
     } else return false;
+  }
+
+  public calculateTotalRating(
+    rating: FormGroup<{
+      total: FormControl<number>;
+      price: FormControl<number>;
+      clearfull: FormControl<number>;
+      modern: FormControl<number>;
+      amenities: FormControl<number>;
+      publicTransport: FormControl<number>;
+      neighbours: FormControl<number>;
+      neighbourhood: FormControl<number>;
+      building: FormControl<number>;
+      tenantment: FormControl<number>;
+      realState: FormControl<number>;
+      views: FormControl<number>;
+    }>
+  ): number {
+    let count = 0;
+    Object.keys(rating.controls).forEach((input) => {
+      if (input !== 'total' && rating.get(input) && rating.get(input)) {
+        count += rating.get(input)?.value;
+      }
+    });
+    return count / (Object.keys(rating.controls).length - 1);
+    // Object.keys(rating).reduce((accumulator, currentValue) => {
+    //   console.log(accumulator, currentValue)
+    // }, 0);
   }
 }

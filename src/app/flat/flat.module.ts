@@ -16,6 +16,7 @@ import { effectsArray } from '../stores/effects';
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
+
     EffectsModule.forFeature(effectsArray),
   ],
   exports: [],

@@ -1,7 +1,12 @@
 import { createReducer, on } from '@ngrx/store';
-import { setNewFlat } from '../actions/flatForms.actions';
+
 import { FlatFormsState } from '../states/flatForms.state';
 import { NewFlat } from 'src/app/shared/configs/empty_models/NewFlat';
+import {
+  setNewFlatErrorAction,
+  setNewFlatSuccessAction,
+  setNewFlatAction,
+} from '../actions/flatForms.actions';
 
 export const initialFlatFormState: FlatFormsState = {
   currentFlatForm: undefined,
@@ -11,18 +16,26 @@ export const initialFlatFormState: FlatFormsState = {
 };
 export const _flatFormsReducers = createReducer(
   initialFlatFormState,
-  on(setNewFlat, (state, { latLng }) => {
-    let flatForm = NewFlat;
-    flatForm.data.location.lng = latLng.lng;
-    flatForm.data.location.lat = latLng.lat;
-    return {
-      currentFlatForm: flatForm,
-      loaded: true,
-      loading: false,
-      error: undefined,
-    };
-  })
+  on(setNewFlatAction, (state, { latLng }) => ({
+    currentFlatForm: undefined,
+    loaded: false,
+    loading: true,
+    error: undefined,
+  })),
+  on(setNewFlatSuccessAction, (state, { flatData }) => ({
+    currentFlatForm: flatData,
+    loading: false,
+    loaded: true,
+    error: undefined,
+  })),
+
+  on(setNewFlatErrorAction, (state, { error }) => ({
+    currentFlatForm: undefined,
+    loaded: false,
+    loading: true,
+    error: error,
+  }))
 );
-export function flatFormsReducer(state: any, action: any) {
+export function flatFormsReducers(state: any, action: any) {
   return _flatFormsReducers(state, action);
 }

@@ -10,10 +10,10 @@ export const getFlatMarkersActionSuccess = createAction(
   props<{ markers: FlatMarker[] }>()
 );
 export const getFlatMarkersActionError = createAction(
-  '[Create WHATEVER Error]',
+  '[Get Flat Marker Error]',
   props<{ error: any }>()
 );
 export const setCurrentPosition = createAction(
   '[Set Current Position]',
-  props<{ currentPosition: { lat: number; lng: number } }>()
+  props<{ currentPosition: { lat: number | null; lng: number | null } }>()
 );

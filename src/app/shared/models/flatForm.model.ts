@@ -30,18 +30,18 @@ export class FlatFormModel {
       depositMonths: FormControl<any>;
     }>;
     rating: FormGroup<{
-      total: FormControl<any>;
-      price: FormControl<any>;
-      clearfull: FormControl<any>;
-      modern: FormControl<any>;
-      amenities: FormControl<any>;
-      publicTransport: FormControl<any>;
-      neighbours: FormControl<any>;
-      neighbourhood: FormControl<any>;
-      building: FormControl<any>;
-      tenantment: FormControl<any>;
-      realState: FormControl<any>;
-      views: FormControl<any>;
+      total: FormControl<number>;
+      price: FormControl<number>;
+      clearfull: FormControl<number>;
+      modern: FormControl<number>;
+      amenities: FormControl<number>;
+      publicTransport: FormControl<number>;
+      neighbours: FormControl<number>;
+      neighbourhood: FormControl<number>;
+      building: FormControl<number>;
+      tenantment: FormControl<number>;
+      realState: FormControl<number>;
+      views: FormControl<number>;
     }>;
     price: FormGroup<{
       firstPrice: FormGroup<{

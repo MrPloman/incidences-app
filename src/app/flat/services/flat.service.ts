@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { NewFlat } from 'src/app/shared/configs/empty_models/NewFlat';
 import { FlatModel } from 'src/app/shared/models/flat.model';
 import { FlatFormModel } from 'src/app/shared/models/flatForm.model';
 
@@ -7,7 +9,88 @@ import { FlatFormModel } from 'src/app/shared/models/flatForm.model';
   providedIn: 'root',
 })
 export class FlatService {
+  public newFlatCopy = NewFlat;
   constructor() {}
+
+  public createNewFlat(latLng: { lng: number; lat: number }) {
+    let flat: Observable<FlatModel> = new Observable((subs) => {
+      subs.next(
+        new FlatModel(
+          {
+            information: {
+              title: '',
+              description: '',
+            },
+            location: {
+              street: '',
+              address: '',
+              number: null,
+              floor: '',
+              door: '',
+              block: '',
+              gate: '',
+              zip: '',
+              city: '',
+              province: '',
+              state: '',
+              country: '',
+              lng: latLng.lng,
+              lat: latLng.lat,
+            },
+            specs: {
+              m2: null,
+              roomsNumber: null,
+              bathroomsNumber: null,
+              deposit: null,
+              depositMonths: null,
+            },
+            rating: {
+              total: 50,
+              price: 50,
+              clearfull: 50,
+              modern: 50,
+              amenities: 50,
+              publicTransport: 50,
+              neighbours: 50,
+              neighbourhood: 50,
+              building: 50,
+              tenantment: 50,
+              realState: 50,
+              views: 50,
+            },
+            price: {
+              firstPrice: {
+                date: new Date(),
+                value: null,
+              },
+              currentPrice: {
+                date: new Date(),
+                value: null,
+              },
+              averagePrice: null,
+            },
+            others: {
+              buildingYear: null,
+              floorsNumber: null,
+              elevator: false,
+              accessibility: false,
+              furnituresIncluded: false,
+              contractByRealState: false,
+              balcony: false,
+              yard: false,
+            },
+          },
+          [],
+          []
+        )
+      );
+      subs.complete();
+    });
+    return flat;
+
+    // if (latLng.lng) flatForm.data.location.lng = latLng.lng;
+    // if (latLng.lat) flatForm.data.location.lat = latLng.lat;
+  }
 
   public parseFlatToForm(flatData: FlatModel): FlatFormModel {
     const flatForm = {

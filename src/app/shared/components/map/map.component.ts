@@ -23,7 +23,6 @@ import {
   latLng,
 } from 'leaflet';
 import 'leaflet-contextmenu';
-import { Subscription } from 'rxjs';
 import { FlatMarker } from 'src/app/shared/models/flatMarker.model';
 import { allActions } from 'src/app/stores/actions';
 import { AppState } from 'src/app/stores/app.state';
@@ -37,12 +36,15 @@ import {
   styleUrls: ['./map.component.scss'],
 })
 export class MapComponent implements OnInit {
-  @Input('coords') public coords: { lat: number; lng: number } = {
+  @Input('coords') public coords: { lat: number | null; lng: number | null } = {
     lat: 0,
     lng: 0,
   };
   @Input('markers') public markers: FlatMarker[] = [];
-  @Input('selectedMarker') public selectedMarker!: { lat: number; lng: number };
+  @Input('selectedMarker') public selectedMarker!: {
+    lat: number | null;
+    lng: number | null;
+  };
   @Output() emitNewLatLng = new EventEmitter<LatLng>();
   @ViewChild('map')
   public map!: Map;
@@ -65,48 +67,50 @@ export class MapComponent implements OnInit {
   }
 
   private emitRequestToGetMarkersData() {
-    this.store.dispatch(
-      allActions.locationsActions.getFlatMarkersAction({
-        boundaries: this.map.getBounds(),
-      })
-    );
+    if (this.map) {
+      this.store.dispatch(
+        allActions.locationsActions.getFlatMarkersAction({
+          boundaries: this.map.getBounds(),
+        })
+      );
+    }
   }
 
   private initMap() {
-    let map = new Map('map', {
-      contextmenu: true,
-      contextmenuWidth: 140,
-      contextmenuItems: [
-        {
-          text: 'Add New Flat',
-          callback: ($event: { latlng: LatLng }) => {
-            this.emitNewLatLng.emit($event.latlng);
-            // this.addMarker($event.latlng);
+    if (this.coords && this.coords.lat && this.coords.lng) {
+      let map = new Map('map', {
+        contextmenu: true,
+        contextmenuWidth: 140,
+        contextmenuItems: [
+          {
+            text: 'Add New Flat',
+            callback: ($event: { latlng: LatLng }) => {
+              this.emitNewLatLng.emit($event.latlng);
+              // this.addMarker($event.latlng);
+            },
           },
-        },
-      ],
-    }).setView([this.coords.lat, this.coords.lng], 13);
+        ],
+      }).setView([this.coords.lat, this.coords.lng], 13); // Adding visual surface layer
+      tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        minZoom: 5,
+        attribution:
+          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      }).addTo(map);
 
-    // Adding visual surface layer
-    tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      minZoom: 5,
-      attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    }).addTo(map);
+      // defining Zoom function to get boundaries of map and emit request
+      map.on('zoomend', () => {
+        this.emitRequestToGetMarkersData();
+      });
 
-    // defining Zoom function to get boundaries of map and emit request
-    map.on('zoomend', () => {
-      this.emitRequestToGetMarkersData();
-    });
+      // Defining moving function to get boundaries and emit request
+      map.on('moveend', () => {
+        this.emitRequestToGetMarkersData();
+      });
 
-    // Defining moving function to get boundaries and emit request
-    map.on('moveend', () => {
-      this.emitRequestToGetMarkersData();
-    });
-
-    // Making map a global variable of the component
-    this.map = map;
+      // Making map a global variable of the component
+      if (!this.map) this.map = map;
+    }
   }
 
   public createButton(label: string, container: any) {
@@ -128,9 +132,7 @@ export class MapComponent implements OnInit {
     });
     let container = DomUtil.create('div');
     let button = this.createButton('Start from this location', container);
-    DomEvent.on(button, 'click', () => {
-      console.log('aquiiii');
-    });
+    DomEvent.on(button, 'click', () => {});
     container.appendChild(button);
     popup.setContent(container);
 
@@ -161,14 +163,17 @@ export class MapComponent implements OnInit {
   }
 
   private goToThisMarker() {
-    if (this.map) {
+    if (
+      this.map &&
+      this.selectedMarker &&
+      this.selectedMarker.lat &&
+      this.selectedMarker.lng
+    ) {
       this.map.panTo(
         new LatLng(this.selectedMarker.lat, this.selectedMarker.lng)
       );
     }
   }
 
-  private selectMarker($event: any) {
-    console.log($event);
-  }
+  private selectMarker($event: any) {}
 }

@@ -1,3 +1,8 @@
 import { AuthEffects } from './auth.effects';
 import { LocationsEffects } from './locations.effects';
-export const effectsArray: any[] = [AuthEffects, LocationsEffects];
+import { FlatFormsEffects } from './flatForms.effects';
+export const effectsArray: any[] = [
+  AuthEffects,
+  LocationsEffects,
+  FlatFormsEffects,
+];

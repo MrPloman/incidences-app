@@ -22,7 +22,6 @@ export class IncidencesListComponent {
   //     if (err) this.profile$.next({ name: '', surname: '' });
   //   },
   //   complete: () => {
-  //     console.log('finished');
   //   },
   // };
   // public observableProfile$: Observable<{ name: string; surname: string }> =

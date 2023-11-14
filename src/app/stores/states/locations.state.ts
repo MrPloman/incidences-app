@@ -4,6 +4,6 @@ export interface LocationsState {
   loading: boolean;
   loaded: boolean;
   markers: FlatMarker[];
-  currentPosition: { lat: number; lng: number };
+  currentPosition: { lat: number | null; lng: number | null };
   error: any;
 }
