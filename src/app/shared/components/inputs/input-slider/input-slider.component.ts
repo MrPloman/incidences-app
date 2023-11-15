@@ -5,7 +5,12 @@ import {
   Output,
   forwardRef,
 } from '@angular/core';
-import { FormControl, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  NG_VALUE_ACCESSOR,
+  Validators,
+} from '@angular/forms';
 import { Class } from 'leaflet';
 import { combineLatest } from 'rxjs';
 import { inputTypes } from 'src/app/shared/types/types';
@@ -28,6 +33,8 @@ export class InputSliderComponent {
   @Input() public id: string = '';
   @Input() public width: string = '100%';
   @Input() public required: boolean = false;
+  @Input() public formGroup!: FormGroup;
+
   @Output() emitChange = new EventEmitter<number>();
 
   constructor() {}

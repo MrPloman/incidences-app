@@ -1,10 +1,11 @@
-<mat-form-field class="input-field">
+<mat-form-field class="input-field" [formGroup]="formGroup">
   <mat-label>{{ label }}</mat-label>
   <textarea
     rows="8"
     matInput
     [id]="id"
     [formControl]="valueControl"
+    [formControlName]="label"
     (blur)="onTouched()"
     (input)="onTouched()"
   ></textarea>

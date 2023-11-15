@@ -1,7 +1,8 @@
-import { Component, Input, forwardRef } from '@angular/core';
+import { Component, Input, SimpleChanges, forwardRef } from '@angular/core';
 import {
   ControlValueAccessor,
   FormControl,
+  FormGroup,
   NG_VALUE_ACCESSOR,
   Validators,
 } from '@angular/forms';
@@ -27,10 +28,14 @@ export class InputTextComponent implements ControlValueAccessor {
   @Input() public id: string = '';
   @Input() public width: string = '100%';
   @Input() public required: boolean = false;
-  @Input() public invalid: boolean = false;
+  @Input() public formGroup!: FormGroup;
 
   constructor() {}
   public readonly valueControl = new FormControl(null || '');
+  ngOnChanges(changes: SimpleChanges): void {
+    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
+    //Add '${implements OnChanges}' to the class.
+  }
   ngOnInit(): void {
     combineLatest([this.valueControl.valueChanges]).subscribe(() => {
       const value = this._getValue();

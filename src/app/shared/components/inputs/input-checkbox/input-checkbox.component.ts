@@ -1,5 +1,10 @@
 import { Component, Input, forwardRef } from '@angular/core';
-import { FormControl, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  NG_VALUE_ACCESSOR,
+  Validators,
+} from '@angular/forms';
 import { combineLatest } from 'rxjs';
 import { inputTypes } from 'src/app/shared/types/types';
 
@@ -22,6 +27,7 @@ export class InputCheckboxComponent {
   @Input() public type: inputTypes = 'text';
   @Input() public id: string = '';
   @Input() public width: string = '100%';
+  @Input() public formGroup!: FormGroup;
 
   constructor() {}
 

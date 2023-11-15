@@ -1,4 +1,9 @@
-<form id="form" *ngIf="!!flatForm && !loading" [formGroup]="flatForm.data">
+<form
+  id="form"
+  *ngIf="!!flatForm && !loading"
+  [formGroup]="flatForm.data"
+  (ngSubmit)="validateForm()"
+>
   <div class="row">
     <div class="column">
       <h3>Main Info</h3>
@@ -16,6 +21,7 @@
             [required]="_formService.isInputRequired('flat', item.key)"
             [id]="item.key"
             [formControlName]="item.key"
+            [formGroup]="flatForm.data.controls.information"
             [label]="item.key"
           ></component-input-text>
           <component-input-textarea
@@ -25,6 +31,7 @@
             [id]="item.key"
             [formControlName]="item.key"
             [label]="item.key"
+            [formGroup]="flatForm.data.controls.information"
           ></component-input-textarea>
         </div>
       </div>
@@ -40,15 +47,18 @@
           <component-input-text
             class="input"
             *ngIf="_formService.isInputText('flat', item.key)"
+            [formGroup]="flatForm.data.controls.location"
             [required]="_formService.isInputRequired('flat', item.key)"
             [id]="item.key"
             [formControlName]="item.key"
             [label]="item.key"
+            [formGroup]="flatForm.data.controls.location"
           ></component-input-text>
           <component-input-number
             class="input"
             *ngIf="_formService.isInputNumber('flat', item.key)"
             [required]="_formService.isInputRequired('flat', item.key)"
+            [formGroup]="flatForm.data.controls.location"
             [id]="item.key"
             [formControlName]="item.key"
             [label]="item.key"
@@ -57,6 +67,7 @@
             class="input"
             *ngIf="_formService.isInputSelector('flat', item.key)"
             [required]="_formService.isInputRequired('flat', item.key)"
+            [formGroup]="flatForm.data.controls.location"
             [id]="item.key"
             [formControlName]="item.key"
             [label]="item.key"
@@ -76,6 +87,7 @@
           <component-input-number
             *ngIf="_formService.isInputNumber('flat', item.key)"
             [required]="_formService.isInputRequired('flat', item.key)"
+            [formGroup]="flatForm.data.controls.specs"
             [id]="item.key"
             [formControlName]="item.key"
             [label]="item.key"
@@ -97,6 +109,7 @@
             [required]="_formService.isInputRequired('flat', item.key)"
             [id]="item.key"
             [formControlName]="item.key"
+            [formGroup]="flatForm.data.controls.others"
             [label]="item.key"
           ></component-input-number>
           <component-input-checkbox
@@ -104,6 +117,7 @@
             [required]="_formService.isInputRequired('flat', item.key)"
             [id]="item.key"
             [formControlName]="item.key"
+            [formGroup]="flatForm.data.controls.others"
             [label]="item.key"
           ></component-input-checkbox>
         </div>
@@ -123,6 +137,7 @@
         >
           <component-input-slider
             (emitChange)="updateTotalRatingValue($event)"
+            [formGroup]="flatForm.data.controls.rating"
             [id]="item.key"
             [formControlName]="item.key"
             [label]="item.key"
@@ -141,10 +156,10 @@
   </div>
   <div class="button">
     <component-generic-button
+      (click)="validateForm()"
       [submit]="true"
       [disabled]="false"
       [loading]="false"
-      (click)="validateForm()"
     ></component-generic-button>
   </div>
 </div>

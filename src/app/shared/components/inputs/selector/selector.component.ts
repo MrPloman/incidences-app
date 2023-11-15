@@ -1,5 +1,10 @@
 import { Component, Input, forwardRef } from '@angular/core';
-import { FormControl, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  NG_VALUE_ACCESSOR,
+  Validators,
+} from '@angular/forms';
 import { combineLatest } from 'rxjs';
 import { inputTypes } from 'src/app/shared/types/types';
 import { InputTextComponent } from '../input-text/input-text.component';
@@ -24,8 +29,9 @@ export class SelectorComponent {
   @Input() public width: string = '100%';
   @Input() public disabled: boolean = false;
   @Input() public required: boolean = false;
+  @Input() public formGroup!: FormGroup;
 
-  public readonly valueControl = new FormControl(null || '');
+  public readonly valueControl = new FormControl('');
   ngOnInit(): void {
     combineLatest([this.valueControl.valueChanges]).subscribe(() => {
       const value = this._getValue();

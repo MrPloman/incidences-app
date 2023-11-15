@@ -2,6 +2,7 @@ import { Component, Input, forwardRef } from '@angular/core';
 import {
   ControlValueAccessor,
   FormControl,
+  FormGroup,
   NG_VALUE_ACCESSOR,
   Validators,
 } from '@angular/forms';
@@ -25,6 +26,8 @@ export class InputNumberComponent implements ControlValueAccessor {
   @Input() public type: inputTypes = 'number';
   @Input() public id: string = '';
   @Input() public required: boolean = false;
+  @Input() public formGroup!: FormGroup;
+
   constructor() {}
   public readonly valueControl = new FormControl(null || 0);
   ngOnInit(): void {
