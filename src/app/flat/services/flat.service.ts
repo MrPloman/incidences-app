@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { NewFlat } from 'src/app/shared/configs/empty_models/NewFlat';
 import { FlatModel } from 'src/app/shared/models/flat.model';
@@ -29,7 +29,7 @@ export class FlatService {
               door: '',
               block: '',
               gate: '',
-              zip: '',
+              zip: null,
               city: '',
               province: '',
               state: '',
@@ -96,82 +96,177 @@ export class FlatService {
     const flatForm = {
       data: new FormGroup({
         information: new FormGroup({
-          title: new FormControl(flatData.data.information.title, []),
-          description: new FormControl(
+          title: new FormControl<string | null>(
+            flatData.data.information.title,
+            [Validators.required]
+          ),
+          description: new FormControl<string | null>(
             flatData.data.information.description,
-            []
+            [Validators.required]
           ),
         }),
         location: new FormGroup({
-          street: new FormControl(flatData.data.location.street, []),
-          address: new FormControl(flatData.data.location.address, []),
-          number: new FormControl(flatData.data.location.number, []),
-          floor: new FormControl(flatData.data.location.floor, []),
-          door: new FormControl(flatData.data.location.door, []),
-          block: new FormControl(flatData.data.location.block, []),
-          gate: new FormControl(flatData.data.location.gate, []),
-          zip: new FormControl(flatData.data.location.zip, []),
-          city: new FormControl(flatData.data.location.city, []),
-          province: new FormControl(flatData.data.location.province, []),
-          state: new FormControl(flatData.data.location.state, []),
-          country: new FormControl(flatData.data.location.country, []),
-          lng: new FormControl(flatData.data.location.lng, []),
-          lat: new FormControl(flatData.data.location.lat, []),
+          street: new FormControl<string | null>(
+            flatData.data.location.street,
+            [Validators.required]
+          ),
+          address: new FormControl<string | null>(
+            flatData.data.location.address,
+            [Validators.required]
+          ),
+          number: new FormControl<number | null>(
+            flatData.data.location.number,
+            [Validators.required]
+          ),
+          floor: new FormControl<string | null>(
+            flatData.data.location.floor,
+            []
+          ),
+          door: new FormControl<string | null>(flatData.data.location.door, []),
+          block: new FormControl<string | null>(
+            flatData.data.location.block,
+            []
+          ),
+          gate: new FormControl<string | null>(flatData.data.location.gate, []),
+          zip: new FormControl<number | null>(flatData.data.location.zip, [
+            Validators.required,
+          ]),
+          city: new FormControl<string | null>(flatData.data.location.city, [
+            Validators.required,
+          ]),
+          province: new FormControl<string | null>(
+            flatData.data.location.province,
+            []
+          ),
+          state: new FormControl<string | null>(
+            flatData.data.location.state,
+            []
+          ),
+          country: new FormControl<string | null>(
+            flatData.data.location.country,
+            [Validators.required]
+          ),
+          lng: new FormControl<number | null>(flatData.data.location.lng, [
+            Validators.required,
+          ]),
+          lat: new FormControl<number | null>(flatData.data.location.lat, [
+            Validators.required,
+          ]),
         }),
         specs: new FormGroup({
-          m2: new FormControl(flatData.data.specs.m2, []),
-          roomsNumber: new FormControl(flatData.data.specs.roomsNumber, []),
-          bathroomsNumber: new FormControl(
+          m2: new FormControl<number | null>(flatData.data.specs.m2, []),
+          roomsNumber: new FormControl<number | null>(
+            flatData.data.specs.roomsNumber,
+            []
+          ),
+          bathroomsNumber: new FormControl<number | null>(
             flatData.data.specs.bathroomsNumber,
             []
           ),
-          deposit: new FormControl(flatData.data.specs.deposit, []),
-          depositMonths: new FormControl(flatData.data.specs.depositMonths, []),
+          deposit: new FormControl<number | null>(
+            flatData.data.specs.deposit,
+            []
+          ),
+          depositMonths: new FormControl<number | null>(
+            flatData.data.specs.depositMonths,
+            []
+          ),
         }),
         rating: new FormGroup({
-          total: new FormControl(flatData.data.rating.total, []),
-          price: new FormControl(flatData.data.rating.price, []),
-          clearfull: new FormControl(flatData.data.rating.clearfull, []),
-          modern: new FormControl(flatData.data.rating.modern, []),
-          amenities: new FormControl(flatData.data.rating.amenities, []),
-          publicTransport: new FormControl(
+          total: new FormControl<number | null>(flatData.data.rating.total, [
+            Validators.required,
+          ]),
+          price: new FormControl<number | null>(flatData.data.rating.price, [
+            Validators.required,
+          ]),
+          clearfull: new FormControl<number | null>(
+            flatData.data.rating.clearfull,
+            [Validators.required]
+          ),
+          modern: new FormControl<number | null>(flatData.data.rating.modern, [
+            Validators.required,
+          ]),
+          amenities: new FormControl<number | null>(
+            flatData.data.rating.amenities,
+            [Validators.required]
+          ),
+          publicTransport: new FormControl<number | null>(
             flatData.data.rating.publicTransport,
-            []
+            [Validators.required]
           ),
-          neighbours: new FormControl(flatData.data.rating.neighbours, []),
-          neighbourhood: new FormControl(
+          neighbours: new FormControl<number | null>(
+            flatData.data.rating.neighbours,
+            [Validators.required]
+          ),
+          neighbourhood: new FormControl<number | null>(
             flatData.data.rating.neighbourhood,
-            []
+            [Validators.required]
           ),
-          building: new FormControl(flatData.data.rating.building, []),
-          tenantment: new FormControl(flatData.data.rating.tenantment, []),
-          realState: new FormControl(flatData.data.rating.realState, []),
-          views: new FormControl(flatData.data.rating.views, []),
+          building: new FormControl<number | null>(
+            flatData.data.rating.building,
+            [Validators.required]
+          ),
+          tenantment: new FormControl<number | null>(
+            flatData.data.rating.tenantment,
+            [Validators.required]
+          ),
+          realState: new FormControl<number | null>(
+            flatData.data.rating.realState,
+            [Validators.required]
+          ),
+          views: new FormControl<number | null>(flatData.data.rating.views, [
+            Validators.required,
+          ]),
         }),
         price: new FormGroup({
           firstPrice: new FormGroup({
-            date: new FormControl(flatData.data.price.firstPrice.date, []),
-            value: new FormControl(flatData.data.price.firstPrice.value, []),
+            date: new FormControl<Date | string | null>(
+              flatData.data.price.firstPrice.date,
+              []
+            ),
+            value: new FormControl<number | null>(
+              flatData.data.price.firstPrice.value,
+              []
+            ),
           }),
           currentPrice: new FormGroup({
-            date: new FormControl(flatData.data.price.currentPrice.date, []),
-            value: new FormControl(flatData.data.price.currentPrice.value, []),
+            date: new FormControl<Date | string | null>(
+              flatData.data.price.currentPrice.date,
+              []
+            ),
+            value: new FormControl<number | null>(
+              flatData.data.price.currentPrice.value,
+              []
+            ),
           }),
-          averagePrice: new FormControl(flatData.data.price.averagePrice, []),
+          averagePrice: new FormControl<number | null>(
+            flatData.data.price.averagePrice,
+            []
+          ),
         }),
         others: new FormGroup({
-          buildingYear: new FormControl(flatData.data.others.buildingYear),
-          floorsNumber: new FormControl(flatData.data.others.floorsNumber),
-          elevator: new FormControl(flatData.data.others.elevator),
-          accessibility: new FormControl(flatData.data.others.accessibility),
-          furnituresIncluded: new FormControl(
+          buildingYear: new FormControl<number | null>(
+            flatData.data.others.buildingYear
+          ),
+          floorsNumber: new FormControl<number | null>(
+            flatData.data.others.floorsNumber
+          ),
+          elevator: new FormControl<boolean | null>(
+            flatData.data.others.elevator
+          ),
+          accessibility: new FormControl<boolean | null>(
+            flatData.data.others.accessibility
+          ),
+          furnituresIncluded: new FormControl<boolean | null>(
             flatData.data.others.furnituresIncluded
           ),
-          contractByRealState: new FormControl(
+          contractByRealState: new FormControl<boolean | null>(
             flatData.data.others.contractByRealState
           ),
-          balcony: new FormControl(flatData.data.others.balcony),
-          yard: new FormControl(flatData.data.others.yard),
+          balcony: new FormControl<boolean | null>(
+            flatData.data.others.balcony
+          ),
+          yard: new FormControl<boolean | null>(flatData.data.others.yard),
         }),
       }),
       comments: flatData.comments,

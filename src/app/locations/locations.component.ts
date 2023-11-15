@@ -70,14 +70,13 @@ export class LocationsComponent implements OnInit, AfterContentChecked {
     this.markersSubscription.unsubscribe();
   }
   public centerInTheMarkerSelected(coord: { lat: number; lng: number }) {
-    if (this.coords().lat !== coord.lat && this.coords().lng !== coord.lng)
-      this.coords.set(coord);
+    // if (this.coords().lat !== coord.lat && this.coords().lng !== coord.lng)
+    this.coords.set(coord);
+    this.store.dispatch(setCurrentPosition({ currentPosition: coord }));
   }
   public goToNewForm($event: LatLng) {
     if ($event && $event.lat && $event.lng) {
-      this.router.navigate([`flat/create/${$event.lat}/${$event.lng}`], {
-        skipLocationChange: true,
-      });
+      this.router.navigate([`flat/create/${$event.lat}/${$event.lng}`], {});
     }
   }
 

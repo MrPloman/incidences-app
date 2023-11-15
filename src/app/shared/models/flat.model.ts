@@ -7,66 +7,66 @@ import { InformationInterface } from '../interfaces/Information.interface';
 export class FlatModel {
   data: {
     information: {
-      title: any;
-      description: any;
+      title: string | null;
+      description: string | null;
     };
     location: {
-      street: any;
-      address: any;
-      number: any;
-      floor: any;
-      door: any;
-      block: any;
-      gate: any;
-      zip: any;
-      city: any;
-      province: any;
-      state: any;
-      country: any;
-      lng: any;
-      lat: any;
+      street: string | null;
+      address: string | null;
+      number: number | null;
+      floor: string | null;
+      door: string | null;
+      block: string | null;
+      gate: string | null;
+      zip: number | null;
+      city: string | null;
+      province: string | null;
+      state: string | null;
+      country: string | null;
+      lng: number | null;
+      lat: number | null;
     };
     specs: {
-      m2: any;
-      roomsNumber: any;
-      bathroomsNumber: any;
-      deposit: any;
-      depositMonths: any;
+      m2: number | null;
+      roomsNumber: number | null;
+      bathroomsNumber: number | null;
+      deposit: number | null;
+      depositMonths: number | null;
     };
     rating: {
-      total: any;
-      price: any;
-      clearfull: any;
-      modern: any;
-      amenities: any;
-      publicTransport: any;
-      neighbours: any;
-      neighbourhood: any;
-      building: any;
-      tenantment: any;
-      realState: any;
-      views: any;
+      total: number | null;
+      price: number | null;
+      clearfull: number | null;
+      modern: number | null;
+      amenities: number | null;
+      publicTransport: number | null;
+      neighbours: number | null;
+      neighbourhood: number | null;
+      building: number | null;
+      tenantment: number | null;
+      realState: number | null;
+      views: number | null;
     };
     price: {
       firstPrice: {
-        date: any;
-        value: any;
+        date: Date | string | null;
+        value: number | null;
       };
       currentPrice: {
-        date: any;
-        value: any;
+        date: Date | string | null;
+        value: number | null;
       };
-      averagePrice: any;
+      averagePrice: number | null;
     };
     others: {
-      buildingYear: any;
-      floorsNumber: any;
-      elevator: any;
-      accessibility: any;
-      furnituresIncluded: any;
-      contractByRealState: any;
-      balcony: any;
-      yard: any;
+      buildingYear: number | null;
+      floorsNumber: number | null;
+      elevator: boolean | null;
+      accessibility: boolean | null;
+      furnituresIncluded: boolean | null;
+      contractByRealState: boolean | null;
+      balcony: boolean | null;
+      yard: boolean | null;
     };
   };
   images: any[];
@@ -74,66 +74,66 @@ export class FlatModel {
   constructor(
     data: {
       information: {
-        title: any;
-        description: any;
+        title: string | null;
+        description: string | null;
       };
       location: {
-        street: any;
-        address: any;
-        number: any;
-        floor: any;
-        door: any;
-        block: any;
-        gate: any;
-        zip: any;
-        city: any;
-        province: any;
-        state: any;
-        country: any;
-        lng: any;
-        lat: any;
+        street: string | null;
+        address: string | null;
+        number: number | null;
+        floor: string | null;
+        door: string | null;
+        block: string | null;
+        gate: string | null;
+        zip: number | null;
+        city: string | null;
+        province: string | null;
+        state: string | null;
+        country: string | null;
+        lng: number | null;
+        lat: number | null;
       };
       specs: {
-        m2: any;
-        roomsNumber: any;
-        bathroomsNumber: any;
-        deposit: any;
-        depositMonths: any;
+        m2: number | null;
+        roomsNumber: number | null;
+        bathroomsNumber: number | null;
+        deposit: number | null;
+        depositMonths: number | null;
       };
       rating: {
-        total: any;
-        price: any;
-        clearfull: any;
-        modern: any;
-        amenities: any;
-        publicTransport: any;
-        neighbours: any;
-        neighbourhood: any;
-        building: any;
-        tenantment: any;
-        realState: any;
-        views: any;
+        total: number | null;
+        price: number | null;
+        clearfull: number | null;
+        modern: number | null;
+        amenities: number | null;
+        publicTransport: number | null;
+        neighbours: number | null;
+        neighbourhood: number | null;
+        building: number | null;
+        tenantment: number | null;
+        realState: number | null;
+        views: number | null;
       };
       price: {
         firstPrice: {
-          date: Date;
-          value: any;
+          date: Date | string | null;
+          value: number | null;
         };
         currentPrice: {
-          date: Date;
-          value: any;
+          date: Date | string | null;
+          value: number | null;
         };
-        averagePrice: any;
+        averagePrice: number | null;
       };
       others: {
-        buildingYear: any;
-        floorsNumber: any;
-        elevator: any;
-        accessibility: any;
-        furnituresIncluded: any;
-        contractByRealState: any;
-        balcony: any;
-        yard: any;
+        buildingYear: number | null;
+        floorsNumber: number | null;
+        elevator: boolean | null;
+        accessibility: boolean | null;
+        furnituresIncluded: boolean | null;
+        contractByRealState: boolean | null;
+        balcony: boolean | null;
+        yard: boolean | null;
       };
     },
     images: any[],

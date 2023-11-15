@@ -4,6 +4,7 @@ import {
   Component,
   OnInit,
 } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { FlatService } from 'src/app/flat/services/flat.service';
@@ -61,7 +62,58 @@ export class FlatFormComponent implements OnInit, AfterContentChecked {
       );
     }
   }
+  private markFormGroupTouched(formGroup: FormGroup) {
+    (<any>Object).values(formGroup.controls).forEach((control: any) => {
+      control.markAsDirty(true);
+      if (control.controls) {
+        this.markFormGroupTouched(control);
+      }
+    });
+  }
   public validateForm() {
-    this.router.navigate(['']);
+    if (this.flatForm?.data.valid) {
+      this.router.navigate(['']);
+    }
+    if (this.flatForm) {
+      this.markFormGroupTouched(this.flatForm.data);
+      // let obj = this.flatForm.data.controls;
+      // this.flatForm.data.controls.location;
+      // Object.keys(this.flatForm.data.controls.location.controls).forEach(
+      //   (field: string) => {
+      //     let obj = this.flatForm?.data.controls.location.controls;
+      //     if (obj) {
+      //       const control =
+      //         this.flatForm?.data.controls.location.controls[
+      //           field as keyof typeof obj
+      //         ].get(field);
+      //       control?.markAsTouched({ onlySelf: true });
+      //     }
+      //   }
+      // );
+      // Object.keys(this.flatForm.data.controls).forEach((field: string) => {
+      // if (this.flatForm?.data.controls) {
+      //   let obj2 =
+      //     this.flatForm.data.controls[field as keyof typeof obj].controls;
+      //   Object.keys(
+      //     this.flatForm.data.controls[field as keyof typeof obj].controls
+      //   ).forEach((input: string) => {
+      //     if (
+      //       this.flatForm?.data?.controls[field as keyof typeof obj].controls[
+      //         input as keyof typeof obj2
+      //       ]
+      //     ) {
+      //       this.flatForm?.data?.controls[field as keyof typeof obj].controls[
+      //         input as keyof typeof obj2
+      //       ].value
+      //     }
+
+      //     // console.log(input);
+      //     // this.flatForm?.data.controls[field as keyof typeof obj].get(input);
+      //   });
+      // }
+
+      //{2}
+      // });
+    }
   }
 }

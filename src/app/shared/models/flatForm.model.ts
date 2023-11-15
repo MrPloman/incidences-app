@@ -3,131 +3,131 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class FlatFormModel {
   data: FormGroup<{
     information: FormGroup<{
-      title: FormControl<any>;
-      description: FormControl<any>;
+      title: FormControl<string | null>;
+      description: FormControl<string | null>;
     }>;
     location: FormGroup<{
-      street: FormControl<any>;
-      address: FormControl<any>;
-      number: FormControl<any>;
-      floor: FormControl<any>;
-      door: FormControl<any>;
-      block: FormControl<any>;
-      gate: FormControl<any>;
-      zip: FormControl<any>;
-      city: FormControl<any>;
-      province: FormControl<any>;
-      state: FormControl<any>;
-      country: FormControl<any>;
-      lng: FormControl<any>;
-      lat: FormControl<any>;
+      street: FormControl<string | null>;
+      address: FormControl<string | null>;
+      number: FormControl<number | null>;
+      floor: FormControl<string | null>;
+      door: FormControl<string | null>;
+      block: FormControl<string | null>;
+      gate: FormControl<string | null>;
+      zip: FormControl<number | null>;
+      city: FormControl<string | null>;
+      province: FormControl<string | null>;
+      state: FormControl<string | null>;
+      country: FormControl<string | null>;
+      lng: FormControl<number | null>;
+      lat: FormControl<number | null>;
     }>;
     specs: FormGroup<{
-      m2: FormControl<any>;
-      roomsNumber: FormControl<any>;
-      bathroomsNumber: FormControl<any>;
-      deposit: FormControl<any>;
-      depositMonths: FormControl<any>;
+      m2: FormControl<number | null>;
+      roomsNumber: FormControl<number | null>;
+      bathroomsNumber: FormControl<number | null>;
+      deposit: FormControl<number | null>;
+      depositMonths: FormControl<number | null>;
     }>;
     rating: FormGroup<{
-      total: FormControl<number>;
-      price: FormControl<number>;
-      clearfull: FormControl<number>;
-      modern: FormControl<number>;
-      amenities: FormControl<number>;
-      publicTransport: FormControl<number>;
-      neighbours: FormControl<number>;
-      neighbourhood: FormControl<number>;
-      building: FormControl<number>;
-      tenantment: FormControl<number>;
-      realState: FormControl<number>;
-      views: FormControl<number>;
+      total: FormControl<number | null>;
+      price: FormControl<number | null>;
+      clearfull: FormControl<number | null>;
+      modern: FormControl<number | null>;
+      amenities: FormControl<number | null>;
+      publicTransport: FormControl<number | null>;
+      neighbours: FormControl<number | null>;
+      neighbourhood: FormControl<number | null>;
+      building: FormControl<number | null>;
+      tenantment: FormControl<number | null>;
+      realState: FormControl<number | null>;
+      views: FormControl<number | null>;
     }>;
     price: FormGroup<{
       firstPrice: FormGroup<{
-        date: FormControl<any>;
-        value: FormControl<any>;
+        date: FormControl<Date | string | null>;
+        value: FormControl<number | null>;
       }>;
       currentPrice: FormGroup<{
-        date: FormControl<any>;
-        value: FormControl<any>;
+        date: FormControl<Date | string | null>;
+        value: FormControl<number | null>;
       }>;
-      averagePrice: FormControl<any>;
+      averagePrice: FormControl<number | null>;
     }>;
     others: FormGroup<{
-      buildingYear: FormControl<any>;
-      floorsNumber: FormControl<any>;
-      elevator: FormControl<any>;
-      accessibility: FormControl<any>;
-      furnituresIncluded: FormControl<any>;
-      contractByRealState: FormControl<any>;
-      balcony: FormControl<any>;
-      yard: FormControl<any>;
+      buildingYear: FormControl<number | null>;
+      floorsNumber: FormControl<number | null>;
+      elevator: FormControl<boolean | null>;
+      accessibility: FormControl<boolean | null>;
+      furnituresIncluded: FormControl<boolean | null>;
+      contractByRealState: FormControl<boolean | null>;
+      balcony: FormControl<boolean | null>;
+      yard: FormControl<boolean | null>;
     }>;
   }>;
   constructor(
     data: FormGroup<{
       information: FormGroup<{
-        title: FormControl<any>;
-        description: FormControl<any>;
+        title: FormControl<string | null>;
+        description: FormControl<string | null>;
       }>;
       location: FormGroup<{
-        street: FormControl<any>;
-        address: FormControl<any>;
-        number: FormControl<any>;
-        floor: FormControl<any>;
-        door: FormControl<any>;
-        block: FormControl<any>;
-        gate: FormControl<any>;
-        zip: FormControl<any>;
-        city: FormControl<any>;
-        province: FormControl<any>;
-        state: FormControl<any>;
-        country: FormControl<any>;
-        lng: FormControl<any>;
-        lat: FormControl<any>;
+        street: FormControl<string | null>;
+        address: FormControl<string | null>;
+        number: FormControl<number | null>;
+        floor: FormControl<string | null>;
+        door: FormControl<string | null>;
+        block: FormControl<string | null>;
+        gate: FormControl<string | null>;
+        zip: FormControl<number | null>;
+        city: FormControl<string | null>;
+        province: FormControl<string | null>;
+        state: FormControl<string | null>;
+        country: FormControl<string | null>;
+        lng: FormControl<number | null>;
+        lat: FormControl<number | null>;
       }>;
       specs: FormGroup<{
-        m2: FormControl<any>;
-        roomsNumber: FormControl<any>;
-        bathroomsNumber: FormControl<any>;
-        deposit: FormControl<any>;
-        depositMonths: FormControl<any>;
+        m2: FormControl<number | null>;
+        roomsNumber: FormControl<number | null>;
+        bathroomsNumber: FormControl<number | null>;
+        deposit: FormControl<number | null>;
+        depositMonths: FormControl<number | null>;
       }>;
       rating: FormGroup<{
-        total: FormControl<any>;
-        price: FormControl<any>;
-        clearfull: FormControl<any>;
-        modern: FormControl<any>;
-        amenities: FormControl<any>;
-        publicTransport: FormControl<any>;
-        neighbours: FormControl<any>;
-        neighbourhood: FormControl<any>;
-        building: FormControl<any>;
-        tenantment: FormControl<any>;
-        realState: FormControl<any>;
-        views: FormControl<any>;
+        total: FormControl<number | null>;
+        price: FormControl<number | null>;
+        clearfull: FormControl<number | null>;
+        modern: FormControl<number | null>;
+        amenities: FormControl<number | null>;
+        publicTransport: FormControl<number | null>;
+        neighbours: FormControl<number | null>;
+        neighbourhood: FormControl<number | null>;
+        building: FormControl<number | null>;
+        tenantment: FormControl<number | null>;
+        realState: FormControl<number | null>;
+        views: FormControl<number | null>;
       }>;
       price: FormGroup<{
         firstPrice: FormGroup<{
-          date: FormControl<Date>;
-          value: FormControl<any>;
+          date: FormControl<Date | string | null>;
+          value: FormControl<number | null>;
         }>;
         currentPrice: FormGroup<{
-          date: FormControl<Date>;
-          value: FormControl<any>;
+          date: FormControl<Date | string | null>;
+          value: FormControl<number | null>;
         }>;
-        averagePrice: FormControl<any>;
+        averagePrice: FormControl<number | null>;
       }>;
       others: FormGroup<{
-        buildingYear: FormControl<any>;
-        floorsNumber: FormControl<any>;
-        elevator: FormControl<any>;
-        accessibility: FormControl<any>;
-        furnituresIncluded: FormControl<any>;
-        contractByRealState: FormControl<any>;
-        balcony: FormControl<any>;
-        yard: FormControl<any>;
+        buildingYear: FormControl<number | null>;
+        floorsNumber: FormControl<number | null>;
+        elevator: FormControl<boolean | null>;
+        accessibility: FormControl<boolean | null>;
+        furnituresIncluded: FormControl<boolean | null>;
+        contractByRealState: FormControl<boolean | null>;
+        balcony: FormControl<boolean | null>;
+        yard: FormControl<boolean | null>;
       }>;
     }>
   ) {

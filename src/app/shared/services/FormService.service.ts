@@ -95,29 +95,31 @@ export class FormService {
 
   public calculateTotalRating(
     rating: FormGroup<{
-      total: FormControl<number>;
-      price: FormControl<number>;
-      clearfull: FormControl<number>;
-      modern: FormControl<number>;
-      amenities: FormControl<number>;
-      publicTransport: FormControl<number>;
-      neighbours: FormControl<number>;
-      neighbourhood: FormControl<number>;
-      building: FormControl<number>;
-      tenantment: FormControl<number>;
-      realState: FormControl<number>;
-      views: FormControl<number>;
+      total: FormControl<number | null>;
+      price: FormControl<number | null>;
+      clearfull: FormControl<number | null>;
+      modern: FormControl<number | null>;
+      amenities: FormControl<number | null>;
+      publicTransport: FormControl<number | null>;
+      neighbours: FormControl<number | null>;
+      neighbourhood: FormControl<number | null>;
+      building: FormControl<number | null>;
+      tenantment: FormControl<number | null>;
+      realState: FormControl<number | null>;
+      views: FormControl<number | null>;
     }>
   ): number {
     let count = 0;
     Object.keys(rating.controls).forEach((input) => {
       if (input !== 'total' && rating.get(input) && rating.get(input)) {
-        count += rating.get(input)?.value;
+        if (
+          rating.get(input) &&
+          rating.get(input)?.value &&
+          !isNaN(rating.get(input)?.value)
+        )
+          count += rating.get(input)?.value;
       }
     });
     return Math.round(count / (Object.keys(rating.controls).length - 1));
-    // Object.keys(rating).reduce((accumulator, currentValue) => {
-    //   console.log(accumulator, currentValue)
-    // }, 0);
   }
 }

@@ -1,6 +1,11 @@
 <section>
   <div class="example-button-row">
-    <button id="buttonStructure" [disabled]="disabled" mat-raised-button>
+    <button
+      [type]="submit"
+      id="buttonStructure"
+      [disabled]="disabled"
+      mat-raised-button
+    >
       <span id="insideButtonLabel">{{ label }}</span>
       <mat-icon *ngIf="loading">
         <mat-spinner diameter="15"></mat-spinner>

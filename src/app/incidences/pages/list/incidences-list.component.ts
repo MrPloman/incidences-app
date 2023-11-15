@@ -71,9 +71,7 @@ export class IncidencesListComponent {
   }): void {
     this.loadingService.setTrue();
     setTimeout(() => {
-      this.router.navigate([`incidences/${incidence.id}`], {
-        skipLocationChange: true,
-      });
+      this.router.navigate([`incidences/${incidence.id}`], {});
       this.loadingService.setFalse();
     }, 1000);
   }
