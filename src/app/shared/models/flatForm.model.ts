@@ -16,7 +16,6 @@ export class FlatFormModel {
       gate: FormControl<string | null>;
       zip: FormControl<number | null>;
       city: FormControl<string | null>;
-      province: FormControl<string | null>;
       state: FormControl<string | null>;
       country: FormControl<string | null>;
       lng: FormControl<number | null>;
@@ -81,7 +80,6 @@ export class FlatFormModel {
         gate: FormControl<string | null>;
         zip: FormControl<number | null>;
         city: FormControl<string | null>;
-        province: FormControl<string | null>;
         state: FormControl<string | null>;
         country: FormControl<string | null>;
         lng: FormControl<number | null>;

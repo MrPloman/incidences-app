@@ -17,7 +17,6 @@ export let NewFlat: FlatModel = new FlatModel(
       gate: '',
       zip: null,
       city: '',
-      province: '',
       state: '',
       country: '',
       lng: 0,

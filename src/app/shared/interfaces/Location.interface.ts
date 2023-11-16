@@ -10,7 +10,6 @@ export interface LocationInterface {
   gate: string;
   zip: number | null;
   city: string;
-  province: string;
   state: string;
   country: string;
   lng: number | null;

@@ -1,4 +1,4 @@
-<mat-form-field class="input-field" [formGroup]="formGroup">
+<mat-form-field class="input-field">
   <mat-label>{{ label }}</mat-label>
   <input
     matInput
@@ -8,7 +8,6 @@
     type="number"
     [value]="valueControl.value"
     [formControl]="valueControl"
-    [formControlName]="label"
     [id]="id"
     (blur)="onTouched()"
     (input)="onTouched()"
@@ -17,7 +16,6 @@
     <input
       min="1"
       max="100"
-      [formControlName]="label"
       [value]="valueControl.value"
       (blur)="onTouched()"
       [formControl]="valueControl"

@@ -1,12 +1,16 @@
 <mat-form-field class="input-field" [formGroup]="formGroup">
-  <mat-label>Choose an option</mat-label>
+  <mat-label>{{ label }}</mat-label>
   <mat-select
     [formControlName]="label"
     [formControl]="valueControl"
     [attr.disabled]="disabled"
+    ngDefaultControl
   >
-    <mat-option value="option1">Option 1</mat-option>
-    <mat-option value="option2" disabled>Option 2 (disabled)</mat-option>
-    <mat-option value="option3">Option 3</mat-option>
+    <mat-option
+      *ngFor="let option of options"
+      [disabled]="option.disabled"
+      [value]="option"
+      >{{ option.label }}</mat-option
+    >
   </mat-select>
 </mat-form-field>

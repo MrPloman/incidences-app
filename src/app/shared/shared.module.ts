@@ -30,7 +30,10 @@ import { InputCheckboxComponent } from './components/inputs/input-checkbox/input
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { InputTextareaComponent } from './components/inputs/input-textarea/input-textarea.component';
-
+import { InputDateComponent } from './components/inputs/input-date/input-date.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
 @NgModule({
   imports: [
     CommonModule,
@@ -49,6 +52,9 @@ import { InputTextareaComponent } from './components/inputs/input-textarea/input
     MatCheckboxModule,
     TextFieldModule,
     PipesModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
   ],
   declarations: [
     InputTextComponent,
@@ -66,6 +72,7 @@ import { InputTextareaComponent } from './components/inputs/input-textarea/input
     InputSliderComponent,
     SelectorComponent,
     InputTextareaComponent,
+    InputDateComponent,
   ],
   exports: [
     InputTextComponent,

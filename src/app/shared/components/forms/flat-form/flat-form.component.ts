@@ -11,7 +11,13 @@ import { FlatService } from 'src/app/flat/services/flat.service';
 import { FlatFormModel } from 'src/app/shared/models/flatForm.model';
 import { FormService } from 'src/app/shared/services/FormService.service';
 import { AppState } from 'src/app/stores/app.state';
-
+import {
+  US_STATES_OPTIONS,
+  COUNTRY_OPTIONS,
+  STREET_OPTIONS,
+  SPAIN_PROVINCE_OPTIONS,
+  FRANCE_PROVINCES_OPTIONS,
+} from 'src/app/shared/configs/options';
 @Component({
   selector: 'flat-form',
   templateUrl: './flat-form.component.html',
@@ -28,6 +34,13 @@ export class FlatFormComponent implements OnInit, AfterContentChecked {
   public flatForm!: FlatFormModel;
   public loading: boolean = true;
   public _formService = this.formService;
+  public options = {
+    US_STATES_OPTIONS,
+    COUNTRY_OPTIONS,
+    STREET_OPTIONS,
+    SPAIN_PROVINCE_OPTIONS,
+    FRANCE_PROVINCES_OPTIONS,
+  };
   public orderByKeyvalue() {
     return 0;
   }
@@ -48,6 +61,19 @@ export class FlatFormComponent implements OnInit, AfterContentChecked {
           this.flatForm.data.controls.rating
         )
       );
+  }
+  public getOptions(label: string) {
+    switch (label) {
+      case 'street':
+        return STREET_OPTIONS;
+      case 'country':
+        return COUNTRY_OPTIONS;
+      case 'state':
+        return US_STATES_OPTIONS;
+
+      default:
+        return [];
+    }
   }
   ngAfterContentChecked(): void {
     this.cd.detectChanges();

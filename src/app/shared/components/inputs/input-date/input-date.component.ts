@@ -1,4 +1,4 @@
-import { Component, Input, forwardRef } from '@angular/core';
+import { Component, Input, SimpleChanges, forwardRef } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -6,33 +6,35 @@ import {
   Validators,
 } from '@angular/forms';
 import { combineLatest } from 'rxjs';
-import { OptionInterface } from 'src/app/shared/interfaces/Option.interface';
 import { inputTypes } from 'src/app/shared/types/types';
 
 @Component({
-  selector: 'component-selector',
-  templateUrl: './selector.component.html',
-  styleUrls: ['./selector.component.scss'],
+  selector: 'component-input-date',
+  templateUrl: './input-date.component.html',
+  styleUrls: ['./input-date.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
       multi: true,
-      useExisting: forwardRef(() => SelectorComponent),
+      useExisting: forwardRef(() => InputDateComponent),
     },
   ],
 })
-export class SelectorComponent {
+export class InputDateComponent {
   @Input() public class: string = '';
   @Input() public label: string = '';
   @Input() public type: inputTypes = 'text';
   @Input() public id: string = '';
   @Input() public width: string = '100%';
-  @Input() public disabled: boolean = false;
   @Input() public required: boolean = false;
-  @Input() public options: OptionInterface[] = [];
   @Input() public formGroup!: FormGroup;
 
-  public readonly valueControl = new FormControl('');
+  constructor() {}
+  public readonly valueControl = new FormControl(null || '');
+  ngOnChanges(changes: SimpleChanges): void {
+    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
+    //Add '${implements OnChanges}' to the class.
+  }
   ngOnInit(): void {
     combineLatest([this.valueControl.valueChanges]).subscribe(() => {
       const value = this._getValue();

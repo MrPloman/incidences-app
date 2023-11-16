@@ -20,7 +20,6 @@ export class FlatModel {
       gate: string | null;
       zip: number | null;
       city: string | null;
-      province: string | null;
       state: string | null;
       country: string | null;
       lng: number | null;
@@ -87,7 +86,6 @@ export class FlatModel {
         gate: string | null;
         zip: number | null;
         city: string | null;
-        province: string | null;
         state: string | null;
         country: string | null;
         lng: number | null;

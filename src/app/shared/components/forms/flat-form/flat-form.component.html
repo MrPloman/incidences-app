@@ -7,6 +7,7 @@
   <div class="row">
     <div class="column">
       <h3>Main Info</h3>
+
       <div formGroupName="information" id="information">
         <div
           *ngFor="
@@ -44,6 +45,8 @@
           "
           [id]="item.key + '-input'"
         >
+          <ng-container> </ng-container>
+
           <component-input-text
             class="input"
             *ngIf="_formService.isInputText('flat', item.key)"
@@ -71,6 +74,7 @@
             [id]="item.key"
             [formControlName]="item.key"
             [label]="item.key"
+            [options]="getOptions(item.key)"
           ></component-selector>
         </div>
       </div>
@@ -122,6 +126,73 @@
           ></component-input-checkbox>
         </div>
       </div>
+      <h3>Prices</h3>
+      <div formGroupName="price" id="price">
+        <div [id]="'averagePrice-input'" class="input">
+          <component-input-number
+            *ngIf="_formService.isInputNumber('flat', 'averagePrice')"
+            [required]="_formService.isInputRequired('flat', 'averagePrice')"
+            [id]="'averagePrice'"
+            [formControlName]="'averagePrice'"
+            [formGroup]="flatForm.data.controls.others"
+            [label]="'averagePrice'"
+          ></component-input-number>
+        </div>
+        <div id="currentPriceRow">
+          <div
+            *ngFor="
+              let item of flatForm.data.controls.price.controls.currentPrice
+                .controls | keyvalue : orderByKeyvalue
+            "
+            [id]="'currentPrice' + item.key + '-input'"
+            class="input inputHalf"
+          >
+            <component-input-date
+              *ngIf="_formService.isInputDate('flat', item.key)"
+              [required]="_formService.isInputRequired('flat', item.key)"
+              [id]="'currentPrice' + item.key"
+              [formControlName]="item.key"
+              [formGroup]="flatForm.data.controls.price.controls.currentPrice"
+              [label]="'currentPrice' + item.key"
+            ></component-input-date>
+            <component-input-number
+              *ngIf="_formService.isInputNumber('flat', item.key)"
+              [required]="_formService.isInputRequired('flat', item.key)"
+              [id]="item.key"
+              [formControlName]="item.key"
+              [formGroup]="flatForm.data.controls.price.controls.currentPrice"
+              [label]="'currentPrice' + item.key"
+            ></component-input-number>
+          </div>
+        </div>
+
+        <div id="firstPriceRow">
+          <div
+            *ngFor="
+              let item of flatForm.data.controls.price.controls.firstPrice
+                .controls | keyvalue : orderByKeyvalue
+            "
+            class="input inputHalf"
+          >
+            <component-input-date
+              *ngIf="_formService.isInputDate('flat', item.key)"
+              [required]="_formService.isInputRequired('flat', item.key)"
+              [id]="'firstPrice' + item.key"
+              [formControlName]="item.key"
+              [formGroup]="flatForm.data.controls.price.controls.firstPrice"
+              [label]="'firstPrice' + item.key"
+            ></component-input-date>
+            <component-input-number
+              *ngIf="_formService.isInputNumber('flat', item.key)"
+              [required]="_formService.isInputRequired('flat', item.key)"
+              [id]="'firstPrice' + item.key"
+              [formControlName]="item.key"
+              [formGroup]="flatForm.data.controls.price.controls.firstPrice"
+              [label]="'firstPrice' + item.key"
+            ></component-input-number>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="column">
       <div id="imageCont"></div>
@@ -146,20 +217,20 @@
       </div>
     </div>
   </div>
+  <div id="buttonBar" class="row">
+    <div class="button">
+      <component-generic-button
+        [label]="'Cancel'"
+        [loading]="false"
+      ></component-generic-button>
+    </div>
+    <div class="button">
+      <component-generic-button
+        (click)="validateForm()"
+        [submit]="true"
+        [disabled]="false"
+        [loading]="false"
+      ></component-generic-button>
+    </div>
+  </div>
 </form>
-<div id="buttonBar" class="row">
-  <div class="button">
-    <component-generic-button
-      [label]="'Cancel'"
-      [loading]="false"
-    ></component-generic-button>
-  </div>
-  <div class="button">
-    <component-generic-button
-      (click)="validateForm()"
-      [submit]="true"
-      [disabled]="false"
-      [loading]="false"
-    ></component-generic-button>
-  </div>
-</div>

@@ -31,9 +31,8 @@ export class FlatService {
               gate: '',
               zip: null,
               city: '',
-              province: '',
-              state: '',
               country: '',
+              state: '',
               lng: latLng.lng,
               lat: latLng.lat,
             },
@@ -134,18 +133,15 @@ export class FlatService {
           city: new FormControl<string | null>(flatData.data.location.city, [
             Validators.required,
           ]),
-          province: new FormControl<string | null>(
-            flatData.data.location.province,
-            []
+          country: new FormControl<string | null>(
+            flatData.data.location.country,
+            [Validators.required]
           ),
           state: new FormControl<string | null>(
             flatData.data.location.state,
             []
           ),
-          country: new FormControl<string | null>(
-            flatData.data.location.country,
-            [Validators.required]
-          ),
+
           lng: new FormControl<number | null>(flatData.data.location.lng, [
             Validators.required,
           ]),

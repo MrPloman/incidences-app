@@ -43,7 +43,9 @@ export class FormService {
         label === 'deposit' ||
         label === 'depositMonths' ||
         label === 'buildingYear' ||
-        label === 'floorsNumber'
+        label === 'floorsNumber' ||
+        label === 'averagePrice' ||
+        label === 'value'
       )
         return true;
       else return false;
@@ -65,12 +67,7 @@ export class FormService {
   }
   public isInputSelector(form: string, label: string): boolean {
     if (form === 'flat') {
-      if (
-        label === 'street' ||
-        label === 'province' ||
-        label === 'state' ||
-        label === 'country'
-      )
+      if (label === 'street' || label === 'state' || label === 'country')
         return true;
       else return false;
     } else return false;
@@ -89,6 +86,12 @@ export class FormService {
         label === 'city'
       )
         return true;
+      else return false;
+    } else return false;
+  }
+  public isInputDate(form: string, label: string): boolean {
+    if (form === 'flat') {
+      if (label === 'date') return true;
       else return false;
     } else return false;
   }
