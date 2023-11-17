@@ -16,7 +16,6 @@ export class FlatFormsEffects {
       ofType(allActions.flatFormsActions.setNewFlatAction),
       switchMap((action: { latLng: { lat: number; lng: number } }) =>
         this.flatService.createNewFlat(action.latLng).pipe(
-          tap((a) => console.log(a)),
           map((flatData: FlatModel) =>
             allActions.flatFormsActions.setNewFlatSuccessAction({
               flatData,

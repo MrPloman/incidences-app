@@ -8,15 +8,7 @@
     [formControlName]="label"
     [formControl]="valueControl"
     (blur)="onTouched()"
-    (input)="onTouched()"
+    (type)="onTouched()"
+    [value]="valueControl.value"
   />
-  <!-- <button
-    matSuffix
-    mat-icon-button
-    aria-label="Clear"
-    (click)="removeValue()"
-    *ngIf="valueControl.value"
-  >
-    <mat-icon>close</mat-icon>
-  </button> -->
 </mat-form-field>

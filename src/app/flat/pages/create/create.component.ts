@@ -55,15 +55,6 @@ export class CreateFlatComponent {
         }, 1000);
       }
     });
-
-    // this.flatData.data.controls.location.controls['lat'].setValue(
-    //   this.route.snapshot.params.lat
-    // );
-    // this.flatData.data.controls.location.controls['lng'].setValue(
-    //   this.route.snapshot.params.lng
-    // );
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
   }
   ngAfterContentChecked(): void {
     this.cd.detectChanges();

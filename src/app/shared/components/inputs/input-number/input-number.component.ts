@@ -1,4 +1,10 @@
-import { Component, Input, forwardRef } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  forwardRef,
+} from '@angular/core';
 import {
   ControlValueAccessor,
   FormControl,
@@ -28,12 +34,17 @@ export class InputNumberComponent implements ControlValueAccessor {
   @Input() public required: boolean = false;
   @Input() public formGroup!: FormGroup;
 
+  @Output() emitChange = new EventEmitter<number | null>();
+
   constructor() {}
   public readonly valueControl = new FormControl(null || 0);
   ngOnInit(): void {
-    combineLatest([this.valueControl.valueChanges]).subscribe(() => {
-      const value = this._getValue();
-      if (value) this._onChange(value);
+    combineLatest([this.valueControl.valueChanges]).subscribe((v) => {
+      let value = this._getValue();
+      if (typeof value === 'string') value = parseFloat(value);
+      if (value === null) value = 0;
+      this.emitChange.emit(value);
+      this._onChange(value);
     });
     if (this.required) this.valueControl.addValidators([Validators.required]);
   }
@@ -57,6 +68,7 @@ export class InputNumberComponent implements ControlValueAccessor {
   }
   // On change section
   private _onChange = (_value: number | null): void => undefined;
+
   public registerOnChange(fn: (value: number | null) => void): void {
     this._onChange = fn;
   }

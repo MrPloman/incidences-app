@@ -1,12 +1,12 @@
 <mat-form-field class="input-field" [formGroup]="formGroup">
   <mat-label>{{ label }}</mat-label>
   <input
-    [formControl]="valueControl"
+    matInput
     [formControlName]="label"
+    [formControl]="valueControl"
     (blur)="onTouched()"
     (input)="onTouched()"
     [id]="id"
-    matInput
     [matDatepicker]="picker"
   />
   <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>

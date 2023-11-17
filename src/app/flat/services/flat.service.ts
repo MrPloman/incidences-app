@@ -59,11 +59,11 @@ export class FlatService {
             },
             price: {
               firstPrice: {
-                date: new Date(),
+                date: null,
                 value: null,
               },
               currentPrice: {
-                date: new Date(),
+                date: null,
                 value: null,
               },
               averagePrice: null,
@@ -216,28 +216,26 @@ export class FlatService {
         }),
         price: new FormGroup({
           firstPrice: new FormGroup({
-            date: new FormControl<Date | string | null>(
-              flatData.data.price.firstPrice.date,
-              []
-            ),
+            date: new FormControl<any>(flatData.data.price.firstPrice.date, [
+              Validators.required,
+            ]),
             value: new FormControl<number | null>(
               flatData.data.price.firstPrice.value,
-              []
+              [Validators.required]
             ),
           }),
           currentPrice: new FormGroup({
-            date: new FormControl<Date | string | null>(
-              flatData.data.price.currentPrice.date,
-              []
-            ),
+            date: new FormControl<any>(flatData.data.price.currentPrice.date, [
+              Validators.required,
+            ]),
             value: new FormControl<number | null>(
               flatData.data.price.currentPrice.value,
-              []
+              [Validators.required]
             ),
           }),
           averagePrice: new FormControl<number | null>(
             flatData.data.price.averagePrice,
-            []
+            [Validators.required]
           ),
         }),
         others: new FormGroup({

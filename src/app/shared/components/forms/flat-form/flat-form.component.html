@@ -127,68 +127,58 @@
         </div>
       </div>
       <h3>Prices</h3>
-      <div formGroupName="price" id="price">
+      <div id="price" formGroupName="price">
         <div [id]="'averagePrice-input'" class="input">
           <component-input-number
             *ngIf="_formService.isInputNumber('flat', 'averagePrice')"
             [required]="_formService.isInputRequired('flat', 'averagePrice')"
             [id]="'averagePrice'"
             [formControlName]="'averagePrice'"
-            [formGroup]="flatForm.data.controls.others"
+            [formGroup]="flatForm.data.controls.price"
             [label]="'averagePrice'"
           ></component-input-number>
         </div>
-        <div id="currentPriceRow">
-          <div
-            *ngFor="
-              let item of flatForm.data.controls.price.controls.currentPrice
-                .controls | keyvalue : orderByKeyvalue
-            "
-            [id]="'currentPrice' + item.key + '-input'"
-            class="input inputHalf"
-          >
+        <h4>Current Price</h4>
+        <div id="currentPriceRow" formGroupName="currentPrice">
+          <div class="input inputHalf" id="currentPricedate-input">
             <component-input-date
-              *ngIf="_formService.isInputDate('flat', item.key)"
-              [required]="_formService.isInputRequired('flat', item.key)"
-              [id]="'currentPrice' + item.key"
-              [formControlName]="item.key"
+              [required]="true"
+              id="currentPricedate"
+              [formControlName]="'date'"
               [formGroup]="flatForm.data.controls.price.controls.currentPrice"
-              [label]="'currentPrice' + item.key"
+              label="date"
             ></component-input-date>
+          </div>
+          <div class="input inputHalf" id="currentPricevalue-input">
             <component-input-number
-              *ngIf="_formService.isInputNumber('flat', item.key)"
-              [required]="_formService.isInputRequired('flat', item.key)"
-              [id]="item.key"
-              [formControlName]="item.key"
+              [required]="true"
+              id="currentPricevalue"
+              [formControlName]="'value'"
               [formGroup]="flatForm.data.controls.price.controls.currentPrice"
-              [label]="'currentPrice' + item.key"
+              [label]="'value'"
+              (emitChange)="updateAveragePrice($event)"
             ></component-input-number>
           </div>
         </div>
-
-        <div id="firstPriceRow">
-          <div
-            *ngFor="
-              let item of flatForm.data.controls.price.controls.firstPrice
-                .controls | keyvalue : orderByKeyvalue
-            "
-            class="input inputHalf"
-          >
+        <h4>First Price</h4>
+        <div id="firstPriceRow" formGroupName="firstPrice">
+          <div class="input inputHalf" id="firstPricedate-input">
             <component-input-date
-              *ngIf="_formService.isInputDate('flat', item.key)"
-              [required]="_formService.isInputRequired('flat', item.key)"
-              [id]="'firstPrice' + item.key"
-              [formControlName]="item.key"
+              [required]="true"
+              id="firstPricedate"
+              [formControlName]="'date'"
               [formGroup]="flatForm.data.controls.price.controls.firstPrice"
-              [label]="'firstPrice' + item.key"
+              label="date"
             ></component-input-date>
+          </div>
+          <div class="input inputHalf" id="firstPricevalue-input">
             <component-input-number
-              *ngIf="_formService.isInputNumber('flat', item.key)"
-              [required]="_formService.isInputRequired('flat', item.key)"
-              [id]="'firstPrice' + item.key"
-              [formControlName]="item.key"
+              [required]="true"
+              id="firstPricevalue"
+              [formControlName]="'value'"
               [formGroup]="flatForm.data.controls.price.controls.firstPrice"
-              [label]="'firstPrice' + item.key"
+              [label]="'value'"
+              (emitChange)="updateAveragePrice($event)"
             ></component-input-number>
           </div>
         </div>

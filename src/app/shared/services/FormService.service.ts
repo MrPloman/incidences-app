@@ -83,7 +83,8 @@ export class FormService {
         label === 'address' ||
         label === 'city' ||
         label === 'zip' ||
-        label === 'city'
+        label === 'date' ||
+        label === 'value'
       )
         return true;
       else return false;
@@ -124,5 +125,21 @@ export class FormService {
       }
     });
     return Math.round(count / (Object.keys(rating.controls).length - 1));
+  }
+  public calculateAveragePrice(
+    firstPrice: number,
+    currentPrice: number
+  ): number {
+    let first: number = firstPrice;
+    let current: number = currentPrice;
+
+    if (!isNaN(first) && !isNaN(current)) {
+      return (first + current) / 2;
+    } else return 0;
+
+    // console.log(firstPrice, currentPrice);
+    // return (
+    //   ((firstPrice ? firstPrice : 0) + (currentPrice ? currentPrice : 0)) / 2
+    // );
   }
 }

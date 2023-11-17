@@ -1,6 +1,7 @@
 import { Component, Input, SimpleChanges, forwardRef } from '@angular/core';
 import {
   FormControl,
+  FormControlName,
   FormGroup,
   NG_VALUE_ACCESSOR,
   Validators,
@@ -23,14 +24,14 @@ import { inputTypes } from 'src/app/shared/types/types';
 export class InputDateComponent {
   @Input() public class: string = '';
   @Input() public label: string = '';
-  @Input() public type: inputTypes = 'text';
   @Input() public id: string = '';
   @Input() public width: string = '100%';
   @Input() public required: boolean = false;
   @Input() public formGroup!: FormGroup;
+  @Input() public formControlName!: string;
 
   constructor() {}
-  public readonly valueControl = new FormControl(null || '');
+  public readonly valueControl = new FormControl(Date);
   ngOnChanges(changes: SimpleChanges): void {
     //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
     //Add '${implements OnChanges}' to the class.
@@ -42,15 +43,15 @@ export class InputDateComponent {
     });
     if (this.required) this.valueControl.addValidators([Validators.required]);
   }
-  public writeValue(value: string | null): void {
-    if (typeof value === 'string' && value) {
+  public writeValue(value: any): void {
+    if (value) {
       const _value = value;
       this.valueControl.setValue(_value);
     } else {
       this.valueControl.setValue(null);
     }
   }
-  private _getValue(): string | null {
+  private _getValue(): any {
     try {
       if (this.valueControl.invalid) return null;
       const value = this.valueControl.value;
@@ -61,8 +62,8 @@ export class InputDateComponent {
     }
   }
   // On change section
-  private _onChange = (_value: string | null): void => undefined;
-  public registerOnChange(fn: (value: string | null) => void): void {
+  private _onChange = (_value: any): void => undefined;
+  public registerOnChange(fn: (value: any) => void): void {
     this._onChange = fn;
   }
   // On touched section
