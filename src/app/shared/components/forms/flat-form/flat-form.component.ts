@@ -5,7 +5,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { FlatService } from 'src/app/flat/services/flat.service';
 import { FlatFormModel } from 'src/app/shared/models/flatForm.model';
@@ -29,7 +29,7 @@ export class FlatFormComponent implements OnInit, AfterContentChecked {
     private store: Store<AppState>,
     private flatService: FlatService,
     private cd: ChangeDetectorRef,
-    private router: Router
+    private activatedRoute: ActivatedRoute
   ) {}
   public flatForm!: FlatFormModel;
   public loading: boolean = true;
@@ -46,16 +46,31 @@ export class FlatFormComponent implements OnInit, AfterContentChecked {
   }
   ngOnInit(): void {
     this.loading = true;
-    this.store.select('FlatFormsState').subscribe((state) => {
-      if (state.currentFlatForm) {
-        this.flatForm = this.flatService.parseFlatToForm(state.currentFlatForm);
-        this.loading = state.loading;
-        this.flatForm.data.controls.location.controls.lat.disable();
-        this.flatForm.data.controls.location.controls.lng.disable();
-        this.flatForm.data.controls.rating.controls.total.disable();
-        this.flatForm.data.controls.price.controls.averagePrice.disable();
-      }
-    });
+    if (this)
+      this.store.select('FlatFormsState').subscribe((state) => {
+        if (state.currentFlatForm) {
+          this.flatForm = this.flatService.parseFlatToForm(
+            state.currentFlatForm
+          );
+          this.loading = state.loading;
+          this.flatForm.data.controls.location.controls.lat.disable();
+          this.flatForm.data.controls.location.controls.lng.disable();
+          this.flatForm.data.controls.rating.controls.total.disable();
+          this.flatForm.data.controls.price.controls.averagePrice.disable();
+          // If we're in the show page route disable all
+          if (
+            this.activatedRoute.snapshot.url &&
+            this.activatedRoute.snapshot.url.length === 1
+          ) {
+            this.flatForm.data.controls.information.disable();
+            this.flatForm.data.controls.location.disable();
+            this.flatForm.data.controls.specs.disable();
+            this.flatForm.data.controls.others.disable();
+            this.flatForm.data.controls.price.disable();
+            this.flatForm.data.controls.rating.disable();
+          }
+        }
+      });
     if (this.flatForm && this.flatForm.data && this.flatForm.data.controls)
       this.flatForm.data.controls.rating.controls.total.setValue(
         this.formService.calculateTotalRating(
@@ -80,48 +95,33 @@ export class FlatFormComponent implements OnInit, AfterContentChecked {
     this.cd.detectChanges();
   }
   public updateTotalRatingValue($event: number) {
-    if (this.flatForm && this.flatForm.data && this.flatForm.data.controls) {
-      this.flatForm.data.controls.rating.controls.total.setValue(
-        this.formService.calculateTotalRating(
-          this.flatForm.data.controls.rating
-        )
-      );
-    }
+    let total = 0;
+    this.flatForm.data.controls.rating.valueChanges.subscribe((val) => {
+      total = this.formService.calculateTotalRating(val);
+      if (total !== this.flatForm.data.controls.rating.controls.total.value)
+        this.flatForm.data.controls.rating.controls.total.setValue(total);
+    });
   }
 
   public updateAveragePrice($event: number | null) {
-    this.flatForm.data.controls.price.patchValue({
-      averagePrice:
-        ((this.flatForm.data.controls.price.controls.currentPrice.controls.value
-          .value || 0) +
-          (this.flatForm.data.controls.price.controls.firstPrice.controls.value
-            .value || 0)) /
-        2,
-    });
-    console.log();
-    // this.flatForm.data.controls.price
-    //   .get('averagePrice')
-    //   ?.setValue(
-    //     ((this.flatForm.data.controls.price.controls.currentPrice.get('value')
-    //       ?.value || 0) +
-    //       (this.flatForm.data.controls.price.controls.firstPrice.get('value')
-    //         ?.value || 0)) /
-    //       2
-    //   );
-    // const first = this.flatForm.data.controls.price.controls.currentPrice
-    //   .controls.value.value
-    //   ? this.flatForm.data.controls.price.controls.currentPrice.controls.value
-    //       .value
-    //   : 0;
-    // const second = this.flatForm.data.controls.price.controls.firstPrice
-    //   .controls.value.value
-    //   ? this.flatForm.data.controls.price.controls.firstPrice.controls.value
-    //       .value
-    //   : 0;
-    // let result = this.formService.calculateAveragePrice(first, second);
-    // console.log(result);
-    // this.flatForm.data.controls.price.controls.averagePrice.setValue(result);
-    // console.log(this.flatForm.data.controls.price.controls);
+    let firstPrice = 0;
+    let currentPrice = 0;
+    this.flatForm.data.controls.price.controls.currentPrice.controls.value.valueChanges.subscribe(
+      (value) => {
+        currentPrice = value ? value : 0;
+        this.flatForm.data.controls.price.controls.averagePrice.setValue(
+          (firstPrice + currentPrice) / 2
+        );
+      }
+    );
+    this.flatForm.data.controls.price.controls.firstPrice.controls.value.valueChanges.subscribe(
+      (value) => {
+        firstPrice = value ? value : 0;
+        this.flatForm.data.controls.price.controls.averagePrice.setValue(
+          (firstPrice + currentPrice) / 2
+        );
+      }
+    );
   }
 
   public validateForm() {

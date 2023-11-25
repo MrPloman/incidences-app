@@ -86,9 +86,6 @@ export class FlatService {
       subs.complete();
     });
     return flat;
-
-    // if (latLng.lng) flatForm.data.location.lng = latLng.lng;
-    // if (latLng.lat) flatForm.data.location.lat = latLng.lat;
   }
 
   public parseFlatToForm(flatData: FlatModel): FlatFormModel {
@@ -267,5 +264,81 @@ export class FlatService {
       images: flatData.images,
     };
     return flatForm;
+  }
+  public getFlat(id: string): Observable<FlatModel> {
+    let flat: Observable<FlatModel> = new Observable((subs) => {
+      subs.next(
+        new FlatModel(
+          {
+            information: {
+              title: '',
+              description: '',
+            },
+            location: {
+              street: '',
+              address: '',
+              number: null,
+              floor: '',
+              door: '',
+              block: '',
+              gate: '',
+              zip: null,
+              city: '',
+              country: '',
+              state: '',
+              lng: 123,
+              lat: 13123,
+            },
+            specs: {
+              m2: null,
+              roomsNumber: null,
+              bathroomsNumber: null,
+              deposit: null,
+              depositMonths: null,
+            },
+            rating: {
+              total: 50,
+              price: 50,
+              clearfull: 50,
+              modern: 50,
+              amenities: 50,
+              publicTransport: 50,
+              neighbours: 50,
+              neighbourhood: 50,
+              building: 50,
+              tenantment: 50,
+              realState: 50,
+              views: 50,
+            },
+            price: {
+              firstPrice: {
+                date: null,
+                value: null,
+              },
+              currentPrice: {
+                date: null,
+                value: null,
+              },
+              averagePrice: null,
+            },
+            others: {
+              buildingYear: null,
+              floorsNumber: null,
+              elevator: false,
+              accessibility: false,
+              furnituresIncluded: false,
+              contractByRealState: false,
+              balcony: false,
+              yard: false,
+            },
+          },
+          [],
+          []
+        )
+      );
+      subs.complete();
+    });
+
+    return flat;
   }
 }

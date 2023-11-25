@@ -6,6 +6,9 @@ import {
   setNewFlatErrorAction,
   setNewFlatSuccessAction,
   setNewFlatAction,
+  getFlatAction,
+  getFlatActionSuccess,
+  getFlatActionError,
 } from '../actions/flatForms.actions';
 
 export const initialFlatFormState: FlatFormsState = {
@@ -33,6 +36,24 @@ export const _flatFormsReducers = createReducer(
     currentFlatForm: undefined,
     loaded: false,
     loading: true,
+    error: error,
+  })),
+  on(getFlatAction, (state, { id }) => ({
+    currentFlatForm: undefined,
+    loaded: false,
+    loading: true,
+    error: undefined,
+  })),
+  on(getFlatActionSuccess, (state, { flatData }) => ({
+    currentFlatForm: flatData,
+    loaded: true,
+    loading: false,
+    error: undefined,
+  })),
+  on(getFlatActionError, (state, { error }) => ({
+    currentFlatForm: undefined,
+    loaded: false,
+    loading: false,
     error: error,
   }))
 );

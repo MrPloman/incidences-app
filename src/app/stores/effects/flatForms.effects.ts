@@ -11,7 +11,7 @@ import { FlatModel } from 'src/app/shared/models/flat.model';
 })
 export class FlatFormsEffects {
   constructor(private $actions: Actions, private flatService: FlatService) {}
-  public flatFormsEffect = createEffect(() =>
+  public newFlatFormEffect = createEffect(() =>
     this.$actions.pipe(
       ofType(allActions.flatFormsActions.setNewFlatAction),
       switchMap((action: { latLng: { lat: number; lng: number } }) =>
@@ -25,6 +25,23 @@ export class FlatFormsEffects {
             of(
               allActions.flatFormsActions.setNewFlatErrorAction({ error: err })
             )
+          )
+        )
+      )
+    )
+  );
+  public getFlatFormEffect = createEffect(() =>
+    this.$actions.pipe(
+      ofType(allActions.flatFormsActions.getFlatAction),
+      switchMap((action: { id: string }) =>
+        this.flatService.getFlat(action.id).pipe(
+          map((flatData: FlatModel) =>
+            allActions.flatFormsActions.getFlatActionSuccess({
+              flatData,
+            })
+          ),
+          catchError((err) =>
+            of(allActions.flatFormsActions.getFlatActionError({ error: err }))
           )
         )
       )

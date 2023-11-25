@@ -26,6 +26,7 @@
   <app-map
     *ngIf="!globalLoading"
     (emitNewLatLng)="goToNewForm($event)"
+    (emitSelectedMarkerId)="goToExistingForm($event)"
     [coords]="coords()"
     [selectedMarker]="coords()"
     [markers]="markers()"

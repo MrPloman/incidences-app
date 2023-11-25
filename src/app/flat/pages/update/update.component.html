@@ -1,1 +1,7 @@
-<p>update works!</p>
+<navbar-component></navbar-component>
+<div id="update-container" *ngIf="!loading">
+  <h1>Update Flat</h1>
+  <flat-form></flat-form>
+</div>
+
+<loader-component *ngIf="loading"></loader-component>

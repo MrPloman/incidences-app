@@ -80,6 +80,11 @@ export class LocationsComponent implements OnInit, AfterContentChecked {
     }
   }
 
+  public goToExistingForm($event: string) {
+    console.log($event);
+    this.router.navigate([`flat/update/${$event}`], {});
+  }
+
   public async getClientCoords(): Promise<{ lat: number; lng: number }> {
     const coordPromise: Promise<{ lat: number; lng: number }> = new Promise(
       (resolve) => {

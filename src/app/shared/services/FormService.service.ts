@@ -97,49 +97,14 @@ export class FormService {
     } else return false;
   }
 
-  public calculateTotalRating(
-    rating: FormGroup<{
-      total: FormControl<number | null>;
-      price: FormControl<number | null>;
-      clearfull: FormControl<number | null>;
-      modern: FormControl<number | null>;
-      amenities: FormControl<number | null>;
-      publicTransport: FormControl<number | null>;
-      neighbours: FormControl<number | null>;
-      neighbourhood: FormControl<number | null>;
-      building: FormControl<number | null>;
-      tenantment: FormControl<number | null>;
-      realState: FormControl<number | null>;
-      views: FormControl<number | null>;
-    }>
-  ): number {
+  public calculateTotalRating(rating: any): number {
     let count = 0;
-    Object.keys(rating.controls).forEach((input) => {
-      if (input !== 'total' && rating.get(input) && rating.get(input)) {
-        if (
-          rating.get(input) &&
-          rating.get(input)?.value &&
-          !isNaN(rating.get(input)?.value)
-        )
-          count += rating.get(input)?.value;
+    Object.keys(rating).forEach((input) => {
+      if (input !== 'total' && rating[input]) {
+        if (rating && rating[input] && !isNaN(rating[input]))
+          count += rating[input];
       }
     });
-    return Math.round(count / (Object.keys(rating.controls).length - 1));
-  }
-  public calculateAveragePrice(
-    firstPrice: number,
-    currentPrice: number
-  ): number {
-    let first: number = firstPrice;
-    let current: number = currentPrice;
-
-    if (!isNaN(first) && !isNaN(current)) {
-      return (first + current) / 2;
-    } else return 0;
-
-    // console.log(firstPrice, currentPrice);
-    // return (
-    //   ((firstPrice ? firstPrice : 0) + (currentPrice ? currentPrice : 0)) / 2
-    // );
+    return Math.round(count / Object.keys(rating).length);
   }
 }

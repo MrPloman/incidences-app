@@ -46,6 +46,8 @@ export class MapComponent implements OnInit {
     lng: number | null;
   };
   @Output() emitNewLatLng = new EventEmitter<LatLng>();
+  @Output() emitSelectedMarkerId = new EventEmitter<string>();
+
   @ViewChild('map')
   public map!: Map;
 
@@ -132,7 +134,9 @@ export class MapComponent implements OnInit {
     });
     let container = DomUtil.create('div');
     let button = this.createButton('Start from this location', container);
-    DomEvent.on(button, 'click', () => {});
+    DomEvent.on(button, 'click', () => {
+      this.emitSelectedMarkerId.emit('1');
+    });
     container.appendChild(button);
     popup.setContent(container);
 
