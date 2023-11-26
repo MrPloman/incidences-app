@@ -6,9 +6,11 @@
 >
   <div class="row">
     <div class="column">
-      <h3>Main Info</h3>
+      <div class="subtitle">
+        <h3>Main Info</h3>
+      </div>
 
-      <div formGroupName="information" id="information">
+      <div class="section" formGroupName="information" id="information">
         <div
           *ngFor="
             let item of flatForm.data.controls.information.controls
@@ -36,8 +38,8 @@
           ></component-input-textarea>
         </div>
       </div>
-      <h3>Location</h3>
-      <div formGroupName="location" id="location">
+      <div class="subtitle"><h3>Location</h3></div>
+      <div class="section" formGroupName="location" id="location">
         <div
           *ngFor="
             let item of flatForm.data.controls.location.controls
@@ -78,8 +80,8 @@
           ></component-selector>
         </div>
       </div>
-      <h3>Specs</h3>
-      <div formGroupName="specs" id="specs">
+      <div class="subtitle"><h3>Specs</h3></div>
+      <div class="section" formGroupName="specs" id="specs">
         <div
           *ngFor="
             let item of flatForm.data.controls.specs.controls
@@ -98,8 +100,8 @@
           ></component-input-number>
         </div>
       </div>
-      <h3>Others</h3>
-      <div formGroupName="others" id="others">
+      <div class="subtitle"><h3>Others</h3></div>
+      <div class="section" formGroupName="others" id="others">
         <div
           *ngFor="
             let item of flatForm.data.controls.others.controls
@@ -126,8 +128,8 @@
           ></component-input-checkbox>
         </div>
       </div>
-      <h3>Prices</h3>
-      <div id="price" formGroupName="price">
+      <div class="subtitle"><h3>Prices</h3></div>
+      <div class="section" id="price" formGroupName="price">
         <div [id]="'averagePrice-input'" class="input">
           <component-input-number
             *ngIf="_formService.isInputNumber('flat', 'averagePrice')"
@@ -186,8 +188,10 @@
     </div>
     <div class="column">
       <div id="imageCont"></div>
-      <h3>Ratings</h3>
-      <div formGroupName="rating" id="rating">
+      <div class="subtitle">
+        <h3>Ratings</h3>
+      </div>
+      <div class="section" formGroupName="rating" id="rating">
         <div
           *ngFor="
             let item of flatForm.data.controls.rating.controls
@@ -207,7 +211,7 @@
       </div>
     </div>
   </div>
-  <div id="buttonBar" class="row">
+  <div id="buttonBar" class="row" *ngIf="page !== 'show'">
     <div class="button">
       <component-generic-button
         [label]="'Cancel'"

@@ -2,6 +2,7 @@ import {
   AfterContentChecked,
   ChangeDetectorRef,
   Component,
+  Input,
   OnInit,
 } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
@@ -18,6 +19,7 @@ import {
   SPAIN_PROVINCE_OPTIONS,
   FRANCE_PROVINCES_OPTIONS,
 } from 'src/app/shared/configs/options';
+import { flatPages } from 'src/app/shared/types/types';
 @Component({
   selector: 'flat-form',
   templateUrl: './flat-form.component.html',
@@ -31,6 +33,7 @@ export class FlatFormComponent implements OnInit, AfterContentChecked {
     private cd: ChangeDetectorRef,
     private activatedRoute: ActivatedRoute
   ) {}
+  @Input() page: flatPages = 'create';
   public flatForm!: FlatFormModel;
   public loading: boolean = true;
   public _formService = this.formService;
@@ -58,10 +61,7 @@ export class FlatFormComponent implements OnInit, AfterContentChecked {
           this.flatForm.data.controls.rating.controls.total.disable();
           this.flatForm.data.controls.price.controls.averagePrice.disable();
           // If we're in the show page route disable all
-          if (
-            this.activatedRoute.snapshot.url &&
-            this.activatedRoute.snapshot.url.length === 1
-          ) {
+          if (this.page === 'show') {
             this.flatForm.data.controls.information.disable();
             this.flatForm.data.controls.location.disable();
             this.flatForm.data.controls.specs.disable();
@@ -109,6 +109,11 @@ export class FlatFormComponent implements OnInit, AfterContentChecked {
     this.flatForm.data.controls.price.controls.currentPrice.controls.value.valueChanges.subscribe(
       (value) => {
         currentPrice = value ? value : 0;
+        firstPrice = this.flatForm.data.controls.price.controls.firstPrice
+          .controls.value.value
+          ? this.flatForm.data.controls.price.controls.firstPrice.controls.value
+              .value
+          : 0;
         this.flatForm.data.controls.price.controls.averagePrice.setValue(
           (firstPrice + currentPrice) / 2
         );
@@ -117,6 +122,11 @@ export class FlatFormComponent implements OnInit, AfterContentChecked {
     this.flatForm.data.controls.price.controls.firstPrice.controls.value.valueChanges.subscribe(
       (value) => {
         firstPrice = value ? value : 0;
+        currentPrice = this.flatForm.data.controls.price.controls.currentPrice
+          .controls.value.value
+          ? this.flatForm.data.controls.price.controls.currentPrice.controls
+              .value.value
+          : 0;
         this.flatForm.data.controls.price.controls.averagePrice.setValue(
           (firstPrice + currentPrice) / 2
         );

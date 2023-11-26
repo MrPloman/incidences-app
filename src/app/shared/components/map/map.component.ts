@@ -143,9 +143,6 @@ export class MapComponent implements OnInit {
     new Marker([latlng.lat, latlng.lng], { icon: greenIcon })
       .addTo(this.map)
       .bindPopup(popup)
-      // .bindPopup(
-      //   'A pretty CSS popup.<br> Easily customizable.<div onclick="this.name()">HOLA</div>'
-      // )
       .on('click', () => {
         this.selectMarker(latlng);
       });
