@@ -26,7 +26,7 @@ import { effectsArray } from './stores/effects';
     StoreModule.forRoot(AppReducers),
     EffectsModule.forRoot(effectsArray),
     StoreDevtoolsModule.instrument({
-      maxAge: 25, // Retains last 25 states
+      maxAge: 25,
       logOnly: false, // Restrict extension to log-only mode
     }),
   ],

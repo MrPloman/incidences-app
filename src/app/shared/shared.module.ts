@@ -34,6 +34,8 @@ import { InputDateComponent } from './components/inputs/input-date/input-date.co
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
+import { IgxCarouselModule } from 'igniteui-angular';
+import { CarouselComponent } from './components/carousel/carousel.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -55,6 +57,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDatepickerModule,
     MatFormFieldModule,
     MatNativeDateModule,
+    IgxCarouselModule,
   ],
   declarations: [
     InputTextComponent,
@@ -73,6 +76,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     SelectorComponent,
     InputTextareaComponent,
     InputDateComponent,
+    CarouselComponent,
+    CarouselComponent,
   ],
   exports: [
     InputTextComponent,
@@ -86,6 +91,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     CardComponent,
     MiniLoaderComponent,
     FlatFormComponent,
+    CarouselComponent,
   ],
   providers: [LoadingService, FormService],
   bootstrap: [],
