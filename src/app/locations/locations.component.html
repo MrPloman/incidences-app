@@ -14,7 +14,7 @@
         <card-component
           *ngFor="let marker of markers()"
           [markerInfo]="marker"
-          (click)="centerInTheMarkerSelected(marker)"
+          (click)="manageMarkerSelection(marker)"
         ></card-component>
       </ng-container>
       <div *ngIf="!loading() && markers().length === 0">Nothing found</div>

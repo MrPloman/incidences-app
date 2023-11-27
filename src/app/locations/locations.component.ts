@@ -29,6 +29,7 @@ export class LocationsComponent implements OnInit, AfterContentChecked {
   });
   public globalLoading: boolean = true;
   public loading = signal(false);
+  public markerSelected: FlatMarker | undefined = undefined;
   constructor(
     private store: Store<AppState>,
     private router: Router,
@@ -71,6 +72,7 @@ export class LocationsComponent implements OnInit, AfterContentChecked {
   }
   public centerInTheMarkerSelected(coord: { lat: number; lng: number }) {
     // if (this.coords().lat !== coord.lat && this.coords().lng !== coord.lng)
+    this.markerSelected = coord;
     this.coords.set(coord);
     this.store.dispatch(setCurrentPosition({ currentPosition: coord }));
   }
@@ -98,5 +100,10 @@ export class LocationsComponent implements OnInit, AfterContentChecked {
       }
     );
     return await coordPromise;
+  }
+
+  public manageMarkerSelection(marker: FlatMarker) {
+    if (this.markerSelected !== marker) this.centerInTheMarkerSelected(marker);
+    else this.router.navigate([`flat/1`], {});
   }
 }
