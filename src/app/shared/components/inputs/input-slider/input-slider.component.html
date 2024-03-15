@@ -2,6 +2,7 @@
   <mat-label>{{ label }}</mat-label>
   <input
     matInput
+    minlength="1"
     maxlength="3"
     min="1"
     max="100"
@@ -9,16 +10,16 @@
     [value]="valueControl.value"
     [formControl]="valueControl"
     [id]="id"
-    (blur)="onTouched()"
     (input)="onTouched()"
+    (blur)="onTouched()"
   />
   <mat-slider [id]="id" min="1" max="100" step="1">
     <input
       min="1"
       max="100"
       [value]="valueControl.value"
-      (blur)="onTouched()"
       [formControl]="valueControl"
+      (blur)="onTouched()"
       (input)="onTouched()"
       matSliderThumb
     />

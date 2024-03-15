@@ -42,7 +42,7 @@ export class InputSliderComponent {
   ngOnInit(): void {
     combineLatest([this.valueControl.valueChanges]).subscribe(() => {
       const value = this._getValue();
-      if (value >= 1 && value <= 100) {
+      if (value >= 0 && value <= 100) {
         this.emitChange.emit(value);
         if (value) this._onChange(value);
       }

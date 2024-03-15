@@ -1,3 +1,4 @@
+@import "../../../../assets/variables.scss";
 #create-container {
   padding: 100px 100px 150px;
   #page-title {
@@ -12,6 +13,9 @@
       font-size: 100px;
       color: white;
       justify-self: center;
+      font-family: $font_typo !important;
+      letter-spacing: $font-spacing;
+      font-variation-settings: $font-variation-settings;
     }
   }
 }

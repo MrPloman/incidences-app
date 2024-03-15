@@ -71,12 +71,6 @@ export class FlatFormComponent implements OnInit, AfterContentChecked {
           }
         }
       });
-    if (this.flatForm && this.flatForm.data && this.flatForm.data.controls)
-      this.flatForm.data.controls.rating.controls.total.setValue(
-        this.formService.calculateTotalRating(
-          this.flatForm.data.controls.rating
-        )
-      );
   }
   public getOptions(label: string) {
     switch (label) {

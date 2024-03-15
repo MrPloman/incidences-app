@@ -105,6 +105,7 @@ export class FormService {
           count += rating[input];
       }
     });
+    console.log(Math.round(count / Object.keys(rating).length));
     return Math.round(count / Object.keys(rating).length);
   }
 }
