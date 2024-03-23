@@ -1,10 +1,37 @@
+@import "src/assets/variables.scss";
 .input-field {
   padding: 7px 7px 7px 0px;
   width: 90%;
+  background-color: none !important;
+  border-bottom: 0px;
 }
-.md-input.ng-invalid.ng-dirty {
-  border-color: #fa787e;
+* {
+  font-family: $font_typo !important;
+  letter-spacing: $font-spacing;
+  font-variation-settings: $font-variation-settings;
+  border: 0px;
 }
-.md-input.ng-valid.ng-dirty {
-  border-color: #78fa89;
+::ng-deep.mdc-text-field {
+  color: $primary_color;
+}
+
+::ng-deep.mdc-text-field--invalid {
+  border-bottom: 1px $secondary_color solid !important;
+}
+
+// ::ng-deep.mat-mdc-text-field-wrapper
+//   .mdc-text-field
+//   .mdc-text-field--filled
+//   .mdc-text-field--invalid {
+//   border-bottom: 5px black solid;
+// }
+::ng-deep.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: rgba(0, 0, 0, 0) !important;
+}
+::ng-deep.mdc-text-field--focused {
+  background-color: rgba(0, 0, 0, 0) !important;
+}
+
+::ng-deep.mdc-text-field--disabled {
+  background-color: rgba(0, 0, 0, 0) !important;
 }

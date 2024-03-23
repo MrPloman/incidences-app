@@ -2,10 +2,16 @@
 
 $font_typo: "Inter", sans-serif;
 $font-height: 1.1em;
-$font-spacing: -0.045em;
-$font-variation-settings: "wght" 900;
+$font-spacing: -0.02em;
+$font-variation-settings-title: "wght" 900;
+$font-variation-settings: "wght" 600;
+$font-title-size: 90px;
+$font-subtitle-size: 40px;
+$font-element-size: 30px;
+$font-label-size: 20px;
+
 $desktop_title_size: 50px;
-$primary_color: #1e1e24;
-$secondary_color: #92140c;
-$third_color: #1e1e24;
-$fourth_color: #92140c;
+$primary_color: #6f1a07;
+$secondary_color: #f8f5ea;
+$third_color: #1f1c05;
+$fourth_color: #4f2a00;

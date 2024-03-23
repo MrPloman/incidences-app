@@ -2,9 +2,10 @@
   <div class="example-button-row">
     <button
       [type]="submit"
-      id="buttonStructure"
+      class="buttonStructure"
       [disabled]="disabled"
       mat-raised-button
+      [ngClass]="{ acceptButton: submit }"
     >
       <span id="insideButtonLabel">{{ label }}</span>
       <mat-icon *ngIf="loading">
