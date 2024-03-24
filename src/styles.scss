@@ -1,5 +1,6 @@
 @use "igniteui-angular/theming" as *;
 @use "@angular/material" as mat;
+@import "@angular/material/theming";
 
 // Uncomment the following lines if you want to add a custom palette:
 // $primary: #731963 !default;
@@ -21,9 +22,22 @@
 @import "~leaflet-contextmenu/dist/leaflet.contextmenu.css";
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 
-$my-primary: mat.define-palette(mat.$indigo-palette, 500);
-$my-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
-$my-typography: mat.define-typography-config();
+$my-primary: mat.define-palette(mat.$brown-palette, 900);
+$my-accent: mat.define-palette(mat.$grey-palette, 900);
+$my-warn: mat.define-palette(mat.$red-palette, 900);
+
+$my-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $my-primary,
+      accent: $my-accent,
+      warn: $my-warn,
+    ),
+    typography: mat.define-typography-config(),
+    density: 0,
+  )
+);
+@include angular-material-theme($my-theme);
 
 html,
 body {

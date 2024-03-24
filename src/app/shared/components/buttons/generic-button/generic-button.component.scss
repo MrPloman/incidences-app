@@ -5,9 +5,9 @@
   flex-direction: row !important;
   width: 300px !important;
   font-family: $font_typo !important;
-  font-size: $font-label-size;
+  font-size: $font-element-size;
   font-variation-settings: $font-variation-settings-title;
-  padding: 25px;
+  padding: 40px;
   background-color: $secondary_color;
 }
 .acceptButton {

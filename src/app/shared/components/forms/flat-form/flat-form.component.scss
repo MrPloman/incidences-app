@@ -43,10 +43,9 @@
     }
   }
   #buttonBar {
-    position: fixed;
-    padding: 20px 5%;
+    position: relative;
+    bottom: 0;
     justify-self: center;
-    background-color: $third_color;
     left: 0;
     margin: 0 auto;
     bottom: 0;
@@ -59,7 +58,6 @@
     justify-content: space-between;
     align-items: center;
     .button {
-      margin: 0 10px 0 10px;
     }
   }
 }
