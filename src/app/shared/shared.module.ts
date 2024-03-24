@@ -6,6 +6,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatChipsModule } from '@angular/material/chips';
+
 import { InputNumberComponent } from './components/inputs/input-number/input-number.component';
 import { GenericButtonComponent } from './components/buttons/generic-button/generic-button.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -36,6 +38,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
 import { IgxCarouselModule } from 'igniteui-angular';
 import { CarouselComponent } from './components/carousel/carousel.component';
+import { BasicChipComponent } from './components/chips/basic-chip/basic-chip.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -58,6 +61,7 @@ import { CarouselComponent } from './components/carousel/carousel.component';
     MatFormFieldModule,
     MatNativeDateModule,
     IgxCarouselModule,
+    MatChipsModule,
   ],
   declarations: [
     InputTextComponent,
@@ -78,6 +82,7 @@ import { CarouselComponent } from './components/carousel/carousel.component';
     InputDateComponent,
     CarouselComponent,
     CarouselComponent,
+    BasicChipComponent,
   ],
   exports: [
     InputTextComponent,
@@ -92,6 +97,7 @@ import { CarouselComponent } from './components/carousel/carousel.component';
     MiniLoaderComponent,
     FlatFormComponent,
     CarouselComponent,
+    BasicChipComponent,
   ],
   providers: [LoadingService, FormService],
   bootstrap: [],

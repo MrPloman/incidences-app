@@ -1,4 +1,8 @@
+@import "src/assets/variables.scss";
+
 article {
+  font-family: $font_typo;
+
   margin-top: 0px;
   color: rgb(124, 124, 124);
   border: 3px solid rgba(200, 200, 200, 0.617);
@@ -20,14 +24,26 @@ article {
         display: flex;
         flex-direction: column;
         h3 {
+          color: $fourth_color;
           margin-bottom: 5px;
           font-size: 25px;
           text-align: start;
+          width: fit-content;
+          justify-self: center;
+          font-family: $font_typo !important;
+          letter-spacing: $font-spacing;
+          font-variation-settings: $font-variation-settings-title;
         }
         h4 {
+          color: $primary_color;
           font-size: 18px;
-          text-align: start;
           margin-bottom: 5px;
+          text-align: start;
+          width: fit-content;
+          justify-self: center;
+          font-family: $font_typo !important;
+          letter-spacing: $font-spacing;
+          font-variation-settings: $font-variation-settings-title;
         }
       }
 
@@ -35,13 +51,15 @@ article {
         width: 70px;
         height: 70px;
         border-radius: 100%;
-        background-color: orangered;
+        background-color: $primary_color;
         display: flex;
         justify-content: center;
         align-items: center;
         #ratingNumber {
           color: white;
-
+          font-family: $font_typo !important;
+          letter-spacing: $font-spacing;
+          font-variation-settings: $font-variation-settings-title;
           margin: 0 auto;
           font-size: 30px;
         }

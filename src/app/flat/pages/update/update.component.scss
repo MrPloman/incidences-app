@@ -1,17 +1,21 @@
+@import "src/assets/variables.scss";
 #update-container {
-  padding: 100px 50px 150px;
+  padding: 100px 5% 150px;
   #page-title {
     display: flex;
     justify-content: flex-start;
     flex-direction: row;
-    padding: 50px 20px 30px 20px;
-    background-color: orangered;
+    padding: 50px 40px 35px 30px;
+    background-color: $primary_color;
     width: fit-content;
     border-radius: 20px 0 20px 0;
     h1 {
-      font-size: 100px;
-      color: white;
+      font-size: $font-title-size;
+      color: $secondary_color;
       justify-self: center;
+      font-family: $font_typo !important;
+      letter-spacing: $font-spacing;
+      font-variation-settings: $font-variation-settings-title;
     }
   }
 }

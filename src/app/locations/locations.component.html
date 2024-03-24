@@ -6,8 +6,8 @@
       <h2 id="title">Locations</h2>
     </div>
     <div id="filters">
-      <input type="text" /> || <button>Click</button> ||
-      <div>TAG</div>
+      <component-input-text [label]="'Search by...'"></component-input-text>
+      <basic-chip-component></basic-chip-component>
     </div>
     <div id="list">
       <ng-container *ngIf="!loading() && markers() && markers().length > 0">

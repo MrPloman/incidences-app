@@ -14,6 +14,9 @@
   background-color: $primary_color !important;
   color: $secondary_color !important;
 }
+.acceptButton:hover {
+  background-color: $fourth_color !important;
+}
 
 #insideButtonLoding {
   width: 50px !important;
