@@ -14,6 +14,7 @@ import { FlatMarker } from '../shared/models/flatMarker.model';
 import { Router } from '@angular/router';
 import { setCurrentPosition } from '../stores/actions/locations.actions';
 import { LatLng } from 'leaflet';
+import { FilterLocationsForm } from 'src/app/shared/models/filterLocationsForm.model';
 
 @Component({
   selector: 'app-locations',
@@ -30,6 +31,7 @@ export class LocationsComponent implements OnInit, AfterContentChecked {
   public globalLoading: boolean = true;
   public loading = signal(false);
   public markerSelected: FlatMarker | undefined = undefined;
+  public searchInputValue: string = '';
   constructor(
     private store: Store<AppState>,
     private router: Router,
@@ -70,6 +72,9 @@ export class LocationsComponent implements OnInit, AfterContentChecked {
     this.markers.set([]);
     this.markersSubscription.unsubscribe();
   }
+
+  public searchByName() {}
+
   public centerInTheMarkerSelected(coord: { lat: number; lng: number }) {
     // if (this.coords().lat !== coord.lat && this.coords().lng !== coord.lng)
     this.markerSelected = coord;
@@ -83,7 +88,6 @@ export class LocationsComponent implements OnInit, AfterContentChecked {
   }
 
   public goToExistingForm($event: string) {
-    console.log($event);
     this.router.navigate([`flat/update/${$event}`], {});
   }
 
