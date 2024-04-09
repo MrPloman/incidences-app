@@ -45,7 +45,11 @@ export class MapComponent implements OnInit {
     lat: number | null;
     lng: number | null;
   };
+  @Input('searchValue') public searchValue: string | null = '';
+
   @Output() emitNewLatLng = new EventEmitter<LatLng>();
+  @Output() emitBoundaries = new EventEmitter<LatLngBounds>();
+
   @Output() emitSelectedMarkerId = new EventEmitter<string>();
 
   @ViewChild('map')
@@ -73,8 +77,10 @@ export class MapComponent implements OnInit {
       this.store.dispatch(
         allActions.locationsActions.getFlatMarkersAction({
           boundaries: this.map.getBounds(),
+          searchValue: this.searchValue,
         })
       );
+      this.emitBoundaries.emit(this.map.getBounds());
     }
   }
 

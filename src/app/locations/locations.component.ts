@@ -12,9 +12,14 @@ import { Subscription } from 'rxjs';
 import { LocationsState } from '../stores/states/locations.state';
 import { FlatMarker } from '../shared/models/flatMarker.model';
 import { Router } from '@angular/router';
-import { setCurrentPosition } from '../stores/actions/locations.actions';
-import { LatLng } from 'leaflet';
+import {
+  setCurrentPosition,
+  getFlatMarkersAction,
+} from '../stores/actions/locations.actions';
+
+import { LatLng, LatLngBounds } from 'leaflet';
 import { FilterLocationsForm } from 'src/app/shared/models/filterLocationsForm.model';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-locations',
@@ -31,7 +36,16 @@ export class LocationsComponent implements OnInit, AfterContentChecked {
   public globalLoading: boolean = true;
   public loading = signal(false);
   public markerSelected: FlatMarker | undefined = undefined;
-  public searchInputValue: string = '';
+  public searchForm: FilterLocationsForm = {
+    data: new FormGroup({
+      searchValue: new FormControl<string | null>(''),
+      chips: new FormGroup({
+        news: new FormControl<boolean | null>(false),
+      }),
+    }),
+  };
+  private boundaries: LatLngBounds | undefined = undefined;
+
   constructor(
     private store: Store<AppState>,
     private router: Router,
@@ -61,6 +75,11 @@ export class LocationsComponent implements OnInit, AfterContentChecked {
           this.globalLoading = false;
         });
     });
+    this.searchForm.data.valueChanges.subscribe((value) => {
+      if (value.searchValue && value.searchValue.length >= 3) {
+        this.searchByName(value.searchValue);
+      }
+    });
   }
 
   ngAfterContentChecked(): void {
@@ -73,7 +92,20 @@ export class LocationsComponent implements OnInit, AfterContentChecked {
     this.markersSubscription.unsubscribe();
   }
 
-  public searchByName() {}
+  public setBoundaries($event: any) {
+    this.boundaries = $event;
+  }
+
+  public searchByName($event: any) {
+    console.log($event);
+    if (!$event || !this.boundaries) return;
+    this.store.dispatch(
+      getFlatMarkersAction({
+        boundaries: this.boundaries,
+        searchValue: $event,
+      })
+    );
+  }
 
   public centerInTheMarkerSelected(coord: { lat: number; lng: number }) {
     // if (this.coords().lat !== coord.lat && this.coords().lng !== coord.lng)

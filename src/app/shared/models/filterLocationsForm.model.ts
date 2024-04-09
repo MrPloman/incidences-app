@@ -2,9 +2,9 @@ import { FormControl, FormGroup } from '@angular/forms';
 
 export class FilterLocationsForm {
   data: FormGroup<{
-    searchValue: FormControl<string>;
+    searchValue: FormControl<string | null>;
     chips: FormGroup<{
-      news: FormControl<boolean>;
+      news: FormControl<boolean | null>;
     }>;
   }>;
   constructor(data: any) {

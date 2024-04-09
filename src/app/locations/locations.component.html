@@ -6,8 +6,15 @@
       <h2 id="title">Locations</h2>
     </div>
     <div id="filters">
-      <component-input-text [label]="'Search by...'"></component-input-text>
-      <basic-chip-component></basic-chip-component>
+      <form id="form" [formGroup]="searchForm.data">
+        <component-input-text
+          class="input"
+          [label]="'searchValue'"
+          [formControlName]="'searchValue'"
+          [formGroup]="searchForm.data"
+        ></component-input-text>
+        <basic-chip-component></basic-chip-component>
+      </form>
     </div>
     <div id="list">
       <ng-container *ngIf="!loading() && markers() && markers().length > 0">
@@ -27,9 +34,11 @@
     *ngIf="!globalLoading"
     (emitNewLatLng)="goToNewForm($event)"
     (emitSelectedMarkerId)="goToExistingForm($event)"
+    (emitBoundaries)="setBoundaries($event)"
     [coords]="coords()"
     [selectedMarker]="coords()"
     [markers]="markers()"
+    [searchValue]="searchForm.data.controls.searchValue.value"
   ></app-map>
 </div>
 <loader-component *ngIf="globalLoading"></loader-component>

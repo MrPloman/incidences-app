@@ -97,7 +97,11 @@ export class LocationsService {
     return this.markersFromDB;
   }
 
-  public getLocationsThroughCoords(boundaries: LatLngBounds) {
+  public getLocationsThroughCoords(
+    boundaries: LatLngBounds,
+    searchValue: string | null
+  ) {
+    const search: string | null = !!searchValue ? searchValue : null;
     let _markers: Observable<FlatMarker[]> = new Observable((subs) => {
       setTimeout(() => {
         subs.next(
@@ -109,10 +113,20 @@ export class LocationsService {
               mark.lng > boundaries.getWest() &&
               mark.lng < boundaries.getEast()
             ) {
-              return mark;
+              if (!search) {
+                return mark;
+              } else if (
+                mark.information &&
+                mark.information.address
+                  .toLowerCase()
+                  .includes(search.toLowerCase())
+              ) {
+                return mark;
+              } else return;
             } else return;
           })
         );
+
         subs.complete();
       }, 500);
     });
