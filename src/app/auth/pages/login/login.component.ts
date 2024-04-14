@@ -1,31 +1,29 @@
-import { Component, SimpleChanges } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { LoadingService } from 'src/app/shared/services/LoadingService.service';
 import { AppState } from 'src/app/stores/app.state';
-import { allActions } from 'src/app/stores/actions';
 
 @Component({
-  selector: 'page-login',
+  selector: 'app-page-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  public title: string = 'Login';
-  public email: string = '';
-  public password: string = '';
-  public submitIsForbidden: boolean = true;
-  public isDownloading: boolean = false;
-  public success: boolean = false;
+  public title = 'Login';
+  public email = '';
+  public password = '';
+  public submitIsForbidden = true;
+  public isDownloading = false;
+  public success = false;
   private router: Router;
   private loadingService: LoadingService;
 
   public readonly loginForm: FormGroup = new FormGroup({
     email: new FormControl(this.email, [
       Validators.required,
-      Validators.pattern(/^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/),
+      Validators.pattern(/^[A-Za-z0-9_!#$%&'*+/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/),
     ]),
     password: new FormControl(this.password, [
       Validators.required,

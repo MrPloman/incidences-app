@@ -15,11 +15,5 @@ export class AppComponent {
     private router: Router,
     private store: Store<AppState>,
     private loadingService: LoadingService
-  ) {
-    // this.subs = this.store.select('UILoadingState').subscribe(({ loading }) => {
-    //   setTimeout(() => {
-    //     this.loading$ = loading;
-    //   });
-    // });
-  }
+  ) {}
 }
