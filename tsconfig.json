@@ -1,7 +1,16 @@
 /* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "compileOnSave": false,
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  },
+  "extends": "./tsconfig.json",
   "compilerOptions": {
+    "strictTemplates": true,
+    "types": [],
     "noPropertyAccessFromIndexSignature": false,
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
@@ -21,10 +30,6 @@
     "useDefineForClassFields": false,
     "lib": ["ES2022", "dom"]
   },
-  "angularCompilerOptions": {
-    "enableI18nLegacyMessageIdFormat": false,
-    "strictInjectionParameters": true,
-    "strictInputAccessModifiers": true,
-    "strictTemplates": true
-  }
+  "files": ["src/main.ts"],
+  "include": ["src/**/*.d.ts"]
 }

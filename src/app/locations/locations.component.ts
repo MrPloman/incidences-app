@@ -108,7 +108,6 @@ export class LocationsComponent implements OnInit, AfterContentChecked {
   }
 
   public centerInTheMarkerSelected(coord: { lat: number; lng: number }) {
-    // if (this.coords().lat !== coord.lat && this.coords().lng !== coord.lng)
     this.markerSelected = coord;
     this.coords.set(coord);
     this.store.dispatch(setCurrentPosition({ currentPosition: coord }));

@@ -1,15 +1,9 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from './stores/app.state';
 import { LoadingService } from './shared/services/LoadingService.service';
 import { Subscription } from 'rxjs';
-import {
-  NavigationCancel,
-  NavigationEnd,
-  NavigationError,
-  NavigationStart,
-  Router,
-} from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
