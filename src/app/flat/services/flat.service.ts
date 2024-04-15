@@ -10,10 +10,9 @@ import { FlatFormModel } from 'src/app/shared/models/flatForm.model';
 })
 export class FlatService {
   public newFlatCopy = NewFlat;
-  constructor() {}
 
   public createNewFlat(latLng: { lng: number; lat: number }) {
-    let flat: Observable<FlatModel> = new Observable((subs) => {
+    const flat: Observable<FlatModel> = new Observable((subs) => {
       subs.next(
         new FlatModel(
           {
@@ -266,7 +265,8 @@ export class FlatService {
     return flatForm;
   }
   public getFlat(id: string): Observable<FlatModel> {
-    let flat: Observable<FlatModel> = new Observable((subs) => {
+    console.log(id);
+    const flat: Observable<FlatModel> = new Observable((subs) => {
       subs.next(
         new FlatModel(
           {

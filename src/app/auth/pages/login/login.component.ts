@@ -10,7 +10,7 @@ import { AppState } from 'src/app/stores/app.state';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   public title = 'Login';
   public email = '';
   public password = '';

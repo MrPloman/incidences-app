@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
-import { Observable, Observer } from 'rxjs';
 import { IncidencesListService } from '../../services/IncidencesListService.service';
 import { LoadingService } from 'src/app/shared/services/LoadingService.service';
 
 @Component({
-  selector: 'page-incidences-detail',
+  selector: 'app-page-incidences-detail',
   templateUrl: './incidences-detail.component.html',
   styleUrls: ['./incidences-detail.component.scss'],
 })
-export class IncidencesDetailComponent {
+export class IncidencesDetailComponent implements OnInit {
   public isLoading = true;
 
   public _incidencesListService: IncidencesListService;

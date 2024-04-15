@@ -6,5 +6,5 @@ export interface AuthState {
   loading: boolean;
   loaded: boolean;
   signed: boolean;
-  error: any;
+  error: unknown;
 }

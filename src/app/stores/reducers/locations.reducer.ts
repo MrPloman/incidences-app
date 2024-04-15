@@ -18,7 +18,7 @@ export const initialLocationsState: LocationsState = {
 };
 export const _LocationsReducers = createReducer(
   initialLocationsState,
-  on(getFlatMarkersAction, (state, { boundaries, searchValue }) => ({
+  on(getFlatMarkersAction, (state) => ({
     ...state,
     loaded: false,
     loading: true,

@@ -6,6 +6,8 @@ import {
   Output,
   SimpleChanges,
   ViewChild,
+  OnChanges,
+  AfterViewInit,
 } from '@angular/core';
 import { Store } from '@ngrx/store';
 import {
@@ -18,11 +20,12 @@ import {
   DomUtil,
   Popup,
   DomEvent,
-  divIcon,
   Icon,
-  latLng,
+  MapOptions,
 } from 'leaflet';
 import 'leaflet-contextmenu';
+import 'leaflet-contextmenu.d.ts';
+
 import { FlatMarker } from 'src/app/shared/models/flatMarker.model';
 import { allActions } from 'src/app/stores/actions';
 import { AppState } from 'src/app/stores/app.state';
@@ -30,22 +33,23 @@ import {
   MARKER_ICON_ORANGE,
   MARKER_ICON_SHADOW,
 } from 'src/app/shared/configs/icons';
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss'],
 })
-export class MapComponent implements OnInit {
-  @Input('coords') public coords: { lat: number | null; lng: number | null } = {
+export class MapComponent implements OnInit, AfterViewInit, OnChanges {
+  @Input() public coords: { lat: number | null; lng: number | null } = {
     lat: 0,
     lng: 0,
   };
-  @Input('markers') public markers: FlatMarker[] = [];
-  @Input('selectedMarker') public selectedMarker!: {
+  @Input() public markers: FlatMarker[] = [];
+  @Input() public selectedMarker!: {
     lat: number | null;
     lng: number | null;
   };
-  @Input('searchValue') public searchValue: string | null = '';
+  @Input() public searchValue: string | null = '';
 
   @Output() emitNewLatLng = new EventEmitter<LatLng>();
   @Output() emitBoundaries = new EventEmitter<LatLngBounds>();
@@ -86,7 +90,7 @@ export class MapComponent implements OnInit {
 
   private initMap() {
     if (this.coords && this.coords.lat && this.coords.lng) {
-      let map = new Map('map', {
+      const options: any = {
         contextmenu: true,
         contextmenuWidth: 140,
         contextmenuItems: [
@@ -98,7 +102,11 @@ export class MapComponent implements OnInit {
             },
           },
         ],
-      }).setView([this.coords.lat, this.coords.lng], 13); // Adding visual surface layer
+      };
+      const map = new Map('map', options).setView(
+        [this.coords.lat, this.coords.lng],
+        13
+      ); // Adding visual surface layer
       tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         minZoom: 5,
@@ -122,15 +130,15 @@ export class MapComponent implements OnInit {
   }
 
   public createButton(label: string, container: any) {
-    let btn = DomUtil.create('button', '', container);
+    const btn = DomUtil.create('button', '', container);
     btn.setAttribute('type', 'button');
     btn.innerHTML = label;
     return btn;
   }
 
   private addMarker(latlng: { lat: number; lng: number }) {
-    let popup = new Popup();
-    let greenIcon = new Icon({
+    const popup = new Popup();
+    const greenIcon = new Icon({
       iconUrl: MARKER_ICON_ORANGE,
       shadowUrl: MARKER_ICON_SHADOW,
       iconSize: [25, 41],
@@ -138,8 +146,8 @@ export class MapComponent implements OnInit {
       popupAnchor: [1, -34],
       shadowSize: [41, 41],
     });
-    let container = DomUtil.create('div');
-    let button = this.createButton('Start from this location', container);
+    const container = DomUtil.create('div');
+    const button = this.createButton('Start from this location', container);
     DomEvent.on(button, 'click', () => {
       this.emitSelectedMarkerId.emit('1');
     });
@@ -181,6 +189,7 @@ export class MapComponent implements OnInit {
       );
     }
   }
-
-  private selectMarker($event: any) {}
+  public selectMarker($event: unknown) {
+    console.log($event);
+  }
 }

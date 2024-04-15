@@ -1,9 +1,3 @@
-import { LocationInterface } from '../interfaces/Location.interface';
-import { OthersInterface } from '../interfaces/Others.interface';
-import { PricePlaceInterface } from '../interfaces/PricePlace.interface';
-import { RatingInterface } from '../interfaces/Rating.interface';
-import { SpecificationInterface } from '../interfaces/Specification.interface';
-import { InformationInterface } from '../interfaces/Information.interface';
 export class FlatModel {
   data: {
     information: {
@@ -68,8 +62,8 @@ export class FlatModel {
       yard: boolean | null;
     };
   };
-  images: any[];
-  comments: any[];
+  images: unknown[];
+  comments: unknown[];
   constructor(
     data: {
       information: {
@@ -134,8 +128,8 @@ export class FlatModel {
         yard: boolean | null;
       };
     },
-    images: any[],
-    comments: any[]
+    images: unknown[],
+    comments: unknown[]
   ) {
     this.data = data;
     this.comments = comments;

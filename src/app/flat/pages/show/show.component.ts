@@ -10,14 +10,14 @@ import { getFlatAction } from 'src/app/stores/actions/flatForms.actions';
 import { AppState } from 'src/app/stores/app.state';
 
 @Component({
-  selector: 'show-flat',
+  selector: 'app-show-flat',
   templateUrl: './show.component.html',
   styleUrls: ['./show.component.scss'],
 })
-export class ShowFlatComponent {
+export class ShowFlatComponent implements OnInit, AfterContentChecked {
   public loadingSubscription!: Subscription;
   public flatForm = undefined;
-  public loading: boolean = true;
+  public loading = true;
   constructor(
     private store: Store<AppState>,
     private route: ActivatedRoute,
@@ -29,7 +29,7 @@ export class ShowFlatComponent {
       .select('UILoadingState')
       .subscribe((state) => (this.loading = state.loading));
     this.route.paramMap.subscribe((paramMap) => {
-      let id: string | null = paramMap.get('id');
+      const id: string | null = paramMap.get('id');
       if (id) {
         this.store.dispatch(
           getFlatAction({

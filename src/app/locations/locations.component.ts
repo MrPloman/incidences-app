@@ -1,10 +1,10 @@
 import {
   AfterContentChecked,
-  AfterViewInit,
   ChangeDetectorRef,
   Component,
   OnInit,
   signal,
+  OnDestroy,
 } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../stores/app.state';
@@ -26,14 +26,16 @@ import { FormControl, FormGroup } from '@angular/forms';
   templateUrl: './locations.component.html',
   styleUrls: ['./locations.component.scss'],
 })
-export class LocationsComponent implements OnInit, AfterContentChecked {
+export class LocationsComponent
+  implements OnInit, AfterContentChecked, OnDestroy
+{
   public markersSubscription: Subscription = new Subscription();
   public markers = signal<FlatMarker[]>([]);
   public coords = signal<{ lat: number | null; lng: number | null }>({
     lat: null,
     lng: null,
   });
-  public globalLoading: boolean = true;
+  public globalLoading = true;
   public loading = signal(false);
   public markerSelected: FlatMarker | undefined = undefined;
   public searchForm: FilterLocationsForm = {

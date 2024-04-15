@@ -6,21 +6,18 @@ import {
   setUILoadingTrue,
   setUILoadingFalse,
 } from 'src/app/stores/actions/UIloading.actions';
-import {
-  getFlatAction,
-  setNewFlatAction,
-} from 'src/app/stores/actions/flatForms.actions';
+import { getFlatAction } from 'src/app/stores/actions/flatForms.actions';
 import { AppState } from 'src/app/stores/app.state';
 
 @Component({
-  selector: 'update-flat',
+  selector: 'app-update-flat',
   templateUrl: './update.component.html',
   styleUrls: ['./update.component.scss'],
 })
-export class UpdateFlatComponent {
+export class UpdateFlatComponent implements OnInit, AfterContentChecked {
   public loadingSubscription!: Subscription;
   public flatForm = undefined;
-  public loading: boolean = true;
+  public loading = true;
   constructor(
     private store: Store<AppState>,
     private route: ActivatedRoute,
@@ -32,7 +29,7 @@ export class UpdateFlatComponent {
       .select('UILoadingState')
       .subscribe((state) => (this.loading = state.loading));
     this.route.paramMap.subscribe((paramMap) => {
-      let id: string | null = paramMap.get('id');
+      const id: string | null = paramMap.get('id');
       if (id) {
         this.store.dispatch(
           getFlatAction({
