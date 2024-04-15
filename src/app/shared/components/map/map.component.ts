@@ -21,10 +21,8 @@ import {
   Popup,
   DomEvent,
   Icon,
-  MapOptions,
 } from 'leaflet';
 import 'leaflet-contextmenu';
-import 'leaflet-contextmenu.d.ts';
 
 import { FlatMarker } from 'src/app/shared/models/flatMarker.model';
 import { allActions } from 'src/app/stores/actions';

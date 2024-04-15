@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { allActions } from 'src/app/stores/actions';
-import { RatingInterface } from '../interfaces/Rating.interface';
-import { FormControl, FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root',

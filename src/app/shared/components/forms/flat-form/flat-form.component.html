@@ -18,7 +18,7 @@
           "
           [id]="item.key + '-input'"
         >
-          <component-input-text
+          <app-component-input-text
             class="input"
             *ngIf="_formService.isInputText('flat', item.key)"
             [required]="_formService.isInputRequired('flat', item.key)"
@@ -26,8 +26,8 @@
             [formControlName]="item.key"
             [formGroup]="flatForm.data.controls.information"
             [label]="item.key"
-          ></component-input-text>
-          <component-input-textarea
+          ></app-component-input-text>
+          <app-component-input-textarea
             class="input"
             *ngIf="_formService.isInputTextarea('flat', item.key)"
             [required]="_formService.isInputRequired('flat', item.key)"
@@ -35,7 +35,7 @@
             [formControlName]="item.key"
             [label]="item.key"
             [formGroup]="flatForm.data.controls.information"
-          ></component-input-textarea>
+          ></app-component-input-textarea>
         </div>
       </div>
       <div class="subtitle"><h3>Location</h3></div>
@@ -49,7 +49,7 @@
         >
           <ng-container> </ng-container>
 
-          <component-input-text
+          <app-component-input-text
             class="input"
             *ngIf="_formService.isInputText('flat', item.key)"
             [formGroup]="flatForm.data.controls.location"
@@ -58,8 +58,8 @@
             [formControlName]="item.key"
             [label]="item.key"
             [formGroup]="flatForm.data.controls.location"
-          ></component-input-text>
-          <component-input-number
+          ></app-component-input-text>
+          <app-component-input-number
             class="input"
             *ngIf="_formService.isInputNumber('flat', item.key)"
             [required]="_formService.isInputRequired('flat', item.key)"
@@ -67,8 +67,8 @@
             [id]="item.key"
             [formControlName]="item.key"
             [label]="item.key"
-          ></component-input-number>
-          <component-selector
+          ></app-component-input-number>
+          <app-component-selector
             class="input"
             *ngIf="_formService.isInputSelector('flat', item.key)"
             [required]="_formService.isInputRequired('flat', item.key)"
@@ -77,7 +77,7 @@
             [formControlName]="item.key"
             [label]="item.key"
             [options]="getOptions(item.key)"
-          ></component-selector>
+          ></app-component-selector>
         </div>
       </div>
       <div class="subtitle"><h3>Specs</h3></div>
@@ -90,14 +90,14 @@
           [id]="item.key + '-input'"
           class="input"
         >
-          <component-input-number
+          <app-component-input-number
             *ngIf="_formService.isInputNumber('flat', item.key)"
             [required]="_formService.isInputRequired('flat', item.key)"
             [formGroup]="flatForm.data.controls.specs"
             [id]="item.key"
             [formControlName]="item.key"
             [label]="item.key"
-          ></component-input-number>
+          ></app-component-input-number>
         </div>
       </div>
       <div class="subtitle"><h3>Others</h3></div>
@@ -110,85 +110,85 @@
           [id]="item.key + '-input'"
           class="input"
         >
-          <component-input-number
+          <app-component-input-number
             *ngIf="_formService.isInputNumber('flat', item.key)"
             [required]="_formService.isInputRequired('flat', item.key)"
             [id]="item.key"
             [formControlName]="item.key"
             [formGroup]="flatForm.data.controls.others"
             [label]="item.key"
-          ></component-input-number>
-          <component-input-checkbox
+          ></app-component-input-number>
+          <app-component-input-checkbox
             *ngIf="_formService.isInputCheckbox('flat', item.key)"
             [required]="_formService.isInputRequired('flat', item.key)"
             [id]="item.key"
             [formControlName]="item.key"
             [formGroup]="flatForm.data.controls.others"
             [label]="item.key"
-          ></component-input-checkbox>
+          ></app-component-input-checkbox>
         </div>
       </div>
       <div class="subtitle"><h3>Prices</h3></div>
       <div class="section" id="price" formGroupName="price">
         <div [id]="'averagePrice-input'" class="input">
-          <component-input-number
+          <app-component-input-number
             *ngIf="_formService.isInputNumber('flat', 'averagePrice')"
             [required]="_formService.isInputRequired('flat', 'averagePrice')"
             [id]="'averagePrice'"
             [formControlName]="'averagePrice'"
             [formGroup]="flatForm.data.controls.price"
             [label]="'averagePrice'"
-          ></component-input-number>
+          ></app-component-input-number>
         </div>
         <h4>Current Price</h4>
         <div id="currentPriceRow" formGroupName="currentPrice">
           <div class="input inputHalf" id="currentPricedate-input">
-            <component-input-date
+            <app-component-input-date
               [required]="true"
               id="currentPricedate"
               [formControlName]="'date'"
               [formGroup]="flatForm.data.controls.price.controls.currentPrice"
               label="date"
-            ></component-input-date>
+            ></app-component-input-date>
           </div>
           <div class="input inputHalf" id="currentPricevalue-input">
-            <component-input-number
+            <app-component-input-number
               [required]="true"
               id="currentPricevalue"
               [formControlName]="'value'"
               [formGroup]="flatForm.data.controls.price.controls.currentPrice"
               [label]="'value'"
-              (emitChange)="updateAveragePrice($event)"
-            ></component-input-number>
+              (emitChange)="updateAveragePrice()"
+            ></app-component-input-number>
           </div>
         </div>
         <h4>First Price</h4>
         <div id="firstPriceRow" formGroupName="firstPrice">
           <div class="input inputHalf" id="firstPricedate-input">
-            <component-input-date
+            <app-component-input-date
               [required]="true"
               id="firstPricedate"
               [formControlName]="'date'"
               [formGroup]="flatForm.data.controls.price.controls.firstPrice"
               label="date"
-            ></component-input-date>
+            ></app-component-input-date>
           </div>
           <div class="input inputHalf" id="firstPricevalue-input">
-            <component-input-number
+            <app-component-input-number
               [required]="true"
               id="firstPricevalue"
               [formControlName]="'value'"
               [formGroup]="flatForm.data.controls.price.controls.firstPrice"
               [label]="'value'"
-              (emitChange)="updateAveragePrice($event)"
-            ></component-input-number>
+              (emitChange)="updateAveragePrice()"
+            ></app-component-input-number>
           </div>
         </div>
       </div>
     </div>
     <div class="column">
       <div id="imageCont">
-        <carousel-component></carousel-component>
+        <app-carousel-component></app-carousel-component>
       </div>
       <div class="subtitle">
         <h3>Ratings</h3>
@@ -202,31 +202,31 @@
           [id]="item.key + '-input'"
           class="input"
         >
-          <component-input-slider
-            (emitChange)="updateTotalRatingValue($event)"
+          <app-component-input-slider
+            (emitChange)="updateTotalRatingValue()"
             [formGroup]="flatForm.data.controls.rating"
             [id]="item.key"
             [formControlName]="item.key"
             [label]="item.key"
-          ></component-input-slider>
+          ></app-component-input-slider>
         </div>
       </div>
     </div>
   </div>
   <div id="buttonBar" class="row" *ngIf="page !== 'show'">
     <div class="button">
-      <component-generic-button
+      <app-component-generic-button
         [label]="'Cancel'"
         [loading]="false"
-      ></component-generic-button>
+      ></app-component-generic-button>
     </div>
     <div class="button">
-      <component-generic-button
+      <app-component-generic-button
         (click)="validateForm()"
         [submit]="true"
         [disabled]="false"
         [loading]="false"
-      ></component-generic-button>
+      ></app-component-generic-button>
     </div>
   </div>
 </form>

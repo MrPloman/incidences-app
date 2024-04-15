@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'navbar-component',
+  selector: 'app-navbar-component',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })

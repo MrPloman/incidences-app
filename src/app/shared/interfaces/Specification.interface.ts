@@ -1,5 +1,3 @@
-import { FormControl } from '@angular/forms';
-
 export interface SpecificationInterface {
   m2: number | null;
   roomsNumber: number | null;

@@ -1,16 +1,14 @@
-import { Component, Input, SimpleChanges, forwardRef } from '@angular/core';
+import { Component, Input, OnInit, forwardRef } from '@angular/core';
 import {
   FormControl,
-  FormControlName,
   FormGroup,
   NG_VALUE_ACCESSOR,
   Validators,
 } from '@angular/forms';
 import { combineLatest } from 'rxjs';
-import { inputTypes } from 'src/app/shared/types/types';
 
 @Component({
-  selector: 'component-input-date',
+  selector: 'app-component-input-date',
   templateUrl: './input-date.component.html',
   styleUrls: ['./input-date.component.scss'],
   providers: [
@@ -21,21 +19,17 @@ import { inputTypes } from 'src/app/shared/types/types';
     },
   ],
 })
-export class InputDateComponent {
-  @Input() public class: string = '';
-  @Input() public label: string = '';
-  @Input() public id: string = '';
-  @Input() public width: string = '100%';
-  @Input() public required: boolean = false;
+export class InputDateComponent implements OnInit {
+  @Input() public class = '';
+  @Input() public label = '';
+  @Input() public id = '';
+  @Input() public width = '100%';
+  @Input() public required = false;
   @Input() public formGroup!: FormGroup;
   @Input() public formControlName!: string;
 
-  constructor() {}
   public readonly valueControl = new FormControl(Date);
-  ngOnChanges(changes: SimpleChanges): void {
-    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
-    //Add '${implements OnChanges}' to the class.
-  }
+
   ngOnInit(): void {
     combineLatest([this.valueControl.valueChanges]).subscribe(() => {
       const value = this._getValue();
@@ -62,6 +56,7 @@ export class InputDateComponent {
     }
   }
   // On change section
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private _onChange = (_value: any): void => undefined;
   public registerOnChange(fn: (value: any) => void): void {
     this._onChange = fn;

@@ -1,7 +1,8 @@
 <igx-carousel>
   <igx-slide *ngFor="let slide of slides">
     <div class="image-container">
-      <img [src]="slide.src" />
+      <img *ngIf="slide && slide.src" [src]="slide.src" [alt]="slide.src" />
+      <span *ngIf="!slide || !slide.src">Image not found</span>
     </div>
   </igx-slide>
 </igx-carousel>

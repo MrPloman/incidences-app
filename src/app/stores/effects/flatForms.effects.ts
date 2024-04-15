@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { map, catchError, of, switchMap, tap } from 'rxjs';
-import { User } from 'src/app/shared/models/user.model';
+import { map, catchError, of, switchMap } from 'rxjs';
 import { FlatService } from 'src/app/flat/services/flat.service';
-import { LatLng } from 'leaflet';
 import { allActions } from '../actions';
 import { FlatModel } from 'src/app/shared/models/flat.model';
 @Injectable({

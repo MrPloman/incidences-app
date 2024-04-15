@@ -1,4 +1,4 @@
-<navbar-component></navbar-component>
+<app-navbar-component></app-navbar-component>
 
 <div *ngIf="!globalLoading" id="container">
   <div id="locations">
@@ -7,26 +7,26 @@
     </div>
     <div id="filters">
       <form id="form" [formGroup]="searchForm.data">
-        <component-input-text
+        <app-component-input-text
           class="input"
           [label]="'searchValue'"
           [formControlName]="'searchValue'"
           [formGroup]="searchForm.data"
-        ></component-input-text>
-        <basic-chip-component></basic-chip-component>
+        ></app-component-input-text>
+        <app-basic-chip-component></app-basic-chip-component>
       </form>
     </div>
     <div id="list">
       <ng-container *ngIf="!loading() && markers() && markers().length > 0">
-        <card-component
+        <app-card-component
           *ngFor="let marker of markers()"
           [markerInfo]="marker"
           (click)="manageMarkerSelection(marker)"
-        ></card-component>
+        ></app-card-component>
       </ng-container>
       <div *ngIf="!loading() && markers().length === 0">Nothing found</div>
       <ng-container id="loader" *ngIf="loading()">
-        <mini-loader></mini-loader>
+        <app-mini-loader></app-mini-loader>
       </ng-container>
     </div>
   </div>
@@ -41,4 +41,4 @@
     [searchValue]="searchForm.data.controls.searchValue.value"
   ></app-map>
 </div>
-<loader-component *ngIf="globalLoading"></loader-component>
+<app-loader-component *ngIf="globalLoading"></app-loader-component>

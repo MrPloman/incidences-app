@@ -1,4 +1,9 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import {
+  AfterContentChecked,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';

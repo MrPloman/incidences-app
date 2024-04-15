@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { IGX_CAROUSEL_DIRECTIVES } from 'igniteui-angular';
 
 @Component({
-  selector: 'carousel-component',
+  selector: 'app-carousel-component',
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.scss'],
 })

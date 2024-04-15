@@ -1,4 +1,4 @@
-<navbar-component [ngClass]="{ disappear: success }"></navbar-component>
+<app-navbar-component [ngClass]="{ disappear: success }"></app-navbar-component>
 
 <div id="background" [ngClass]="{ disappear: success }">
   <div id="container" [ngClass]="{ disappear: success }">
@@ -7,28 +7,28 @@
     </div>
     <form id="form" [formGroup]="loginForm">
       <div id="email">
-        <component-input-text
+        <app-component-input-text
           formControlName="email"
           [label]="'Email'"
           [type]="'email'"
           [id]="'input-email'"
-        ></component-input-text>
+        ></app-component-input-text>
       </div>
       <div id="password">
-        <component-input-text
+        <app-component-input-text
           formControlName="password"
           [label]="'Password'"
           [type]="'password'"
           [id]="'input-password'"
-        ></component-input-text>
+        ></app-component-input-text>
       </div>
     </form>
     <div id="buttons">
-      <component-generic-button
+      <app-component-generic-button
         [disabled]="submitIsForbidden || isDownloading"
         [loading]="isDownloading"
         (click)="submit()"
-      ></component-generic-button>
+      ></app-component-generic-button>
     </div>
   </div>
 </div>

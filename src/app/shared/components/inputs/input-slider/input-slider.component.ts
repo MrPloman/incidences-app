@@ -2,6 +2,7 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnInit,
   Output,
   forwardRef,
 } from '@angular/core';
@@ -11,12 +12,10 @@ import {
   NG_VALUE_ACCESSOR,
   Validators,
 } from '@angular/forms';
-import { Class } from 'leaflet';
 import { combineLatest } from 'rxjs';
-import { inputTypes } from 'src/app/shared/types/types';
 
 @Component({
-  selector: 'component-input-slider',
+  selector: 'app-component-input-slider',
   templateUrl: './input-slider.component.html',
   styleUrls: ['./input-slider.component.scss'],
   providers: [
@@ -27,17 +26,16 @@ import { inputTypes } from 'src/app/shared/types/types';
     },
   ],
 })
-export class InputSliderComponent {
-  @Input() public class: string = '';
-  @Input() public label: string = '';
-  @Input() public id: string = '';
-  @Input() public width: string = '100%';
-  @Input() public required: boolean = false;
+export class InputSliderComponent implements OnInit {
+  @Input() public class = '';
+  @Input() public label = '';
+  @Input() public id = '';
+  @Input() public width = '100%';
+  @Input() public required = false;
   @Input() public formGroup!: FormGroup;
 
   @Output() emitChange = new EventEmitter<number>();
 
-  constructor() {}
   public readonly valueControl = new FormControl();
   ngOnInit(): void {
     combineLatest([this.valueControl.valueChanges]).subscribe(() => {

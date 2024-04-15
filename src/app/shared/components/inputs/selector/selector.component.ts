@@ -1,4 +1,4 @@
-import { Component, Input, forwardRef } from '@angular/core';
+import { Component, Input, OnInit, forwardRef } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -10,7 +10,7 @@ import { OptionInterface } from 'src/app/shared/interfaces/Option.interface';
 import { inputTypes } from 'src/app/shared/types/types';
 
 @Component({
-  selector: 'component-selector',
+  selector: 'app-component-selector',
   templateUrl: './selector.component.html',
   styleUrls: ['./selector.component.scss'],
   providers: [
@@ -21,14 +21,14 @@ import { inputTypes } from 'src/app/shared/types/types';
     },
   ],
 })
-export class SelectorComponent {
-  @Input() public class: string = '';
-  @Input() public label: string = '';
+export class SelectorComponent implements OnInit {
+  @Input() public class = '';
+  @Input() public label = '';
   @Input() public type: inputTypes = 'text';
-  @Input() public id: string = '';
-  @Input() public width: string = '100%';
-  @Input() public disabled: boolean = false;
-  @Input() public required: boolean = false;
+  @Input() public id = '';
+  @Input() public width = '100%';
+  @Input() public disabled = false;
+  @Input() public required = false;
   @Input() public options: OptionInterface[] = [];
   @Input() public formGroup!: FormGroup;
 
@@ -59,6 +59,7 @@ export class SelectorComponent {
     }
   }
   // On change section
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private _onChange = (_value: string | null): void => undefined;
   public registerOnChange(fn: (value: string | null) => void): void {
     this._onChange = fn;

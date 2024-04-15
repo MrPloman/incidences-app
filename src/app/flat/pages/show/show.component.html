@@ -1,7 +1,7 @@
-<navbar-component></navbar-component>
+<app-navbar-component></app-navbar-component>
 <div id="show-container" *ngIf="!loading">
   <div id="page-title"><h1>Flat Information</h1></div>
-  <flat-form [page]="'show'"></flat-form>
+  <app-flat-form [page]="'show'"></app-flat-form>
 </div>
 
-<loader-component *ngIf="loading"></loader-component>
+<app-loader-component *ngIf="loading"></app-loader-component>

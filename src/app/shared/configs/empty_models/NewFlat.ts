@@ -1,7 +1,5 @@
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FlatModel } from '../../models/flat.model';
-import { InputModel } from '../../models/input.model';
-export let NewFlat: FlatModel = new FlatModel(
+export const NewFlat: FlatModel = new FlatModel(
   {
     information: {
       title: '',

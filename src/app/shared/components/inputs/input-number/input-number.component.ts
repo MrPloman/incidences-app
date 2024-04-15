@@ -2,6 +2,7 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnInit,
   Output,
   forwardRef,
 } from '@angular/core';
@@ -15,7 +16,7 @@ import {
 import { inputTypes } from 'src/app/shared/types/types';
 import { combineLatest } from 'rxjs';
 @Component({
-  selector: 'component-input-number',
+  selector: 'app-component-input-number',
   templateUrl: './input-number.component.html',
   styleUrls: ['./input-number.component.scss'],
   providers: [
@@ -26,20 +27,19 @@ import { combineLatest } from 'rxjs';
     },
   ],
 })
-export class InputNumberComponent implements ControlValueAccessor {
-  @Input() public class: string = '';
-  @Input() public label: string = '';
+export class InputNumberComponent implements ControlValueAccessor, OnInit {
+  @Input() public class = '';
+  @Input() public label = '';
   @Input() public type: inputTypes = 'number';
-  @Input() public id: string = '';
-  @Input() public required: boolean = false;
+  @Input() public id = '';
+  @Input() public required = false;
   @Input() public formGroup!: FormGroup;
 
   @Output() emitChange = new EventEmitter<number | null>();
 
-  constructor() {}
   public readonly valueControl = new FormControl(null || 0);
   ngOnInit(): void {
-    combineLatest([this.valueControl.valueChanges]).subscribe((v) => {
+    combineLatest([this.valueControl.valueChanges]).subscribe(() => {
       let value = this._getValue();
       if (typeof value === 'string') value = parseFloat(value);
       if (value === null) value = 0;
@@ -67,6 +67,7 @@ export class InputNumberComponent implements ControlValueAccessor {
     }
   }
   // On change section
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private _onChange = (_value: number | null): void => undefined;
 
   public registerOnChange(fn: (value: number | null) => void): void {

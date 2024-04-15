@@ -1,21 +1,33 @@
 <nav>
   <div class="wrapper">
-    <div class="logo" (click)="goTo('')"><a>Logo</a></div>
+    <img
+      tabindex="0"
+      class="logo"
+      alt="logo"
+      (click)="goTo('')"
+      (keyup)="goTo('')"
+    /><a>Logo</a>
     <input type="radio" name="slider" id="menu-btn" />
     <input type="radio" name="slider" id="close-btn" />
     <ul class="nav-links">
       <label for="close-btn" class="btn close-btn"
         ><i class="fas fa-times"></i
       ></label>
-      <li (click)="goTo('')"><a>Home</a></li>
-      <li (click)="goTo('profile')"><a>Profile</a></li>
+      <li tabindex="1" (keyup)="goTo('')" (click)="goTo('')"><a>Home</a></li>
+      <li tabindex="2" (keyup)="goTo('profile')" (click)="goTo('profile')">
+        <a>Profile</a>
+      </li>
       <li>
         <a href="#" class="desktop-item">Auth</a>
         <input type="checkbox" id="showDrop" />
         <label for="showDrop" class="mobile-item">Auth</label>
         <ul class="drop-menu">
-          <li (click)="goTo('login')"><a>Login</a></li>
-          <li (click)="goTo('register')"><a>Register</a></li>
+          <li>
+            <a tab="4">Login</a>
+          </li>
+          <li>
+            <a tab="5">Register</a>
+          </li>
         </ul>
       </li>
       <!-- <li>

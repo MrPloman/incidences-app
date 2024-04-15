@@ -1,4 +1,4 @@
-import { Component, Input, forwardRef } from '@angular/core';
+import { Component, Input, OnInit, forwardRef } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -9,7 +9,7 @@ import { combineLatest } from 'rxjs';
 import { inputTypes } from 'src/app/shared/types/types';
 
 @Component({
-  selector: 'component-input-checkbox',
+  selector: 'app-component-input-checkbox',
   templateUrl: './input-checkbox.component.html',
   styleUrls: ['./input-checkbox.component.scss'],
   providers: [
@@ -20,16 +20,14 @@ import { inputTypes } from 'src/app/shared/types/types';
     },
   ],
 })
-export class InputCheckboxComponent {
-  @Input() public class: string = '';
-  @Input() public required: boolean = false;
-  @Input() public label: string = '';
+export class InputCheckboxComponent implements OnInit {
+  @Input() public class = '';
+  @Input() public required = false;
+  @Input() public label = '';
   @Input() public type: inputTypes = 'text';
-  @Input() public id: string = '';
-  @Input() public width: string = '100%';
+  @Input() public id = '';
+  @Input() public width = '100%';
   @Input() public formGroup!: FormGroup;
-
-  constructor() {}
 
   public readonly valueControl = new FormControl(null || '');
   ngOnInit(): void {
@@ -58,6 +56,7 @@ export class InputCheckboxComponent {
     }
   }
   // On change section
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private _onChange = (_value: string | null): void => undefined;
   public registerOnChange(fn: (value: string | null) => void): void {
     this._onChange = fn;

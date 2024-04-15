@@ -1,5 +1,3 @@
-import { FormControl } from '@angular/forms';
-
 export interface OthersInterface {
   buildingYear: number | null;
   floorsNumber: number | null;

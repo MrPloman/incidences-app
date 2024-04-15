@@ -7,11 +7,13 @@ import { IncidencesListService } from '../incidences/services/IncidencesListServ
 import { AuthRouting } from './auth.routing.module';
 import { EffectsModule } from '@ngrx/effects';
 import { effectsArray } from '../stores/effects';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [LoginComponent, RegisterComponent],
   exports: [LoginComponent, RegisterComponent],
   imports: [
+    SharedModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,

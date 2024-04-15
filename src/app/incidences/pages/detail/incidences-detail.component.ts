@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IncidencesListService } from '../../services/IncidencesListService.service';
 import { LoadingService } from 'src/app/shared/services/LoadingService.service';
 

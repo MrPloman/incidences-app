@@ -1,7 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 
 import { FlatFormsState } from '../states/flatForms.state';
-import { NewFlat } from 'src/app/shared/configs/empty_models/NewFlat';
 import {
   setNewFlatErrorAction,
   setNewFlatSuccessAction,
@@ -19,7 +18,7 @@ export const initialFlatFormState: FlatFormsState = {
 };
 export const _flatFormsReducers = createReducer(
   initialFlatFormState,
-  on(setNewFlatAction, (state, { latLng }) => ({
+  on(setNewFlatAction, () => ({
     currentFlatForm: undefined,
     loaded: false,
     loading: true,
@@ -38,7 +37,7 @@ export const _flatFormsReducers = createReducer(
     loading: true,
     error: error,
   })),
-  on(getFlatAction, (state, { id }) => ({
+  on(getFlatAction, () => ({
     currentFlatForm: undefined,
     loaded: false,
     loading: true,

@@ -11,6 +11,6 @@ const initialState: UILoadingState = {
 
 export const UIloadingReducer = createReducer(
   initialState,
-  on(setUILoadingTrue, (state) => ({ loading: true })),
-  on(setUILoadingFalse, (state) => ({ loading: false }))
+  on(setUILoadingTrue, () => ({ loading: true })),
+  on(setUILoadingFalse, () => ({ loading: false }))
 );

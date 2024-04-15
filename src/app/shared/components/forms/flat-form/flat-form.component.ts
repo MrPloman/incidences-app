@@ -5,8 +5,7 @@ import {
   Input,
   OnInit,
 } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { FlatService } from 'src/app/flat/services/flat.service';
 import { FlatFormModel } from 'src/app/shared/models/flatForm.model';
@@ -21,7 +20,7 @@ import {
 } from 'src/app/shared/configs/options';
 import { flatPages } from 'src/app/shared/types/types';
 @Component({
-  selector: 'flat-form',
+  selector: 'app-flat-form',
   templateUrl: './flat-form.component.html',
   styleUrls: ['./flat-form.component.scss'],
 })
@@ -35,7 +34,7 @@ export class FlatFormComponent implements OnInit, AfterContentChecked {
   ) {}
   @Input() page: flatPages = 'create';
   public flatForm!: FlatFormModel;
-  public loading: boolean = true;
+  public loading = true;
   public _formService = this.formService;
   public options = {
     US_STATES_OPTIONS,
@@ -88,7 +87,7 @@ export class FlatFormComponent implements OnInit, AfterContentChecked {
   ngAfterContentChecked(): void {
     this.cd.detectChanges();
   }
-  public updateTotalRatingValue($event: number) {
+  public updateTotalRatingValue() {
     let total = 0;
     this.flatForm.data.controls.rating.valueChanges.subscribe((val) => {
       total = this.formService.calculateTotalRating(val);
@@ -97,7 +96,7 @@ export class FlatFormComponent implements OnInit, AfterContentChecked {
     });
   }
 
-  public updateAveragePrice($event: number | null) {
+  public updateAveragePrice() {
     let firstPrice = 0;
     let currentPrice = 0;
     this.flatForm.data.controls.price.controls.currentPrice.controls.value.valueChanges.subscribe(

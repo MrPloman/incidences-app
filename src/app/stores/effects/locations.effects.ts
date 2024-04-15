@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { map, catchError, of, switchMap, tap } from 'rxjs';
+import { map, catchError, of, switchMap } from 'rxjs';
 import { allActions } from '../actions';
 import { LocationsService } from 'src/app/locations/locations.service';
 import { LatLngBounds } from 'leaflet';
