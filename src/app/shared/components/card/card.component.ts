@@ -8,4 +8,5 @@ import { FlatMarker } from 'src/app/shared/models/flatMarker.model';
 })
 export class CardComponent {
   @Input() public markerInfo!: FlatMarker;
+  @Input() public selected = false;
 }

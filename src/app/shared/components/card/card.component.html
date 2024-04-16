@@ -1,5 +1,5 @@
 <article>
-  <div class="article-wrapper">
+  <div class="article-wrapper" [ngClass]="{ selected: selected }">
     <div class="article-header">
       <div id="titles">
         <h3 id="title">{{ markerInfo.information?.title }}</h3>

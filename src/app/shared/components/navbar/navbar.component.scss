@@ -31,6 +31,12 @@ nav .wrapper {
   font-weight: 600;
   text-decoration: none;
 }
+.wrapper > img {
+  width: 40px;
+  text-decoration: none;
+  background-color: $secondary_color;
+  border-radius: 50px;
+}
 .wrapper .nav-links {
   display: inline-flex;
 }

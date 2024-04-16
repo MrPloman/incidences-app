@@ -21,6 +21,12 @@
         <app-card-component
           *ngFor="let marker of markers()"
           [markerInfo]="marker"
+          [selected]="
+            marker.lat === markerSelected?.lat &&
+            marker.lng === markerSelected?.lng
+              ? true
+              : false
+          "
           (click)="manageMarkerSelection(marker)"
         ></app-card-component>
       </ng-container>
