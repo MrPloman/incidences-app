@@ -72,7 +72,7 @@ export class LocationsComponent
           ) {
             this.coords.set(state.currentPosition);
           }
-
+          if (this.markers().length === 0) this.markerSelected = undefined;
           if (state.error) console.error(state.error);
           this.globalLoading = false;
         });
@@ -90,6 +90,7 @@ export class LocationsComponent
 
   ngOnDestroy(): void {
     this.coords.set({ lat: null, lng: null });
+    this.markerSelected = undefined;
     this.markers.set([]);
     this.markersSubscription.unsubscribe();
   }
