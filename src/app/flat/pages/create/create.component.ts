@@ -2,6 +2,7 @@ import {
   AfterContentChecked,
   ChangeDetectorRef,
   Component,
+  inject,
   OnInit,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -24,11 +25,10 @@ export class CreateFlatComponent implements OnInit, AfterContentChecked {
   public coords: { lat: number; lng: number } = { lat: 0, lng: 0 };
   public flatForm = undefined;
   public loading = true;
-  constructor(
-    private store: Store<AppState>,
-    private route: ActivatedRoute,
-    private cd: ChangeDetectorRef
-  ) {}
+  private store = inject(Store<AppState>);
+  private route = inject(ActivatedRoute);
+  private cd = inject(ChangeDetectorRef);
+
   ngOnInit(): void {
     this.store.dispatch(setUILoadingTrue());
     this.loadingSubscription = this.store
