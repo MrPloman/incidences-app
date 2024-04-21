@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { IncidencesListService } from '../../services/IncidencesListService.service';
 import { LoadingService } from 'src/app/shared/services/LoadingService.service';
 
@@ -9,9 +9,6 @@ import { LoadingService } from 'src/app/shared/services/LoadingService.service';
 })
 export class IncidencesDetailComponent implements OnInit {
   public isLoading = true;
-
-  public _incidencesListService: IncidencesListService;
-  public loadingService: LoadingService;
   public incidence: {
     userId: number;
     id: number;
@@ -23,16 +20,11 @@ export class IncidencesDetailComponent implements OnInit {
     title: '',
     body: '',
   };
-  constructor(
-    incidencesListService: IncidencesListService,
-    loadingService: LoadingService
-  ) {
-    this.loadingService = loadingService;
-    this._incidencesListService = incidencesListService;
-  }
+  private incidencesListService = inject(IncidencesListService);
+  private loadingService = inject(LoadingService);
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    this._incidencesListService.observableIncidendesList$.subscribe(
+    this.incidencesListService.observableIncidendesList$.subscribe(
       (data: { userId: number; id: number; title: string; body: string }) => {
         setTimeout(() => {
           if (data) {

@@ -5,6 +5,7 @@ import {
   OnInit,
   signal,
   OnDestroy,
+  inject,
 } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../stores/app.state';
@@ -47,12 +48,10 @@ export class LocationsComponent
     }),
   };
   private boundaries: LatLngBounds | undefined = undefined;
-
-  constructor(
-    private store: Store<AppState>,
-    private router: Router,
-    private cd: ChangeDetectorRef
-  ) {
+  private store = inject(Store<AppState>);
+  private router = inject(Router);
+  private cd = inject(ChangeDetectorRef);
+  constructor() {
     this.markers.set([]);
   }
 

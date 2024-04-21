@@ -2,10 +2,10 @@ import {
   AfterContentChecked,
   ChangeDetectorRef,
   Component,
+  inject,
   Input,
   OnInit,
 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { FlatService } from 'src/app/flat/services/flat.service';
 import { FlatFormModel } from 'src/app/shared/models/flatForm.model';
@@ -25,14 +25,12 @@ import { flatPages } from 'src/app/shared/types/types';
   styleUrls: ['./flat-form.component.scss'],
 })
 export class FlatFormComponent implements OnInit, AfterContentChecked {
-  constructor(
-    private formService: FormService,
-    private store: Store<AppState>,
-    private flatService: FlatService,
-    private cd: ChangeDetectorRef,
-    private activatedRoute: ActivatedRoute
-  ) {}
-  @Input() page: flatPages = 'create';
+  private formService = inject(FormService);
+  private store = inject(Store<AppState>);
+  private flatService = inject(FlatService);
+  private cd = inject(ChangeDetectorRef);
+
+  @Input() public page: flatPages = 'create';
   public flatForm!: FlatFormModel;
   public loading = true;
   public _formService = this.formService;

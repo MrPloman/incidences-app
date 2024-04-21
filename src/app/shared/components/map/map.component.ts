@@ -8,6 +8,7 @@ import {
   ViewChild,
   OnChanges,
   AfterViewInit,
+  inject,
 } from '@angular/core';
 import { Store } from '@ngrx/store';
 import {
@@ -56,8 +57,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges {
 
   @ViewChild('map')
   public map!: Map;
-
-  constructor(private store: Store<AppState>) {}
+  private store = inject(Store<AppState>);
 
   ngOnInit() {
     window.addEventListener(`contextmenu`, (e) => {

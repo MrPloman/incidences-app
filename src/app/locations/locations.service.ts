@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { LatLngBounds } from 'leaflet';
 import { AppState } from '../stores/app.state';
@@ -11,7 +11,8 @@ import { LocationsMock } from 'src/app/shared/configs/mocks/locations_mock';
   providedIn: 'root',
 })
 export class LocationsService {
-  constructor(private http: HttpClient, private store: Store<AppState>) {}
+  private http = inject(HttpClient);
+  private store = inject(Store<AppState>);
   private markersFromDB: FlatMarker[] = LocationsMock;
   public get getMarkersFromDB(): FlatMarker[] {
     return this.markersFromDB;
