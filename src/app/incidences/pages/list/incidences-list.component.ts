@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { IncidencesListService } from '../../services/IncidencesListService.service';
 import { Router } from '@angular/router';
 import { LoadingService } from 'src/app/shared/services/LoadingService.service';
@@ -10,26 +10,19 @@ import { LoadingService } from 'src/app/shared/services/LoadingService.service';
 })
 export class IncidencesListComponent implements OnInit {
   public isLoading = true;
-  public router: Router;
-  public _incidencesListService: IncidencesListService;
-  public loadingService: LoadingService;
+
   public list: { userId: number; id: number; title: string; body: string }[] =
     [];
-  constructor(
-    incidencesListService: IncidencesListService,
-    loadingService: LoadingService,
-    router: Router
-  ) {
-    this.loadingService = loadingService;
-    this._incidencesListService = incidencesListService;
-    this.router = router;
-  }
+  private incidencesListService = inject(IncidencesListService);
+  private loadingService = inject(LoadingService);
+  private router = inject(Router);
+
   ngOnInit(): void {
-    this._incidencesListService.observableIncidendesList$.subscribe(
-      (data: { userId: number; id: number; title: string; body: string }[]) => {
+    this.incidencesListService.observableIncidendesList$.subscribe(
+      (dat: { userId: number; id: number; title: string; body: string }[]) => {
         setTimeout(() => {
-          if (data && data.length > 0) {
-            this.list = data;
+          if (dat && dat.length > 0) {
+            this.list = dat;
           }
           this.isLoading = false;
         }, 2000);

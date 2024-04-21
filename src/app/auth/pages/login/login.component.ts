@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Store } from '@ngrx/store';
 import { LoadingService } from 'src/app/shared/services/LoadingService.service';
-import { AppState } from 'src/app/stores/app.state';
 
 @Component({
   selector: 'app-page-login',
@@ -17,8 +15,8 @@ export class LoginComponent implements OnInit {
   public submitIsForbidden = true;
   public isDownloading = false;
   public success = false;
-  private router: Router;
-  private loadingService: LoadingService;
+  public router = inject(Router);
+  private LoadingService = inject(LoadingService);
 
   public readonly loginForm: FormGroup = new FormGroup({
     email: new FormControl(this.email, [
@@ -33,13 +31,7 @@ export class LoginComponent implements OnInit {
     ]),
   });
 
-  constructor(
-    router: Router,
-    public LoadingService: LoadingService,
-    private store: Store<AppState>
-  ) {
-    this.loadingService = LoadingService;
-    this.router = router;
+  constructor() {
     this.loginForm.valueChanges.subscribe(() => {
       if (this.validateForm()) {
         this.submitIsForbidden = false;
@@ -48,14 +40,14 @@ export class LoginComponent implements OnInit {
   }
   public submit() {
     if (!this.submitIsForbidden && !this.isDownloading) {
-      this.loadingService.setTrue();
+      this.LoadingService.setTrue();
       this.isDownloading = true;
       setTimeout(() => {
         this.isDownloading = false;
         this.success = true;
         setTimeout(() => {
           this.router.navigate(['incidences'], {});
-          this.loadingService.setFalse();
+          this.LoadingService.setFalse();
         }, 2000);
       }, 4000);
     }
@@ -65,6 +57,6 @@ export class LoginComponent implements OnInit {
     else return false;
   }
   ngOnInit(): void {
-    this.loadingService.setFalse();
+    this.LoadingService.setFalse();
   }
 }

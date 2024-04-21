@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Observable, Observer } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root',
 })
 export class IncidencesListService {
-  constructor(private http: HttpClient) {}
+  private http = inject(HttpClient);
   public observerIncidences$: Observer<[]> = {
     next: (elements) => {
       return elements;

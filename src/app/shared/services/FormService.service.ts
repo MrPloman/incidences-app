@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FormService {
-  constructor(private store: Store<{ status: boolean }>) {}
   public isInputText(form: string, label: string): boolean {
     if (form === 'flat') {
       if (
