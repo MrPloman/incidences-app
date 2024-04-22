@@ -40,6 +40,7 @@
     *ngIf="!globalLoading"
     (emitNewLatLng)="goToNewForm($event)"
     (emitSelectedMarkerId)="goToExistingForm($event)"
+    (emitSelectedMarkerPopup)="manageMarkerSelection($event)"
     (emitBoundaries)="setBoundaries($event)"
     [coords]="coords()"
     [selectedMarker]="coords()"

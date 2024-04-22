@@ -54,6 +54,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges {
   @Output() emitBoundaries = new EventEmitter<LatLngBounds>();
 
   @Output() emitSelectedMarkerId = new EventEmitter<string>();
+  @Output() emitSelectedMarkerPopup = new EventEmitter<FlatMarker>();
 
   @ViewChild('map')
   public map!: Map;
@@ -151,6 +152,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges {
     });
     container.appendChild(button);
     popup.setContent(container);
+    console.log('interaccion');
 
     new Marker([latlng.lat, latlng.lng], { icon: greenIcon })
       .addTo(this.map)
@@ -187,7 +189,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges {
       );
     }
   }
-  public selectMarker($event: unknown) {
-    console.log($event);
+  public selectMarker($event: FlatMarker) {
+    this.emitSelectedMarkerPopup.emit($event);
   }
 }
