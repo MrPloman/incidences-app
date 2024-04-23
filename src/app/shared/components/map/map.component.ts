@@ -135,7 +135,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges {
     return btn;
   }
 
-  private addMarker(latlng: { lat: number; lng: number }) {
+  private addMarker(marker: FlatMarker) {
     const popup = new Popup();
     const greenIcon = new Icon({
       iconUrl: MARKER_ICON_ORANGE,
@@ -145,20 +145,42 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges {
       popupAnchor: [1, -34],
       shadowSize: [41, 41],
     });
-    const container = DomUtil.create('div');
-    const button = this.createButton('Start from this location', container);
-    DomEvent.on(button, 'click', () => {
+    const container = DomUtil.create('div', 'container-popup');
+
+    // Information Container Areas
+    const informationContainer = DomUtil.create('div', 'information-container');
+    const header = DomUtil.create('h2', 'title');
+    if (marker && marker.information && marker.information.title) {
+      header.append(marker.information.title);
+    }
+    informationContainer.appendChild(header);
+
+    // Button Bar Area
+    const buttonBar = DomUtil.create('div', 'button-bar');
+    const goToFormButton = this.createButton('Go To Information', container);
+    const cancelButton = this.createButton('Cancel', container);
+    DomEvent.on(goToFormButton, 'click', () => {
       this.emitSelectedMarkerId.emit('1');
     });
-    container.appendChild(button);
-    popup.setContent(container);
-    console.log('interaccion');
+    DomEvent.on(cancelButton, 'click', () => {
+      popup.close();
+    });
 
-    new Marker([latlng.lat, latlng.lng], { icon: greenIcon })
+    // Appending all areas to main container
+    buttonBar.appendChild(goToFormButton);
+    buttonBar.appendChild(cancelButton);
+    container.appendChild(informationContainer);
+    container.appendChild(buttonBar);
+    popup.setContent(container);
+
+    new Marker([marker.lat, marker.lng], { icon: greenIcon })
       .addTo(this.map)
       .bindPopup(popup)
       .on('click', () => {
-        this.selectMarker(latlng);
+        this.selectMarker(marker);
+      })
+      .on('popupclose', () => {
+        this.selectMarker(marker);
       });
   }
 
@@ -170,7 +192,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges {
         }
       });
       if (this.markers && this.markers.length > 0) {
-        this.markers.forEach((marker: any) => {
+        this.markers.forEach((marker: FlatMarker) => {
           this.addMarker(marker);
         });
       }

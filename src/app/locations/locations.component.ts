@@ -71,8 +71,8 @@ export class LocationsComponent
           ) {
             this.coords.set(state.currentPosition);
           }
-          if (this.markers().length === 0) this.markerSelected = undefined;
           if (state.error) console.error(state.error);
+          this.markerSelected = undefined;
           this.globalLoading = false;
         });
     });
@@ -140,7 +140,12 @@ export class LocationsComponent
   }
 
   public manageMarkerSelection(marker: FlatMarker) {
-    if (this.markerSelected !== marker) this.centerInTheMarkerSelected(marker);
+    if (!this.markerSelected) this.centerInTheMarkerSelected(marker);
     else this.router.navigate([`flat/1`], {});
+  }
+
+  public managePopupMarkerSelection(marker: FlatMarker) {
+    if (this.markerSelected !== marker) this.markerSelected = marker;
+    else this.markerSelected = undefined;
   }
 }

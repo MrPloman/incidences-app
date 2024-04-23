@@ -47,3 +47,23 @@ body {
 body {
   margin: 0;
 }
+
+.leaflet-popup-content {
+  width: 400px;
+  height: 200px;
+  padding: 20px;
+}
+.leaflet-popup-content-wrapper {
+  border-radius: 10px;
+  background: $secondary_color;
+  .leaflet-popup-content {
+    .container-popup {
+      .information-container {
+        h2 {
+          font-size: 30px;
+          font-family: $font_typo !important;
+        }
+      }
+    }
+  }
+}
