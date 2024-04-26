@@ -43,7 +43,7 @@
     (emitSelectedMarkerPopup)="managePopupMarkerSelection($event)"
     (emitBoundaries)="setBoundaries($event)"
     [coords]="coords()"
-    [selectedMarker]="coords()"
+    [selectedMarker]="markerSelected"
     [markers]="markers()"
     [searchValue]="searchForm.data.controls.searchValue.value"
   ></app-map>

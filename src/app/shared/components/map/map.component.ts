@@ -44,10 +44,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges {
     lng: 0,
   };
   @Input() public markers: FlatMarker[] = [];
-  @Input() public selectedMarker!: {
-    lat: number | null;
-    lng: number | null;
-  };
+  @Input() public selectedMarker: FlatMarker | undefined = undefined;
   @Input() public searchValue: string | null = '';
 
   @Output() emitNewLatLng = new EventEmitter<LatLng>();
@@ -71,7 +68,10 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    console.log(changes);
     if (changes.markers) this.refreshMarkers();
+    if (changes.coords) this.goToThisMarker();
+
     if (changes.selectedMarker) this.goToThisMarker();
   }
 
@@ -136,6 +136,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   private addMarker(marker: FlatMarker) {
+    if (!marker) return;
     const popup = new Popup();
     const greenIcon = new Icon({
       iconUrl: MARKER_ICON_ORANGE,
@@ -173,15 +174,17 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges {
     container.appendChild(buttonBar);
     popup.setContent(container);
 
-    new Marker([marker.lat, marker.lng], { icon: greenIcon })
-      .addTo(this.map)
-      .bindPopup(popup)
-      .on('click', () => {
-        this.selectMarker(marker);
-      })
-      .on('popupclose', () => {
-        this.selectMarker(marker);
-      });
+    if (marker.lat && marker.lng) {
+      new Marker([marker.lat, marker.lng], { icon: greenIcon })
+        .addTo(this.map)
+        .bindPopup(popup)
+        .on('click', () => {
+          this.selectMarker(marker);
+        })
+        .on('popupclose', () => {
+          this.selectMarker(marker);
+        });
+    }
   }
 
   private refreshMarkers() {
@@ -200,6 +203,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   private goToThisMarker() {
+    console.log(this.selectedMarker);
     if (
       this.map &&
       this.selectedMarker &&

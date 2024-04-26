@@ -6,6 +6,7 @@ import {
   signal,
   OnDestroy,
   inject,
+  Signal,
 } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../stores/app.state';
@@ -37,7 +38,7 @@ export class LocationsComponent
     lng: null,
   });
   public globalLoading = true;
-  public loading = signal(false);
+  public loading = signal<boolean>(false);
   public markerSelected: FlatMarker | undefined = undefined;
   public searchForm: FilterLocationsForm = {
     data: new FormGroup({
@@ -89,7 +90,6 @@ export class LocationsComponent
 
   ngOnDestroy(): void {
     this.coords.set({ lat: null, lng: null });
-    this.markerSelected = undefined;
     this.markers.set([]);
     this.markersSubscription.unsubscribe();
   }
@@ -109,10 +109,27 @@ export class LocationsComponent
     );
   }
 
-  public centerInTheMarkerSelected(coord: { lat: number; lng: number }) {
-    this.markerSelected = coord;
-    this.coords.set(coord);
-    this.store.dispatch(setCurrentPosition({ currentPosition: coord }));
+  public centerInTheMarkerSelected(marker: FlatMarker) {
+    if (!marker) return;
+    this.markerSelected = marker;
+    if (
+      this.markerSelected &&
+      this.markerSelected.lat &&
+      this.markerSelected.lng
+    ) {
+      this.coords.set({
+        lat: this.markerSelected.lat,
+        lng: this.markerSelected.lng,
+      });
+      this.store.dispatch(
+        setCurrentPosition({
+          currentPosition: {
+            lat: this.markerSelected.lat,
+            lng: this.markerSelected.lng,
+          },
+        })
+      );
+    }
   }
   public goToNewForm($event: LatLng) {
     if ($event && $event.lat && $event.lng) {
@@ -140,8 +157,10 @@ export class LocationsComponent
   }
 
   public manageMarkerSelection(marker: FlatMarker) {
-    if (!this.markerSelected) this.centerInTheMarkerSelected(marker);
-    else this.router.navigate([`flat/1`], {});
+    if (!marker) return;
+    this.centerInTheMarkerSelected(marker);
+
+    // else this.router.navigate([`flat/1`], {});
   }
 
   public managePopupMarkerSelection(marker: FlatMarker) {

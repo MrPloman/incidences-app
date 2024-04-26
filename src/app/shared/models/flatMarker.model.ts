@@ -1,7 +1,7 @@
 export class FlatMarker {
   constructor(
-    public lat: number,
-    public lng: number,
+    public lat: number | null,
+    public lng: number | null,
     public information?: {
       title: string;
       address: string;

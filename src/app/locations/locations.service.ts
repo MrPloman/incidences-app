@@ -27,8 +27,11 @@ export class LocationsService {
       setTimeout(() => {
         subs.next(
           this.markersFromDB.filter((mark: FlatMarker) => {
+            if (!mark) return;
             if (
               mark &&
+              mark.lat &&
+              mark.lng &&
               mark.lat < boundaries.getNorth() &&
               mark.lat > boundaries.getSouth() &&
               mark.lng > boundaries.getWest() &&
